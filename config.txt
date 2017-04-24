@@ -1,0 +1,36 @@
+indent: no
+indent-spaces: 2
+wrap: 0
+markup: yes
+output-xml: no
+output-xhtml: yes
+fix-backslash: yes
+input-xml: no
+doctype: auto
+show-warnings: yes
+numeric-entities: yes
+quote-marks: yes
+quote-nbsp: yes
+quote-ampersand: no
+break-before-br: no
+uppercase-tags: no
+uppercase-attributes: no
+char-encoding: utf8
+drop-empty-elements: no
+new-inline-tags: cfif, cfelse, math, mroot,
+  mrow, mi, mn, mo, msqrt, mfrac, msubsup, munderover,
+  munder, mover, mmultiscripts, msup, msub, mtext,
+  mprescripts, mtable, mtr, mtd, mth
+new-blocklevel-tags: cfoutput, cfquery
+new-empty-tags: cfelse
+escape-scripts: yes
+merge-divs: no
+merge-spans: no
+clean: no
+join-classes: yes
+join-styles: yes
+write-back: no
+escape-cdata: yes
+hide-comments: yes
+tidy-mark: no
+error-file: tidy-errors.txt

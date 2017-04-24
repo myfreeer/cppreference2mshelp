@@ -1,0 +1,23 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head />
+<body class="vendor-book">
+<div class="details">
+<span class="vendor">CEZEO software Ltd.</span>
+<span class="locale">en-us</span>
+<span class="id">CPPREFERENCE</span>
+<span class="product">С/С++ documentation from cppreference.com</span>
+<span class="name">С++ documentation</span>
+</div>
+<div class="package-list">
+<div class="package">
+<span class="name">cppreference</span>
+<span class="deployed">False</span>
+<span class="last-modified">2017-04-24T00:00:01.000Z</span>
+<span class="package-etag">7f8c90b0-bbae-42d7-9c3e-135d10c458ba</span>
+<a class="current-link" href="cppreference.cab">cppreference.cab</a>
+</div>
+</div>
+</body>
+</html>
+
+

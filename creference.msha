@@ -1,0 +1,23 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head />
+<body class="vendor-book">
+<div class="details">
+<span class="vendor">CEZEO software Ltd.</span>
+<span class="locale">en-us</span>
+<span class="id">CREFERENCE</span>
+<span class="product">С/С++ documentation from cppreference.com</span>
+<span class="name">С documentation</span>
+</div>
+<div class="package-list">
+<div class="package">
+<span class="name">creference</span>
+<span class="deployed">False</span>
+<span class="last-modified">2017-04-24T00:00:00.000Z</span>
+<span class="package-etag">b753bb03-e1eb-4eb3-9491-7e588df14ebe</span>
+<a class="current-link" href="creference.cab">creference.cab</a>
+</div>
+</div>
+</body>
+</html>
+
+
