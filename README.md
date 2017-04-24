@@ -40,4 +40,6 @@ Folders **common** and **en** is from archive from cppreference, all other folde
 
 5) In result you should have two new files in this folder: **cppreference.cab** and **creference.cab** - use them with appropriate **cppreference.msha** and **creference.msha** files to install created help files.
 
+**Note:** *This repo contain pre-build and signed files that are ready to install into Visual Studio 2012, Visual Studio 2013 (maybe 2015 and 2017 too - I can't test it right now - let me know if you'll do ).*
+
 Enjoy!
