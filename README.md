@@ -11,12 +11,19 @@ cppreference.com html archive to microsoft help converter
 ## Ok, what's inside?
 
 **compile_c.cmd** and **compile_cpp.cmd** - main command files that do the all job. Use **compile_c.cmd** for c documentation and **compile_cp.cmd** for c++ documentation. 
+
 **compile_c_zip.ps1** and **compile_cpp_zip.ps1** - uses powershell to make zip files.
+
 **config.txt** - config for a great tool *tidy*: http://www.html-tidy.org/ ( we need it to convert htmls to xhtmls and fix errors ).
+
 **cppreference.msha** and **creference.msha** - config files for *Microsoft Help System*. Actually a headers for Help system, *Microsoft Help* will get the info from them to install the help packs.
+
 **make_xhtmls.php** - ugly php preprocessor script that fixes and converts thousands of htmls from cppreference to xhtml and Microsoft Help format.
+
 **makecab.exe** - tool to make a cab file for Microsoft Help System. Can be found in Microsoft SDK.
+
 **signtool.exe** - tool to sign cab files. Can be found in Microsoft SDK.
+
 **tidy.exe** and **tidy.dll** - tool to convert html to xhtml and fix many other problems. Can be downloaded here: http://www.html-tidy.org/ 
 
 ## Step-by-step instructions:
