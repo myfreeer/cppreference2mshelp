@@ -3,10 +3,12 @@ cppreference.com html archive converter to microsoft help (for Windows Visual St
 
 ## Prerequires:
 
-1) Windows x64 (LOL, I'm mad)
-2) php al least 5.6.1
-3) digital certificate to sign cabs for Visual Studio (because unsigned cabs will not be installed) CHM help does not require certificate
-4) cppreference.com offline archive (*Html book*) downloaded from this link: http://en.cppreference.com/w/Cppreference:Archives
+1) Windows x64 (LOL, I'm mad). Actually any system will be ok, you should use another tools in this case to make cab file, zip file and digitally sign cab (for Visual Studio Help). However there is no alternative for [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft (for chm based help).
+2) php at least 5.6.1
+3) cppreference.com offline archive (*Html book*) downloaded from this link: http://en.cppreference.com/w/Cppreference:Archives
+4) [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft to build .chm help file.
+5) [Tidy](http://www.html-tidy.org/) (html fixer), [signtool.exe](https://msdn.microsoft.com/en-us/library/8s9b9yaz(v=vs.110).aspx) and [makecab.exe](https://technet.microsoft.com/en-us/library/hh875545(v=ws.11).aspx) from Microsoft SDK to build Visual Studio help files.
+6) digital certificate to sign cabs for Visual Studio Help (because unsigned cabs will not be installed) CHM help does not require certificate
 
 ## Ok, what's inside?
 
@@ -42,8 +44,8 @@ Folders **common** and **en** is from archive from cppreference, all other folde
 
 5) In result you should have two new files in this folder: **cppreference.cab** and **creference.cab** - use them with appropriate **cppreference.msha** and **creference.msha** files to install created help files.
 
-**Note:** *This repo contain pre-build and signed files that are ready to install into Visual Studio 2012, Visual Studio 2013 (maybe 2015 and 2017 too - I can't test it right now - let me know if you'll do ).*
+**Note:** *This repo contains pre-build and signed files that are ready to install into Visual Studio 2012, Visual Studio 2013 (maybe 2015 and 2017 too - I can't test it right now - let me know if you'll do ).*
 
-**Note:** *If you want to build chm help file, launch* **make_chm.php**. Pre-built cppreference.chm file is also added to this repo.
+**Note:** *If you want to build chm help file, launch* **make_chm.php**. Pre-built **cppreference.chm** file is also included into this repo.
 
 Enjoy!
