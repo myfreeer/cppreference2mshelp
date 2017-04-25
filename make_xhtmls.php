@@ -175,14 +175,14 @@ function buildXHtmls( $cpp = true )
 		$nodes = getNodesByName( $dom, "style");
 		foreach( $nodes as $e ) 
 		{
-			if( strpos( $e->textContent, "a:lang" ) !== false )
-			{
+			//if( strpos( $e->textContent, "a:lang" ) !== false )
+			//{
 				$e->parentNode->removeChild( $e );
-			}
-			else
-			{
-				$e->textContent = removeCommentFromCss( $e->textContent );
-			}
+			//}
+			//else
+			//{
+			//	$e->textContent = removeCommentFromCss( $e->textContent );
+			//}
 		}
 
 
@@ -378,7 +378,7 @@ function buildXHtmls( $cpp = true )
 
 			while ( count( $keywords ) > 0 )
 			{
-				$kwrd = array_pop( $keywords );
+				$kwrd = trim( array_pop( $keywords ));
 				addNewMeta( $dom, $head[0], 'Microsoft.Help.Keywords', $kwrd);
 				addNewMeta( $dom, $head[0], 'Microsoft.Help.F1', $kwrd );
 			};
