@@ -329,7 +329,7 @@ function buildChm( $cpp = true )
 
 	// building project file
 	echo( "building project cppreference.hhp ...\n");
-	$metadata = "[OPTIONS]\nCompatibility=1.1 or later\nCompiled file=cpprererence.chm\nContents file=cppreference.hhc\nDefault Window=default\nDefault topic=chmhelp\index.html\nDisplay compile progress=No\nFull-text search=Yes\nIndex file=cppreference.hhk\nLanguage=0x409 English (United States)\nTitle=C / C++ Documentation from cppreference.com\n[WINDOWS]\n";
+	$metadata = "[OPTIONS]\nCompatibility=1.1 or later\nCompiled file=cppreference.chm\nContents file=cppreference.hhc\nDefault Window=default\nDefault topic=chmhelp\index.html\nDisplay compile progress=No\nFull-text search=Yes\nIndex file=cppreference.hhk\nLanguage=0x409 English (United States)\nTitle=C / C++ Documentation from cppreference.com\n[WINDOWS]\n";
 	$metadata .= 'default="C / C++ Documentation from cppreference.com","cppreference.hhc","cppreference.hhk","chmhelp\index.html","chmhelp\index.html",,,,,0x62520,,0x301e,[0,32,800,592],0x1020000,,,,,,0'."\n[FILES]\n";
 
 	buildListOfFiles( $treeFiles, $metadata );
