@@ -12,7 +12,7 @@ cppreference.com html archive converter to microsoft help (for Windows Visual St
 
 ## Ok, what's inside?
 
-**compile_c.cmd** and **compile_cpp.cmd** - main command files that do the all job. Use **compile_c.cmd** for c documentation and **compile_cp.cmd** for c++ documentation. 
+**compile_c.cmd** and **compile_cpp.cmd** - main command files that do the all job. Use **compile_c.cmd** for c documentation and **compile_cpp.cmd** for c++ documentation. 
 
 **compile_c_zip.ps1** and **compile_cpp_zip.ps1** - uses powershell to make zip files.
 
@@ -46,6 +46,8 @@ Folders **common** and **en** is from archive from cppreference, all other folde
 
 **Note:** *This repo contains pre-build and signed files that are ready to install into Visual Studio 2012, Visual Studio 2013 (maybe 2015 and 2017 too - I can't test it right now - let me know if you'll do ).*
 
-**Note:** *If you want to build chm help file, launch* **make_chm.php**. Pre-built **cppreference.chm** file is also included into this repo.
+**Note:** *If you want to build chm help file, launch* **make_chm.php**. Pre-built **cppreference.chm** file is also included into this repo.*
+
+**Note:** *HTML Help Workshop will not work correctly if you will not associate .hhp files with it (a project file of HHW), you'll receive a lot Errors "HHC5003"*
 
 Enjoy!
