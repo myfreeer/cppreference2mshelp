@@ -51,6 +51,7 @@ function buildChm( $cpp = true )
 	{
 		$filelow = strtolower( $file );
 		$relativename = substr( $filelow, strlen( $sourceDir ) + 1 );
+		$relativename = str_replace( "%", "_", $relativename ); // escape %
 
 		// current file
 		//echo( $relativename."\n" );
@@ -151,6 +152,10 @@ function buildChm( $cpp = true )
 						$new_value = str_replace( "/" , "-", $e->getAttribute("title"));
 						// fix bad titles where space is used instead of _
 						$new_value = str_replace( " " , "_", $new_value);
+						if (! strstr($new_value, "http")) {
+							// escape relative %
+							$new_value = str_replace( "%" , "_", urlencode($new_value));
+						}
 
 						$e->setAttribute("href", $new_value.".html" );
 

@@ -45,5 +45,6 @@ sed -i '/chmhelp\\首页.html/d' "${i}"
 mv "${i}" "chm_temp/${i}"
 "${ICONV}" -c -f UTF-8 -t GB18030 "chm_temp/${i}" > "${i}"
 done
+rm -rf chm_temp
 
 "${HHC}" cppreference.hhp
