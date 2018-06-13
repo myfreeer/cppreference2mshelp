@@ -29,10 +29,10 @@ function buildChm( $cpp = true )
 	//for debuging set false to aviod recreation of xhtml files.
 	$processFiles = true;
 
-	$sourceDir = $scriptDir.DIRECTORY_SEPARATOR ."en";	
-	$commonDir = $scriptDir.DIRECTORY_SEPARATOR ."common";	
+	$sourceDir = $scriptDir.DIRECTORY_SEPARATOR ."zh";
+	$commonDir = $scriptDir.DIRECTORY_SEPARATOR ."common";
 	$cssDir = $scriptDir.DIRECTORY_SEPARATOR ."css";
-	
+
 	$keywordsFiles = array();
 	$errorsFiles = array();
 	$treeFiles = array();
@@ -46,11 +46,11 @@ function buildChm( $cpp = true )
 	$processedFiles = 0;
 	$noTitleLinks = 0;
 	$colspans = 0;
-	
-	foreach( $arrFiles as $file ) 
-	{		
+
+	foreach( $arrFiles as $file )
+	{
 		$filelow = strtolower( $file );
-		$relativename = substr( $filelow, strlen( $sourceDir ) + 1 );	
+		$relativename = substr( $filelow, strlen( $sourceDir ) + 1 );
 
 		// current file
 		//echo( $relativename."\n" );
@@ -68,7 +68,7 @@ function buildChm( $cpp = true )
 		if ( count( $patharr ) > 1 )
 		{
 			array_pop( $patharr );
-			foreach( $patharr as $pathelem ) 
+			foreach( $patharr as $pathelem )
 			{
 				if ( strlen($parent_id) > 0 )
 				{
@@ -78,7 +78,7 @@ function buildChm( $cpp = true )
 				{
 					$parent_id = $pathelem;
 				}
-			}			
+			}
 		}
 
 		// document id and parent document id
@@ -94,7 +94,7 @@ function buildChm( $cpp = true )
 
 		// load xhtml and fix tags
 		$dom = new DomDocument('1.0', 'UTF-8');
-		
+
 		$dom->loadHTMLFile( $targetfile );
 
 		if ( $processFiles )
@@ -107,12 +107,12 @@ function buildChm( $cpp = true )
 			$nodes = getNodesByName( $dom, "link");
 			foreach( $nodes as $e )
 			{
-				if( $e->hasAttribute("href")) 
+				if( $e->hasAttribute("href"))
 				{
 					$e->setAttribute("href", basename( $e->getAttribute("href")));
 				}
 
-				if( $e->getAttribute("rel") != "stylesheet" ) 
+				if( $e->getAttribute("rel") != "stylesheet" )
 				{
 					$e->parentNode->removeChild( $e );
 				}
@@ -120,7 +120,7 @@ function buildChm( $cpp = true )
 
 			// remove divs with internal info > 1mb
 			$nodes = getNodesByName( $dom, "div");
-			foreach( $nodes as $e ) 
+			foreach( $nodes as $e )
 			{
 				if( $e->getAttribute("class") == "printfooter" || strpos( $e->getAttribute("class"), "catlinks" ) !== false || strpos( $e->getAttribute("class"), "coliru-btn" ) !== false )
 				{
@@ -141,14 +141,14 @@ function buildChm( $cpp = true )
 
 			// fix links to other pages
 			$nodes = array_merge( getNodesByName( $dom, "a"), getNodesByName( $dom, "area"));
-			foreach( $nodes as $e ) 
+			foreach( $nodes as $e )
 			{
 				if( $e->hasAttribute("title"))
 				{
 					$href = $e->getAttribute("href");
 					if ( strpos( $href, "http") === false )
 					{
-						$new_value = str_replace( "/" , "-", $e->getAttribute("title"));					
+						$new_value = str_replace( "/" , "-", $e->getAttribute("title"));
 						// fix bad titles where space is used instead of _
 						$new_value = str_replace( " " , "_", $new_value);
 
@@ -179,7 +179,7 @@ function buildChm( $cpp = true )
 
 						$fref_folders = explode( "/" , $hrefname );
 
-						foreach ($fref_folders as $frf) 
+						foreach ($fref_folders as $frf)
 						{
 							$relative_folders[] = $frf;
 						}
@@ -192,7 +192,7 @@ function buildChm( $cpp = true )
 
 			// remove unwanted colspan="5", about 4mb of text!
 			$nodes = getNodesByName( $dom, "td");
-			foreach( $nodes as $e ) 
+			foreach( $nodes as $e )
 			{
 				if( $e->hasAttribute("colspan") && $e->getAttribute("colspan") == 5 )
 				{
@@ -200,10 +200,10 @@ function buildChm( $cpp = true )
 					$colspans++;
 				}
 			}
-			
+
 			// fix links to images
 			$nodes = getNodesByName( $dom, "img");
-			foreach( $nodes as $e ) 
+			foreach( $nodes as $e )
 			{
 				if( $e->hasAttribute("src"))
 				{
@@ -217,7 +217,7 @@ function buildChm( $cpp = true )
 		$h1title = $dom->getElementById("firstHeading");
 		if ( $h1title )
 		{
-			foreach( $h1title->childNodes as $h1n ) 
+			foreach( $h1title->childNodes as $h1n )
 			{
 				$document_title .= $h1n->textContent;
 			}
@@ -254,8 +254,8 @@ function buildChm( $cpp = true )
 			$keywords = $pre_keywords;
 		}
 		foreach ( $keywords as $keywrd )
-		{	
-			$keywordsFiles[trim($keywrd)][] = 'chmhelp\\'.$id.".html";	
+		{
+			$keywordsFiles[trim($keywrd)][] = 'chmhelp\\'.$id.".html";
 		}
 
 		// building toc tree
@@ -318,10 +318,10 @@ function buildChm( $cpp = true )
 		$metadata .= "\t<li><object type=\"text/sitemap\">\n";
 		$metadata .= "\t\t<param name=\"Name\" value=\"".$kwf."\">\n";
 		foreach ($keywordsFiles[$kwf] as $file)
-		{			
+		{
 			$metadata .= "\t\t<param name=\"Local\" value=\"".$file."\">\n";
 		}
-		$metadata .= "\t</object>\n";		
+		$metadata .= "\t</object>\n";
 	}
 
 	$metadata .= "\n</ul></body></html>";
@@ -329,8 +329,8 @@ function buildChm( $cpp = true )
 
 	// building project file
 	echo( "building project cppreference.hhp ...\n");
-	$metadata = "[OPTIONS]\nCompatibility=1.1 or later\nCompiled file=cppreference.chm\nContents file=cppreference.hhc\nDefault Window=default\nDefault topic=chmhelp\index.html\nDisplay compile progress=No\nFull-text search=Yes\nIndex file=cppreference.hhk\nLanguage=0x409 English (United States)\nTitle=C / C++ Documentation from cppreference.com\n[WINDOWS]\n";
-	$metadata .= 'default="C / C++ Documentation from cppreference.com","cppreference.hhc","cppreference.hhk","chmhelp\index.html","chmhelp\index.html",,,,,0x62520,,0x301e,[0,32,800,592],0x1020000,,,,,,0'."\n[FILES]\n";
+	$metadata = "[OPTIONS]\nCompatibility=1.1 or later\nCompiled file=cppreference.chm\nContents file=cppreference.hhc\nDefault Window=default\nDefault topic=chmhelp\index.html\nDisplay compile progress=No\nFull-text search=Yes\nIndex file=cppreference.hhk\nLanguage=0x804 中文(简体，中国)\nTitle=Title=C / C++ 参考文档\n[WINDOWS]\n";
+	$metadata .= 'default="C / C++ 参考文档","cppreference.hhc","cppreference.hhk","chmhelp\index.html","chmhelp\index.html",,,,,173408,250,0,[0,32,1080,700],0x0000000,,,,,0,0'."\n[FILES]\n";
 
 	buildListOfFiles( $treeFiles, $metadata );
 
@@ -342,7 +342,7 @@ function buildChm( $cpp = true )
 	dirToArray( $arrFiles, $commonDir, "." );
 	echo( "copying images and styles ...\n");
 	echo( "files: ".count( $arrFiles )."\n");
-	foreach( $arrFiles as $file ) 
+	foreach( $arrFiles as $file )
 	{
 		if ( endsWith( $file, '.css' ))
 		{
@@ -367,17 +367,17 @@ function buildChm( $cpp = true )
 	dirToArray( $arrFiles, $cssDir, ".css" );
 	echo( "copying new styles ...\n");
 	echo( "files: ".count( $arrFiles )."\n");
-	foreach( $arrFiles as $file ) 
+	foreach( $arrFiles as $file )
 	{
 		copy( $file, $targetDir.DIRECTORY_SEPARATOR.basename( $file ));
 		echo( "file copied: ".basename( $file )."\n");
 		gc_collect_cycles();
-	} 
+	}
 }
 
 function buildTree(&$array, &$metadata, $level )
 {
-	foreach( $array as $object ) 
+	foreach( $array as $object )
 	{
 		if ( count( $object->childrens ) > 0 )
 		{
@@ -392,7 +392,7 @@ function buildTree(&$array, &$metadata, $level )
 		$metadata .= '<li><object type="text/sitemap"><param name="Name" value="'.htmlspecialchars( $object->title ).'"><param name="Local" value="'.$object->url.'"></object>'."\n";
 
 		if ( count( $object->childrens ) > 0 )
-		{		
+		{
 			buildTree( $object->childrens, $metadata, ( $level ));
 			$level--;
 			insertTabs( $metadata, $level );
@@ -411,7 +411,7 @@ function insertTabs( &$metadata, $level )
 
 function buildListOfFiles(&$array, &$metadata )
 {
-	foreach( $array as $object ) 
+	foreach( $array as $object )
 	{
 		$metadata .= $object->url."\n";
 		if ( count( $object->childrens ) > 0 )
@@ -491,18 +491,18 @@ function deleteNode( $nodeName )
 }
 
 function dirToArray(&$files, $dir, $ext)
-{    
-   $cdir = scandir($dir); 
-   foreach ($cdir as $key => $value) 
-   { 
-      if (!in_array($value,array(".",".."))) 
-      { 
-         if (is_dir($dir . DIRECTORY_SEPARATOR . $value)) 
-         { 
+{
+   $cdir = scandir($dir);
+   foreach ($cdir as $key => $value)
+   {
+      if (!in_array($value,array(".","..")))
+      {
+         if (is_dir($dir . DIRECTORY_SEPARATOR . $value))
+         {
             dirToArray($files, $dir . DIRECTORY_SEPARATOR . $value, $ext);
-         } 
-         else 
-         { 
+         }
+         else
+         {
          	if ( strpos( $value, $ext ) !== false )
          	{
          		if ( strpos( $value, "\\" ) === 0 )
@@ -511,11 +511,11 @@ function dirToArray(&$files, $dir, $ext)
          		}
          		else
          		{
-         			$files[] = $dir."\\".$value;	
+         			$files[] = $dir."\\".$value;
          		}
         	}
-         } 
-      } 
-   } 
-} 
+         }
+      }
+   }
+}
 ?>
