@@ -1,0 +1,183 @@
+diff --git a/Makefile b/Makefile
+index deadfe2..46abab2 100644
+--- a/Makefile
++++ b/Makefile
+@@ -230,7 +230,7 @@ indexes:
+ 	./index2autolinker.py index-functions-c.xml output/indexes/autolink-c
+ 	./index2autolinker.py index-functions-cpp.xml output/indexes/autolink-cpp
+ 
+-#redownloads the source documentation directly from en.cppreference.com
++#redownloads the source documentation directly from zh.cppreference.com
+ source:
+ 	rm -rf "reference"
+ 	mkdir "reference"
+@@ -239,15 +239,15 @@ source:
+ 	regex=".*index\\.php.*|.*/Special:.*|.*/Talk:.*" \
+ 	regex+="|.*/Help:.*|.*/File:.*|.*/Cppreference:.*" \
+ 	regex+="|.*/WhatLinksHere:.*|.*/Template:.*|.*/Category:.*" \
+-	regex+="|.*action=.*|.*printable=.*|.*en.cppreference.com/book.*" ; \
++	regex+="|.*action=.*|.*printable=.*|.*zh.cppreference.com/book.*" ; \
+ 	echo $$regex ; \
+ 	wget --adjust-extension --page-requisites --convert-links \
+-	  --force-directories --recursive --level=15 \
+-	  --span-hosts --domains=en.cppreference.com,upload.cppreference.com \
++	  --force-directories --recursive --level=17 \
++	  --span-hosts --domains=zh.cppreference.com,upload.cppreference.com \
+ 	  --reject-regex $$regex \
+-	  --timeout=5 --tries=50 --no-verbose \
++	  --timeout=5 --tries=150 --no-verbose \
+ 	  --retry-connrefused --waitretry=10 --read-timeout=20 \
+-	  http://en.cppreference.com/w/ ; \
++	  http://zh.cppreference.com/w/ ; \
+ 	popd > /dev/null
+ 
+-	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
++	./export.py --url=http://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
+diff --git a/commands/preprocess.py b/commands/preprocess.py
+index ed67174..ada56fe 100644
+--- a/commands/preprocess.py
++++ b/commands/preprocess.py
+@@ -40,15 +40,15 @@ def rearrange_archive(root):
+     # rearrange the archive. {root} here is output/reference
+ 
+     # before
+-    # {root}/en.cppreference.com/w/ : html
+-    # {root}/en.cppreference.com/mwiki/ : data
+-    # {root}/en.cppreference.com/ : data
++    # {root}/zh.cppreference.com/w/ : html
++    # {root}/zh.cppreference.com/mwiki/ : data
++    # {root}/zh.cppreference.com/ : data
+     # ... (other languages)
+     # {root}/upload.cppreference.com/mwiki/ : data
+ 
+     # after
+     # {root}/common/ : all common data
+-    # {root}/en/ : html for en
++    # {root}/zh/ : html for zh
+     # ... (other languages)
+ 
+     data_path = os.path.join(root, 'common')
+@@ -56,7 +56,7 @@ def rearrange_archive(root):
+     shutil.move(os.path.join(root, 'upload.cppreference.com/mwiki'), data_path)
+     shutil.rmtree(os.path.join(root, 'upload.cppreference.com'))
+ 
+-    for lang in ["en"]:
++    for lang in ["zh"]:
+         path = os.path.join(root, lang + ".cppreference.com/")
+         src_html_path = path + "w/"
+         src_data_path = path + "mwiki/"
+@@ -214,7 +214,7 @@ def has_class(el, classes_to_check):
+     return False
+ 
+ def preprocess_html_file(root, fn, rename_map):
+-    parser = etree.HTMLParser()
++    parser = etree.HTMLParser(encoding="utf-8")
+     html = etree.parse(fn, parser)
+ 
+     # remove non-printable elements
+diff --git a/gadgets/standard_revisions-tests/base.py b/gadgets/standard_revisions-tests/base.py
+index 848d431..67d00f4 100644
+--- a/gadgets/standard_revisions-tests/base.py
++++ b/gadgets/standard_revisions-tests/base.py
+@@ -27,7 +27,7 @@ import unittest, time, re
+ 
+ class Driver:
+     def __init__(self):
+-        base_url = "http://en.cppreference.com/"
++        base_url = "http://zh.cppreference.com/"
+         driver = webdriver.Firefox()
+         driver.implicitly_wait(30)
+         try:
+diff --git a/gadgets/sync_tests_mwiki.py b/gadgets/sync_tests_mwiki.py
+index 9aa3fc7..13294ec 100755
+--- a/gadgets/sync_tests_mwiki.py
++++ b/gadgets/sync_tests_mwiki.py
+@@ -114,7 +114,7 @@ def perform_sync(url, direction, dest_root, title_filter, user, password,
+     # Supply information to config that would otherwise be defined in
+     # user-config.py
+     pywikibot.config2.family = 'cppreference'
+-    pywikibot.config2.mylang = 'en'
++    pywikibot.config2.mylang = 'zh'
+     pywikibot.config2.family_files['cppreference'] = url
+     pywikibot.config2.step = 100
+     pywikibot.config2.put_throttle = 0
+diff --git a/index2ddg.py b/index2ddg.py
+index 9789e56..7a3a3dc 100755
+--- a/index2ddg.py
++++ b/index2ddg.py
+@@ -447,7 +447,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
+         abstract = abstract.replace('\n','\\n')
+         line += abstract + '\t'
+         # source url
+-        line += 'http://en.cppreference.com/w/' + link + '\n'
++        line += 'http://zh.cppreference.com/w/' + link + '\n'
+         out.write(line)
+ 
+         build_redirects(redirects, item_ident, item_type)
+diff --git a/index_transform/browser.py b/index_transform/browser.py
+index d2e625c..82cb11f 100644
+--- a/index_transform/browser.py
++++ b/index_transform/browser.py
+@@ -42,7 +42,7 @@ class Index2Browser(IndexTransform):
+ 
+         res = u''
+         res += '<tt><b>' + xml_escape(full_name) + '</b></tt> [<span class="link">'
+-        res += '<a href="http://en.cppreference.com/w/' + xml_escape(full_link) + '">'
++        res += '<a href="http://zh.cppreference.com/w/' + xml_escape(full_link) + '">'
+         res += full_link + '</a></span>] <span class="mark">' + mark + '</span>\n'
+         return res
+ 
+diff --git a/preprocess.py b/preprocess.py
+index cb6e8cc..a8ac18f 100755
+--- a/preprocess.py
++++ b/preprocess.py
+@@ -28,12 +28,12 @@ def main():
+     parser.add_argument('--dst', type=str, help='Destination folder to put preprocessed archive to')
+     args = parser.parse_args()
+ 
+-    root = args.dst
+-    src = args.src
++    root = args.src
++    # src = args.src
+ 
+     # copy the source tree
+-    rmtree_if_exists(root)
+-    shutil.copytree(src, root)
++    # rmtree_if_exists(root)
++    # shutil.copytree(src, root)
+ 
+     rearrange_archive(root)
+ 
+diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
+index e4aa687..d6f143f 100644
+--- a/tests/test_preprocess.py
++++ b/tests/test_preprocess.py
+@@ -6,23 +6,23 @@ from lxml import etree
+ 
+ class TestConvertLoaderName(unittest.TestCase):
+     def test_convert_loader_name(self):
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
++        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
+ modules=site&only=scripts&skin=cppreference2&*'
+         self.assertEqual('site_scripts.js', convert_loader_name(url))
+ 
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
++        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
+ modules=site&only=styles&skin=cppreference2&*'
+         self.assertEqual('site_modules.css', convert_loader_name(url))
+ 
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
++        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
+ modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
+         self.assertEqual('skin_scripts.js', convert_loader_name(url))
+ 
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
++        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
+ modules=startup&only=scripts&skin=cppreference2&*'
+         self.assertEqual('startup_scripts.js', convert_loader_name(url))
+ 
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
++        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
+ modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.\
+ legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=\
+ cppreference2&*'
