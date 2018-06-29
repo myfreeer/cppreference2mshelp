@@ -127,7 +127,7 @@ function buildChm( $cpp = true )
 				{
 					$e->parentNode->removeChild( $e );
 				}
-				else if ( $e->getAttribute('id') == "siteSub" || $e->getAttribute('id') == "mw-js-message")
+				else if ( $e->getAttribute('id') == "siteSub" || $e->getAttribute('id') == "mw-js-message" || $e->getAttribute('id') == "cpp-footer-base" )
 				{
 					$e->parentNode->removeChild( $e );
 				}
