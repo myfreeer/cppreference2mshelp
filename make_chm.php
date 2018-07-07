@@ -147,7 +147,14 @@ function buildChm( $cpp = true )
 				if( $e->hasAttribute("title"))
 				{
 					$href = $e->getAttribute("href");
-					if ( strpos( $href, "http") === false )
+					$title = $e->getAttribute("title");
+					$hash = false;
+					$hashes = explode('#', $href, 2);
+					if (count($hashes) === 2) {
+						$href = $hashes[0];
+						$hash = $hashes[1];
+					}
+					if ( strpos( $href, "http") === false)
 					{
 						$new_value = str_replace( "/" , "-", $e->getAttribute("title"));
 						// fix bad titles where space is used instead of _
@@ -157,7 +164,11 @@ function buildChm( $cpp = true )
 							$new_value = str_replace( "%" , "_", urlencode($new_value));
 						}
 
-						$e->setAttribute("href", $new_value.".html" );
+						if ($hash) { // fix hashes
+							$e->setAttribute("href", $new_value.".html"."#".$hash );
+						} else {
+							$e->setAttribute("href", $new_value.".html" );
+						}
 
 						// remove title from links?
 						$e->removeAttribute("title");
@@ -166,6 +177,12 @@ function buildChm( $cpp = true )
 				else if( $e->hasAttribute("href"))
 				{
 					$href = $e->getAttribute("href");
+					$hash = false;
+					$hashes = explode('#', $href, 2);
+					if (count($hashes) === 2) {
+						$href = $hashes[0];
+						$hash = $hashes[1];
+					}
 					if ( strpos( $href, "http") === false )
 					{
 						// bad link
@@ -190,7 +207,11 @@ function buildChm( $cpp = true )
 						}
 
 						$fixedhref = implode( "-", $relative_folders );
-						$e->setAttribute("href", $fixedhref.".html" );
+						if ($hash) { // fix hashes
+							$e->setAttribute("href", $fixedhref.".html"."#".$hash );
+						} else {
+							$e->setAttribute("href", $fixedhref.".html" );
+						}
 					}
 				}
 			}
