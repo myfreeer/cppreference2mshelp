@@ -1,4 +1,20 @@
 #!/bin/bash
+for i in "$@"
+do
+  case $i in
+    _7Z=*)
+      _7Z="${i#*=}"
+      shift # past argument=value
+    ;;
+    VERSION=*)
+      VERSION="${i#*=}"
+      shift # past argument=value
+    ;;
+    *)
+      # unknown option
+    ;;
+  esac
+done
 
 set -e
 git clone https://github.com/PeterFeicht/cppreference-doc.git --depth=1
@@ -25,7 +41,13 @@ ext_path="$(find | grep -iP 'load\.php.*?modules=.*ext.*&only=styles.*?' | head 
 
 LIST="startup_scripts site_scripts site_modules skin_scripts ext"
 extra_fonts="DejaVuSans.ttf DejaVuSans-Bold.ttf DejaVuSansMono.ttf DejaVuSansMono-Bold.ttf"
+
+_7Z="${_7Z:-$(which 7z)}"
+VERSION="${VERSION:-$(date +%Y%m%d)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
+
+# package un-processed files
+"${_7Z}" -mx9 -myx9 "cppreference-unprocessed-${VERSION}.7z" ./reference
 
 # https://gist.github.com/cdown/1163649/8a35c36fdd24b373788a7057ed483a5bcd8cd43e
 url_encode() {
@@ -90,6 +112,8 @@ done
 fi
 rm -rf font_temp
 
+find ./ -iname '*.html' -type f | xargs -P "${CPUS}" sed -i "s/ - cppreference.com//g"
+
 echo post-processing...
 for i in $LIST; do
     echo processing $i
@@ -103,5 +127,10 @@ find -iname "${skin_scripts_replace}" | xargs sed -i '1 i if(window.mw)'
 find -iname '*.css' | xargs sed -i -r 's/\.\.\/([^.]+?)\.ttf/\1.ttf/ig'
 echo Done.
 
-mv reference/* ../
+# package processed files
+"${_7Z}" -mx9 -myx9 "html-book-${VERSION}.7z" ./reference
+
+# move processed files to parent folder
+# for make_chm.sh
+mv -f reference/* ../
 cd ..

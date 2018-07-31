@@ -32,7 +32,7 @@ PHP="${PHP:-$(which php)}"
 ICONV="${ICONV:-$(which iconv)}"
 HHC="${HHC:-$(which hhc)}"
 _7Z="${_7Z:-$(which 7z)}"
-VERSION="${VERSION:-$(date +%Y%m)}"
+VERSION="${VERSION:-$(date +%Y%m%d)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
 
 # 在执行下一步之前，移动reference或output目录下文件到当前目录
