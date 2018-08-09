@@ -46,7 +46,7 @@ VERSION="${VERSION:-$(date +%Y%m%d)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
 
 # package un-processed files
-"${_7Z}" a -mx9 -myx9 "cppreference-unprocessed-${VERSION}.7z" ./reference
+"${_7Z}" a -mx9 -myx9 "../cppreference-unprocessed-${VERSION}.7z" ./reference
 
 # https://gist.github.com/cdown/1163649/8a35c36fdd24b373788a7057ed483a5bcd8cd43e
 url_encode() {
@@ -124,10 +124,20 @@ find -iname "${startup_scripts_replace}" | xargs sed -i 's/document\.write/void 
 find -iname "${site_scripts_replace}" | xargs sed -i '1 i if(window.mw)'
 find -iname "${skin_scripts_replace}" | xargs sed -i '1 i if(window.mw)'
 find -iname '*.css' | xargs sed -i -r 's/\.\.\/([^.]+?)\.ttf/\1.ttf/ig'
+
+# workaround navbar-inv-tab.png
+find -iname '*.css' | xargs sed -i -r 's/https?:\/\/..\.cppreference\.com\/mwiki\/skins\/cppreference2\/images/skins\/cppreference2\/images/ig'
+pushd "${font_path}/skins/cppreference2/images"
+wget -nv 'https://en.cppreference.com/mwiki/skins/cppreference2/images/navbar-inv-tab.png'
+popd
+echo Cleaning up carbonads scripts
+find ./ -iname '*.html' -type f | xargs -P "${CPUS}" sed -i -r 's/<script.+?carbonads\.com\/carbon\.js.+?<\/script>//ig' 
 echo Done.
 
+rm -rf 'reference/zh.cppreference.com'
+
 # package processed files
-"${_7Z}" a -mx9 -myx9 "html-book-${VERSION}.7z" ./reference
+"${_7Z}" a -mx9 -myx9 "../html-book-${VERSION}.7z" ./reference
 
 # move processed files to parent folder
 # for make_chm.sh
