@@ -21,7 +21,6 @@ git clone https://github.com/PeterFeicht/cppreference-doc.git --depth=1
 cd cppreference-doc
 git apply -3 ../zh.diff
 make source
-set +e
 
 # init files and vars
 startup_scripts_replace="startup_scripts.js"
@@ -47,7 +46,7 @@ VERSION="${VERSION:-$(date +%Y%m%d)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
 
 # package un-processed files
-"${_7Z}" -mx9 -myx9 "cppreference-unprocessed-${VERSION}.7z" ./reference
+"${_7Z}" a -mx9 -myx9 "cppreference-unprocessed-${VERSION}.7z" ./reference
 
 # https://gist.github.com/cdown/1163649/8a35c36fdd24b373788a7057ed483a5bcd8cd43e
 url_encode() {
@@ -128,9 +127,11 @@ find -iname '*.css' | xargs sed -i -r 's/\.\.\/([^.]+?)\.ttf/\1.ttf/ig'
 echo Done.
 
 # package processed files
-"${_7Z}" -mx9 -myx9 "html-book-${VERSION}.7z" ./reference
+"${_7Z}" a -mx9 -myx9 "html-book-${VERSION}.7z" ./reference
 
 # move processed files to parent folder
 # for make_chm.sh
 mv -f reference/* ../
 cd ..
+
+set +e

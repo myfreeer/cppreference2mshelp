@@ -28,11 +28,11 @@ index deadfe2..46abab2 100644
 +	  --timeout=5 --tries=150 --no-verbose \
  	  --retry-connrefused --waitretry=10 --read-timeout=20 \
 -	  http://en.cppreference.com/w/ ; \
-+	  http://zh.cppreference.com/w/ ; \
++	  https://zh.cppreference.com/w/ ; \
  	popd > /dev/null
  
 -	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
-+	./export.py --url=http://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
++	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
 index ed67174..ada56fe 100644
 --- a/commands/preprocess.py
@@ -84,7 +84,7 @@ index 848d431..67d00f4 100644
  class Driver:
      def __init__(self):
 -        base_url = "http://en.cppreference.com/"
-+        base_url = "http://zh.cppreference.com/"
++        base_url = "https://zh.cppreference.com/"
          driver = webdriver.Firefox()
          driver.implicitly_wait(30)
          try:
@@ -110,7 +110,7 @@ index 9789e56..7a3a3dc 100755
          line += abstract + '\t'
          # source url
 -        line += 'http://en.cppreference.com/w/' + link + '\n'
-+        line += 'http://zh.cppreference.com/w/' + link + '\n'
++        line += 'https://zh.cppreference.com/w/' + link + '\n'
          out.write(line)
  
          build_redirects(redirects, item_ident, item_type)
@@ -123,7 +123,7 @@ index d2e625c..82cb11f 100644
          res = u''
          res += '<tt><b>' + xml_escape(full_name) + '</b></tt> [<span class="link">'
 -        res += '<a href="http://en.cppreference.com/w/' + xml_escape(full_link) + '">'
-+        res += '<a href="http://zh.cppreference.com/w/' + xml_escape(full_link) + '">'
++        res += '<a href="https://zh.cppreference.com/w/' + xml_escape(full_link) + '">'
          res += full_link + '</a></span>] <span class="mark">' + mark + '</span>\n'
          return res
  
@@ -157,27 +157,27 @@ index e4aa687..d6f143f 100644
  class TestConvertLoaderName(unittest.TestCase):
      def test_convert_loader_name(self):
 -        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
-+        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
++        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
  modules=site&only=scripts&skin=cppreference2&*'
          self.assertEqual('site_scripts.js', convert_loader_name(url))
  
 -        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
-+        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
++        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
  modules=site&only=styles&skin=cppreference2&*'
          self.assertEqual('site_modules.css', convert_loader_name(url))
  
 -        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
-+        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
++        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
  modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
          self.assertEqual('skin_scripts.js', convert_loader_name(url))
  
 -        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
-+        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
++        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
  modules=startup&only=scripts&skin=cppreference2&*'
          self.assertEqual('startup_scripts.js', convert_loader_name(url))
  
 -        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
-+        url = 'http://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
++        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
  modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.\
  legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=\
  cppreference2&*'

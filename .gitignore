@@ -13,3 +13,4 @@ chmhelp/*
 common/*
 chm_temp/*
 cppreference-doc/*
+tidy-errors.txt
