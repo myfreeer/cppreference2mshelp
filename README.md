@@ -1,6 +1,12 @@
 # cppreference2mshelp
 cppreference.com html archive converter to microsoft help (for Windows Visual Studio 2012+) and good old .chm help (for any Windows and even some other platforms)
 
+## Badges
+[![Downloads](https://img.shields.io/github/downloads/myfreeer/cppreference2mshelp/total.svg)](https://github.com/myfreeer/cppreference2mshelp/releases)
+[![Latest Release](https://img.shields.io/github/downloads/myfreeer/cppreference2mshelp/latest/total.svg)](https://github.com/myfreeer/cppreference2mshelp/releases/latest)
+[![Latest Release](https://img.shields.io/github/release/myfreeer/cppreference2mshelp.svg)](https://github.com/myfreeer/cppreference2mshelp/releases/latest)
+[![GitHub license](https://img.shields.io/github/license/myfreeer/cppreference2mshelp.svg)](LICENSE) 
+
 ## Prerequires:
 
 1) Windows x64 (LOL, I'm mad). Actually any system will be ok, you should use another tools in this case to make cab file, zip file and digitally sign cab (for Visual Studio Help). However there is no alternative for [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft (for chm based help).
@@ -9,6 +15,9 @@ cppreference.com html archive converter to microsoft help (for Windows Visual St
 4) [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft to build .chm help file.
 5) [Tidy](http://www.html-tidy.org/) (html fixer), [signtool.exe](https://msdn.microsoft.com/en-us/library/8s9b9yaz(v=vs.110).aspx) and [makecab.exe](https://technet.microsoft.com/en-us/library/hh875545(v=ws.11).aspx) from Microsoft SDK to build Visual Studio help files.
 6) digital certificate to sign cabs for Visual Studio Help (because unsigned cabs will not be installed) CHM help does not require certificate
+7) msys2 latest
+8) 7-zip 16.04 or later
+9) GNU libiconv 1.15 or later
 
 ## Ok, what's inside?
 
