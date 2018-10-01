@@ -1,8 +1,24 @@
+From 2bc2732f6b1f75f12ca6246be8000698b50e97ae Mon Sep 17 00:00:00 2001
+From: myfreeer <myfreeer@users.noreply.github.com>
+Date: Mon, 1 Oct 2018 11:55:02 +0800
+Subject: [PATCH] source: use zh localized version
+
+---
+ Makefile                                 | 14 +++++++-------
+ commands/preprocess.py                   | 18 ++++++++++--------
+ gadgets/standard_revisions-tests/base.py |  2 +-
+ gadgets/sync_tests_mwiki.py              |  2 +-
+ index2ddg.py                             |  2 +-
+ index_transform/browser.py               |  2 +-
+ preprocess.py                            |  8 ++++----
+ tests/test_preprocess.py                 | 10 +++++-----
+ 8 files changed, 30 insertions(+), 28 deletions(-)
+
 diff --git a/Makefile b/Makefile
-index deadfe2..be18286 100644
+index 9381549..6546a54 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -230,7 +230,7 @@ indexes:
+@@ -237,7 +237,7 @@ indexes:
  	./index2autolinker.py index-functions-c.xml output/indexes/autolink-c
  	./index2autolinker.py index-functions-cpp.xml output/indexes/autolink-cpp
  
@@ -11,7 +27,7 @@ index deadfe2..be18286 100644
  source:
  	rm -rf "reference"
  	mkdir "reference"
-@@ -239,15 +239,15 @@ source:
+@@ -246,15 +246,15 @@ source:
  	regex=".*index\\.php.*|.*/Special:.*|.*/Talk:.*" \
  	regex+="|.*/Help:.*|.*/File:.*|.*/Cppreference:.*" \
  	regex+="|.*/WhatLinksHere:.*|.*/Template:.*|.*/Category:.*" \
@@ -27,14 +43,14 @@ index deadfe2..be18286 100644
 -	  --timeout=5 --tries=50 --no-verbose \
 +	  --timeout=5 --tries=150 --no-verbose \
  	  --retry-connrefused --waitretry=10 --read-timeout=20 \
--	  http://en.cppreference.com/w/ ; \
+-	  https://en.cppreference.com/w/ ; \
 +	  https://zh.cppreference.com/w/ ; \
  	popd > /dev/null
  
 -	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
-index ed67174..aec036c 100644
+index 7759951..3e485a2 100644
 --- a/commands/preprocess.py
 +++ b/commands/preprocess.py
 @@ -40,15 +40,15 @@ def rearrange_archive(root):
@@ -75,7 +91,7 @@ index ed67174..aec036c 100644
  
      # remove the XML source file
      for fn in fnmatch.filter(os.listdir(root), 'cppreference-export*.xml'):
-@@ -214,7 +214,7 @@ def has_class(el, classes_to_check):
+@@ -242,7 +242,7 @@ def has_class(el, classes_to_check):
      return False
  
  def preprocess_html_file(root, fn, rename_map):
@@ -84,7 +100,7 @@ index ed67174..aec036c 100644
      html = etree.parse(fn, parser)
  
      # remove non-printable elements
-@@ -236,7 +236,9 @@ def preprocess_html_file(root, fn, rename_map):
+@@ -264,7 +264,9 @@ def preprocess_html_file(root, fn, rename_map):
      for el in html.xpath('/html/body/script'):
          if el.get('src') is not None and 'google-analytics.com/ga.js' in el.get('src'):
              el.getparent().remove(el)
@@ -169,10 +185,10 @@ index cb6e8cc..a8ac18f 100755
      rearrange_archive(root)
  
 diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
-index e4aa687..4856f1b 100644
+index d135048..ebce6f8 100644
 --- a/tests/test_preprocess.py
 +++ b/tests/test_preprocess.py
-@@ -6,23 +6,23 @@ from lxml import etree
+@@ -24,23 +24,23 @@ from lxml import etree
  
  class TestConvertLoaderName(unittest.TestCase):
      def test_convert_loader_name(self):
@@ -201,3 +217,6 @@ index e4aa687..4856f1b 100644
  modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.\
  legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=\
  cppreference2&*'
+-- 
+2.19.0
+
