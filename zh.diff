@@ -1,24 +1,123 @@
-From 2bc2732f6b1f75f12ca6246be8000698b50e97ae Mon Sep 17 00:00:00 2001
+From 5939fd0b80d765a6572d9560b36c8223da53ce6b Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Mon, 1 Oct 2018 11:55:02 +0800
+Date: Sun, 14 Oct 2018 16:43:53 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
- Makefile                                 | 14 +++++++-------
- commands/preprocess.py                   | 18 ++++++++++--------
+ Makefile                                 | 54 ++++++++++++------------
+ commands/preprocess.py                   | 23 ++++++----
+ commands/preprocess_cssless.py           |  5 ++-
  gadgets/standard_revisions-tests/base.py |  2 +-
  gadgets/sync_tests_mwiki.py              |  2 +-
- index2ddg.py                             |  2 +-
+ index2ddg.py                             |  4 +-
  index_transform/browser.py               |  2 +-
- preprocess.py                            |  8 ++++----
- tests/test_preprocess.py                 | 10 +++++-----
- 8 files changed, 30 insertions(+), 28 deletions(-)
+ preprocess.py                            |  8 ++--
+ tests/test_preprocess.py                 | 19 ++++++---
+ tests/test_preprocess_cssless.py         |  2 +-
+ 10 files changed, 67 insertions(+), 54 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 9381549..6546a54 100644
+index 2366fbc..423be32 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -237,7 +237,7 @@ indexes:
+@@ -100,18 +100,18 @@ install: all
+ 	popd > /dev/null
+ 
+ 	# install the devhelp documentation
+-	install -DT -m 644 "output/cppreference-doc-en-c.devhelp2" \
+-		"$(DESTDIR)$(bookdir)/cppreference-doc-en-c/cppreference-doc-en-c.devhelp2"
+-	install -DT -m 644 "output/cppreference-doc-en-cpp.devhelp2" \
+-		"$(DESTDIR)$(bookdir)/cppreference-doc-en-cpp/cppreference-doc-en-cpp.devhelp2"
++	install -DT -m 644 "output/cppreference-doc-zh-c.devhelp2" \
++		"$(DESTDIR)$(bookdir)/cppreference-doc-zh-c/cppreference-doc-zh-c.devhelp2"
++	install -DT -m 644 "output/cppreference-doc-zh-cpp.devhelp2" \
++		"$(DESTDIR)$(bookdir)/cppreference-doc-zh-cpp/cppreference-doc-zh-cpp.devhelp2"
+ 	install -DT -m 644 "output/cppreference-doxygen-local.tag.xml" \
+ 		"$(DESTDIR)$(bookdir)/cppreference-doxygen-local.tag.xml"
+ 	install -DT -m 644 "output/cppreference-doxygen-web.tag.xml" \
+ 		"$(DESTDIR)$(bookdir)/cppreference-doxygen-web.tag.xml"
+ 
+ 	# install the .qch (Qt Help) documentation
+-	install -DT -m 644 "output/cppreference-doc-en-cpp.qch" \
+-		"$(DESTDIR)$(docdir)/qch/cppreference-doc-en-cpp.qch"
++	install -DT -m 644 "output/cppreference-doc-zh-cpp.qch" \
++		"$(DESTDIR)$(docdir)/qch/cppreference-doc-zh-cpp.qch"
+ 
+ uninstall:
+ 	rm -rf "$(DESTDIR)$(docdir)"
+@@ -138,16 +138,16 @@ release: all
+ 
+ 	# zip qch
+ 	pushd "output"; \
+-	tar c$(TAR_OPTION)f "../release/qch-book-$(VERSION).tar.$(TAR_FORMAT)" "cppreference-doc-en-cpp.qch"; \
+-	zip -qr "../release/qch-book-$(VERSION).zip" "cppreference-doc-en-cpp.qch"; \
++	tar c$(TAR_OPTION)f "../release/qch-book-$(VERSION).tar.$(TAR_FORMAT)" "cppreference-doc-zh-cpp.qch"; \
++	zip -qr "../release/qch-book-$(VERSION).zip" "cppreference-doc-zh-cpp.qch"; \
+ 	popd
+ 
+ #WORKER RULES
+ doc_html: output/reference
+ 
+-doc_devhelp: output/cppreference-doc-en-c.devhelp2 output/cppreference-doc-en-cpp.devhelp2
++doc_devhelp: output/cppreference-doc-zh-c.devhelp2 output/cppreference-doc-zh-cpp.devhelp2
+ 
+-doc_qch: output/cppreference-doc-en-cpp.qch
++doc_qch: output/cppreference-doc-zh-cpp.qch
+ 
+ doc_doxygen: output/cppreference-doxygen-web.tag.xml output/cppreference-doxygen-local.tag.xml
+ 
+@@ -156,32 +156,32 @@ output/link-map.xml: output/reference
+ 	./build_link_map.py
+ 
+ #build the .devhelp2 index
+-output/cppreference-doc-en-c.devhelp2: output/reference output/link-map.xml
++output/cppreference-doc-zh-c.devhelp2: output/reference output/link-map.xml
+ 	./index2devhelp.py $(docdir)/html index-chapters-c.xml  \
+-		"C Standard Library reference" "cppreference-doc-en-c" "c" \
++		"C Standard Library reference" "cppreference-doc-zh-c" "c" \
+ 		index-functions-c.xml "output/devhelp-index-c.xml"
+ 	./fix_devhelp-links.py "output/devhelp-index-c.xml"  \
+-		"output/cppreference-doc-en-c.devhelp2"
++		"output/cppreference-doc-zh-c.devhelp2"
+ 
+-output/cppreference-doc-en-cpp.devhelp2: output/reference output/link-map.xml
++output/cppreference-doc-zh-cpp.devhelp2: output/reference output/link-map.xml
+ 	./index2devhelp.py $(docdir)/html index-chapters-cpp.xml  \
+-		"C++ Standard Library reference" "cppreference-doc-en-cpp" "cpp" \
++		"C++ Standard Library reference" "cppreference-doc-zh-cpp" "cpp" \
+ 		index-functions-cpp.xml "output/devhelp-index-cpp.xml"
+ 	./fix_devhelp-links.py "output/devhelp-index-cpp.xml" \
+-		"output/cppreference-doc-en-cpp.devhelp2"
++		"output/cppreference-doc-zh-cpp.devhelp2"
+ 
+ #build the .qch (QT help) file
+-output/cppreference-doc-en-cpp.qch: output/qch-help-project-cpp.xml
++output/cppreference-doc-zh-cpp.qch: output/qch-help-project-cpp.xml
+ 	#qhelpgenerator only works if the project file is in the same directory as the documentation
+ 	cp "output/qch-help-project-cpp.xml" "output/reference_cssless/qch.xml"
+ 
+ 	pushd "output/reference_cssless" > /dev/null; \
+-	$(qhelpgenerator) "qch.xml" -o "../cppreference-doc-en-cpp.qch"; \
++	$(qhelpgenerator) "qch.xml" -o "../cppreference-doc-zh-cpp.qch"; \
+ 	popd > /dev/null
+ 
+ 	rm -f "output/reference_cssless/qch.xml"
+ 
+-output/qch-help-project-cpp.xml: output/cppreference-doc-en-cpp.devhelp2 output/reference_cssless
++output/qch-help-project-cpp.xml: output/cppreference-doc-zh-cpp.devhelp2 output/reference_cssless
+ 	#build the file list
+ 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><files>" > "output/qch-files.xml"
+ 
+@@ -193,7 +193,7 @@ output/qch-help-project-cpp.xml: output/cppreference-doc-en-cpp.devhelp2 output/
+ 	echo "</files>" >> "output/qch-files.xml"
+ 
+ 	#create the project (copies the file list)
+-	./devhelp2qch.py --src=output/cppreference-doc-en-cpp.devhelp2 \
++	./devhelp2qch.py --src=output/cppreference-doc-zh-cpp.devhelp2 \
+ 		--dst=output/qch-help-project-cpp.xml \
+ 		--virtual_folder=cpp --file_list=output/qch-files.xml
+ 
+@@ -229,7 +229,7 @@ indexes:
  	./index2autolinker.py index-functions-c.xml output/indexes/autolink-c
  	./index2autolinker.py index-functions-cpp.xml output/indexes/autolink-cpp
  
@@ -27,7 +126,7 @@ index 9381549..6546a54 100644
  source:
  	rm -rf "reference"
  	mkdir "reference"
-@@ -246,15 +246,15 @@ source:
+@@ -238,15 +238,15 @@ source:
  	regex=".*index\\.php.*|.*/Special:.*|.*/Talk:.*" \
  	regex+="|.*/Help:.*|.*/File:.*|.*/Cppreference:.*" \
  	regex+="|.*/WhatLinksHere:.*|.*/Template:.*|.*/Category:.*" \
@@ -35,25 +134,25 @@ index 9381549..6546a54 100644
 +	regex+="|.*action=.*|.*printable=.*|.*zh.cppreference.com/book.*" ; \
  	echo $$regex ; \
  	wget --adjust-extension --page-requisites --convert-links \
--	  --force-directories --recursive --level=15 \
--	  --span-hosts --domains=en.cppreference.com,upload.cppreference.com \
-+	  --force-directories --recursive --level=17 \
-+	  --span-hosts --domains=zh.cppreference.com,upload.cppreference.com \
- 	  --reject-regex $$regex \
--	  --timeout=5 --tries=50 --no-verbose \
-+	  --timeout=5 --tries=150 --no-verbose \
- 	  --retry-connrefused --waitretry=10 --read-timeout=20 \
--	  https://en.cppreference.com/w/ ; \
-+	  https://zh.cppreference.com/w/ ; \
+-		--force-directories --recursive --level=15 \
+-		--span-hosts --domains=en.cppreference.com,upload.cppreference.com \
++		--force-directories --recursive --level=17 \
++		--span-hosts --domains=zh.cppreference.com,upload.cppreference.com \
+ 		--reject-regex $$regex \
+-		--timeout=5 --tries=50 --no-verbose \
++		--timeout=5 --tries=150 --no-verbose \
+ 		--retry-connrefused --waitretry=10 --read-timeout=20 \
+-		https://en.cppreference.com/w/ ; \
++		https://zh.cppreference.com/w/ ; \
  	popd > /dev/null
  
 -	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
-index 7759951..3e485a2 100644
+index 12cb4e3..9e394d9 100644
 --- a/commands/preprocess.py
 +++ b/commands/preprocess.py
-@@ -40,15 +40,15 @@ def rearrange_archive(root):
+@@ -41,15 +41,15 @@ def rearrange_archive(root):
      # rearrange the archive. {root} here is output/reference
  
      # before
@@ -73,7 +172,7 @@ index 7759951..3e485a2 100644
      # ... (other languages)
  
      data_path = os.path.join(root, 'common')
-@@ -56,7 +56,7 @@ def rearrange_archive(root):
+@@ -57,7 +57,7 @@ def rearrange_archive(root):
      shutil.move(os.path.join(root, 'upload.cppreference.com/mwiki'), data_path)
      shutil.rmtree(os.path.join(root, 'upload.cppreference.com'))
  
@@ -82,7 +181,7 @@ index 7759951..3e485a2 100644
          path = os.path.join(root, lang + ".cppreference.com/")
          src_html_path = path + "w/"
          src_data_path = path + "mwiki/"
-@@ -77,7 +77,7 @@ def rearrange_archive(root):
+@@ -78,7 +78,7 @@ def rearrange_archive(root):
          shutil.copy(os.path.join(path, 'favicon.ico'), data_path)
  
          # remove what's left
@@ -91,16 +190,7 @@ index 7759951..3e485a2 100644
  
      # remove the XML source file
      for fn in fnmatch.filter(os.listdir(root), 'cppreference-export*.xml'):
-@@ -242,7 +242,7 @@ def has_class(el, classes_to_check):
-     return False
- 
- def preprocess_html_file(root, fn, rename_map):
--    parser = etree.HTMLParser()
-+    parser = etree.HTMLParser(encoding="utf-8")
-     html = etree.parse(fn, parser)
- 
-     # remove non-printable elements
-@@ -264,7 +264,9 @@ def preprocess_html_file(root, fn, rename_map):
+@@ -295,7 +295,9 @@ def remove_google_analytics(html):
      for el in html.xpath('/html/body/script'):
          if el.get('src') is not None and 'google-analytics.com/ga.js' in el.get('src'):
              el.getparent().remove(el)
@@ -110,7 +200,47 @@ index 7759951..3e485a2 100644
 +        elif el.get('src') is not None and 'carbonads.com/carbon.js' in el.get('src'):
              el.getparent().remove(el)
  
-     # make custom footer
+ # remove Carbon ads
+@@ -316,7 +318,10 @@ def remove_fileinfo(html):
+ 
+ # make custom footer
+ def add_footer(html, root, fn):
+-    footer = html.xpath('//*[@id=\'footer\']')[0]
++    footers = html.xpath('//*[@id=\'footer\']')
++    if len(footers) == 0:
++        return
++    footer = footers[0]
+     for child in footer.getchildren():
+         id = child.get('id')
+         if id == 'cpp-navigation':
+@@ -338,7 +343,7 @@ def add_footer(html, root, fn):
+             footer.remove(child)
+ 
+ def preprocess_html_file(root, fn, rename_map):
+-    parser = etree.HTMLParser()
++    parser = etree.HTMLParser(encoding="utf-8")
+     html = etree.parse(fn, parser)
+     output = io.StringIO()
+ 
+diff --git a/commands/preprocess_cssless.py b/commands/preprocess_cssless.py
+index 2f75d5a..64742c6 100644
+--- a/commands/preprocess_cssless.py
++++ b/commands/preprocess_cssless.py
+@@ -27,11 +27,12 @@ import io
+ import logging
+ import os
+ import warnings
++import codecs
+ 
+ def preprocess_html_merge_cssless(src_path, dst_path):
+-    with open(src_path, 'r') as a_file:
++    with codecs.open(src_path, 'r', 'utf-8') as a_file:
+         content = a_file.read()
+-        parser = etree.HTMLParser()
++        parser = etree.HTMLParser(encoding="utf-8")
+         stripped = content.strip()
+         root = etree.fromstring(stripped, parser)
+ 
 diff --git a/gadgets/standard_revisions-tests/base.py b/gadgets/standard_revisions-tests/base.py
 index 848d431..91a0a99 100644
 --- a/gadgets/standard_revisions-tests/base.py
@@ -138,7 +268,7 @@ index 9aa3fc7..13294ec 100755
      pywikibot.config2.step = 100
      pywikibot.config2.put_throttle = 0
 diff --git a/index2ddg.py b/index2ddg.py
-index 9789e56..8962791 100755
+index 9789e56..32a8707 100755
 --- a/index2ddg.py
 +++ b/index2ddg.py
 @@ -447,7 +447,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
@@ -150,6 +280,15 @@ index 9789e56..8962791 100755
          out.write(line)
  
          build_redirects(redirects, item_ident, item_type)
+@@ -540,7 +540,7 @@ def main():
+         #print(str(i) + '/' + str(len(proc_ins)) + ': ' + link)
+         #i+=1
+ 
+-        root = e.parse(os.path.join(args.reference, fn), parser=html.HTMLParser())
++        root = e.parse(os.path.join(args.reference, fn), parser=html.HTMLParser(encoding="utf-8"))
+ 
+         for ident in idents:
+ 
 diff --git a/index_transform/browser.py b/index_transform/browser.py
 index d2e625c..11375f2 100644
 --- a/index_transform/browser.py
@@ -164,10 +303,10 @@ index d2e625c..11375f2 100644
          return res
  
 diff --git a/preprocess.py b/preprocess.py
-index cb6e8cc..a8ac18f 100755
+index ba5d37b..f852885 100755
 --- a/preprocess.py
 +++ b/preprocess.py
-@@ -28,12 +28,12 @@ def main():
+@@ -29,12 +29,12 @@ def main():
      parser.add_argument('--dst', type=str, help='Destination folder to put preprocessed archive to')
      args = parser.parse_args()
  
@@ -177,46 +316,71 @@ index cb6e8cc..a8ac18f 100755
 +    # src = args.src
  
      # copy the source tree
--    rmtree_if_exists(root)
+-    preprocess.rmtree_if_exists(root)
 -    shutil.copytree(src, root)
 +    # rmtree_if_exists(root)
 +    # shutil.copytree(src, root)
  
-     rearrange_archive(root)
+     preprocess.rearrange_archive(root)
  
 diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
-index d135048..ebce6f8 100644
+index 0c6568c..247d062 100644
 --- a/tests/test_preprocess.py
 +++ b/tests/test_preprocess.py
-@@ -24,23 +24,23 @@ from lxml import etree
+@@ -26,19 +26,26 @@ from lxml import etree
  
  class TestConvertLoaderName(unittest.TestCase):
      def test_convert_loader_name(self):
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=site&only=scripts&skin=cppreference2&*'
 +        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
- modules=site&only=scripts&skin=cppreference2&*'
++modules=site&only=scripts&skin=cppreference2&*'
          self.assertEqual('site_scripts.js', convert_loader_name(url))
  
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=cppreference2&*'
 +        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
- modules=site&only=styles&skin=cppreference2&*'
++modules=site&only=styles&skin=cppreference2&*'
          self.assertEqual('site_modules.css', convert_loader_name(url))
  
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
 +        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
- modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
++modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
          self.assertEqual('skin_scripts.js', convert_loader_name(url))
  
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=startup&only=scripts&skin=cppreference2&*'
 +        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
- modules=startup&only=scripts&skin=cppreference2&*'
++modules=startup&only=scripts&skin=cppreference2&*'
          self.assertEqual('startup_scripts.js', convert_loader_name(url))
  
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&\
+-        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=cppreference2&*'
 +        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
- modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.\
- legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=\
- cppreference2&*'
++modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.\
++legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=\
++cppreference2&*'
+         self.assertEqual('ext.css', convert_loader_name(url))
+ 
+         with self.assertRaises(Exception):
+@@ -196,7 +203,7 @@ class TestPreprocessHtml(unittest.TestCase):
+     def setUp(self):
+         self.testdata = os.path.join(os.path.dirname(__file__), 'preprocess_data')
+         infile = os.path.join(self.testdata, "fabs.html")
+-        self.parser = etree.HTMLParser()
++        self.parser = etree.HTMLParser(encoding="utf-8")
+         self.html = etree.parse(infile, self.parser)
+ 
+     # Check whether the HTML matches the contents of the specified test data file
+diff --git a/tests/test_preprocess_cssless.py b/tests/test_preprocess_cssless.py
+index fc93019..ffad345 100644
+--- a/tests/test_preprocess_cssless.py
++++ b/tests/test_preprocess_cssless.py
+@@ -63,7 +63,7 @@ class HTMLTestBase(unittest.TestCase):
+         input = '<html><body>{0}</body></html>'.format(input)
+         expected_output = '<html><body>{0}</body></html>'.format(expected_output)
+ 
+-        parser = etree.HTMLParser()
++        parser = etree.HTMLParser(encoding="utf-8")
+         root = etree.fromstring(input, parser)
+ 
+         root = function(root)
 -- 
 2.19.0
 

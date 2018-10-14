@@ -139,6 +139,12 @@ rm -rf 'reference/zh.cppreference.com'
 # package processed files
 "${_7Z}" a -mx9 -myx9 "../html-book-${VERSION}.7z" ./reference
 
+# build qch book
+mkdir -p output/reference
+cp -f reference output/reference
+make doc_qch
+"${_7Z}" a -mx9 -myx9 "../qch-book-${VERSION}.7z" ./output/*.qch
+
 # move processed files to parent folder
 # for make_chm.sh
 mv -f reference/* ../

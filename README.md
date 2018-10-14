@@ -15,9 +15,9 @@ cppreference.com html archive converter to microsoft help (for Windows Visual St
 4) [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft to build .chm help file.
 5) [Tidy](http://www.html-tidy.org/) (html fixer), [signtool.exe](https://msdn.microsoft.com/en-us/library/8s9b9yaz(v=vs.110).aspx) and [makecab.exe](https://technet.microsoft.com/en-us/library/hh875545(v=ws.11).aspx) from Microsoft SDK to build Visual Studio help files.
 6) digital certificate to sign cabs for Visual Studio Help (because unsigned cabs will not be installed) CHM help does not require certificate
-7) msys2 latest
-8) 7-zip 16.04 or later
-9) GNU libiconv 1.15 or later
+7) msys2 latest with `pacman -S p7zip mingw-w64-x86_64-python3-pip mingw-w64-x86_64-python3-lxml`
+8) GNU libiconv 1.15 or later (`pacman -S mingw-w64-x86_64-iconv`)
+9) `pip3 install premailer` and `pacman -S mingw-w64-x86_64-python3-qt` for qch help
 
 ## Ok, what's inside?
 
