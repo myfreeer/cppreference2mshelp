@@ -1,11 +1,11 @@
-From 5939fd0b80d765a6572d9560b36c8223da53ce6b Mon Sep 17 00:00:00 2001
+From 89d9ddfb25ecd6b0f974ac65dc0ef01a6c42e29e Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Sun, 14 Oct 2018 16:43:53 +0800
+Date: Sun, 30 Dec 2018 17:35:34 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
  Makefile                                 | 54 ++++++++++++------------
- commands/preprocess.py                   | 23 ++++++----
+ commands/preprocess.py                   | 19 +++++----
  commands/preprocess_cssless.py           |  5 ++-
  gadgets/standard_revisions-tests/base.py |  2 +-
  gadgets/sync_tests_mwiki.py              |  2 +-
@@ -14,7 +14,7 @@ Subject: [PATCH] source: use zh localized version
  preprocess.py                            |  8 ++--
  tests/test_preprocess.py                 | 19 ++++++---
  tests/test_preprocess_cssless.py         |  2 +-
- 10 files changed, 67 insertions(+), 54 deletions(-)
+ 10 files changed, 64 insertions(+), 53 deletions(-)
 
 diff --git a/Makefile b/Makefile
 index 2366fbc..423be32 100644
@@ -149,7 +149,7 @@ index 2366fbc..423be32 100644
 -	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
-index 12cb4e3..9e394d9 100644
+index 7a0cd5c..16dc1b2 100644
 --- a/commands/preprocess.py
 +++ b/commands/preprocess.py
 @@ -41,15 +41,15 @@ def rearrange_archive(root):
@@ -190,18 +190,7 @@ index 12cb4e3..9e394d9 100644
  
      # remove the XML source file
      for fn in fnmatch.filter(os.listdir(root), 'cppreference-export*.xml'):
-@@ -295,7 +295,9 @@ def remove_google_analytics(html):
-     for el in html.xpath('/html/body/script'):
-         if el.get('src') is not None and 'google-analytics.com/ga.js' in el.get('src'):
-             el.getparent().remove(el)
--        elif el.text is not None and ('google-analytics.com/ga.js' in el.text or 'pageTracker' in el.text):
-+        elif el.text is not None and ('google-analytics.com/ga.js' in el.text or 'pageTracker' in el.text or '_trackPageview' in el.text):
-+            el.getparent().remove(el)
-+        elif el.get('src') is not None and 'carbonads.com/carbon.js' in el.get('src'):
-             el.getparent().remove(el)
- 
- # remove Carbon ads
-@@ -316,7 +318,10 @@ def remove_fileinfo(html):
+@@ -309,7 +309,10 @@ def remove_fileinfo(html):
  
  # make custom footer
  def add_footer(html, root, fn):
@@ -213,8 +202,8 @@ index 12cb4e3..9e394d9 100644
      for child in footer.getchildren():
          id = child.get('id')
          if id == 'cpp-navigation':
-@@ -338,7 +343,7 @@ def add_footer(html, root, fn):
-             footer.remove(child)
+@@ -340,7 +343,7 @@ def remove_unused_external(html):
+             el.set('href', os.path.join(head, 'common', tail))
  
  def preprocess_html_file(root, fn, rename_map):
 -    parser = etree.HTMLParser()
@@ -223,7 +212,7 @@ index 12cb4e3..9e394d9 100644
      output = io.StringIO()
  
 diff --git a/commands/preprocess_cssless.py b/commands/preprocess_cssless.py
-index 2f75d5a..64742c6 100644
+index 2f75d5a..0aa10db 100644
 --- a/commands/preprocess_cssless.py
 +++ b/commands/preprocess_cssless.py
 @@ -27,11 +27,12 @@ import io
@@ -234,7 +223,7 @@ index 2f75d5a..64742c6 100644
  
  def preprocess_html_merge_cssless(src_path, dst_path):
 -    with open(src_path, 'r') as a_file:
-+    with codecs.open(src_path, 'r', 'utf-8') as a_file:
++    with open(src_path, 'r', encoding='utf-8') as a_file:
          content = a_file.read()
 -        parser = etree.HTMLParser()
 +        parser = etree.HTMLParser(encoding="utf-8")
@@ -303,7 +292,7 @@ index d2e625c..11375f2 100644
          return res
  
 diff --git a/preprocess.py b/preprocess.py
-index ba5d37b..f852885 100755
+index 1a3b5c6..288fe0c 100755
 --- a/preprocess.py
 +++ b/preprocess.py
 @@ -29,12 +29,12 @@ def main():
@@ -324,10 +313,10 @@ index ba5d37b..f852885 100755
      preprocess.rearrange_archive(root)
  
 diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
-index 0c6568c..247d062 100644
+index d4616aa..ef4de50 100644
 --- a/tests/test_preprocess.py
 +++ b/tests/test_preprocess.py
-@@ -26,19 +26,26 @@ from lxml import etree
+@@ -40,19 +40,26 @@ def nostdout():
  
  class TestConvertLoaderName(unittest.TestCase):
      def test_convert_loader_name(self):
@@ -359,7 +348,7 @@ index 0c6568c..247d062 100644
          self.assertEqual('ext.css', convert_loader_name(url))
  
          with self.assertRaises(Exception):
-@@ -196,7 +203,7 @@ class TestPreprocessHtml(unittest.TestCase):
+@@ -227,7 +234,7 @@ class TestPreprocessHtml(unittest.TestCase):
      def setUp(self):
          self.testdata = os.path.join(os.path.dirname(__file__), 'preprocess_data')
          infile = os.path.join(self.testdata, "fabs.html")
@@ -382,5 +371,5 @@ index fc93019..ffad345 100644
  
          root = function(root)
 -- 
-2.19.0
+2.19.1
 

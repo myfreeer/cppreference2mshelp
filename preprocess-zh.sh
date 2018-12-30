@@ -141,7 +141,7 @@ rm -rf 'reference/zh.cppreference.com'
 
 # build qch book
 mkdir -p output/reference
-cp -f reference output/reference
+cp -r -f reference output/reference
 make doc_qch
 "${_7Z}" a -mx9 -myx9 "../qch-book-${VERSION}.7z" ./output/*.qch
 
