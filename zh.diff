@@ -1,23 +1,23 @@
-From 89d9ddfb25ecd6b0f974ac65dc0ef01a6c42e29e Mon Sep 17 00:00:00 2001
+From 59e3c1e8105477b5b6c78ef0579a3f809ef89949 Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Sun, 30 Dec 2018 17:35:34 +0800
+Date: Fri, 5 Apr 2019 07:50:59 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
  Makefile                                 | 54 ++++++++++++------------
- commands/preprocess.py                   | 19 +++++----
- commands/preprocess_cssless.py           |  5 ++-
- gadgets/standard_revisions-tests/base.py |  2 +-
+ commands/preprocess.py                   | 21 +++++----
+ commands/preprocess_cssless.py           |  4 +-
+ gadgets/standard_revisions_tests/base.py |  2 +-
  gadgets/sync_tests_mwiki.py              |  2 +-
  index2ddg.py                             |  4 +-
  index_transform/browser.py               |  2 +-
  preprocess.py                            |  8 ++--
- tests/test_preprocess.py                 | 19 ++++++---
+ tests/test_preprocess.py                 |  2 +-
  tests/test_preprocess_cssless.py         |  2 +-
- 10 files changed, 64 insertions(+), 53 deletions(-)
+ 10 files changed, 52 insertions(+), 49 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 2366fbc..423be32 100644
+index e54b72d..84d98a5 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -100,18 +100,18 @@ install: all
@@ -94,14 +94,14 @@ index 2366fbc..423be32 100644
 -output/cppreference-doc-en-cpp.qch: output/qch-help-project-cpp.xml
 +output/cppreference-doc-zh-cpp.qch: output/qch-help-project-cpp.xml
  	#qhelpgenerator only works if the project file is in the same directory as the documentation
- 	cp "output/qch-help-project-cpp.xml" "output/reference_cssless/qch.xml"
+ 	cp "output/qch-help-project-cpp.xml" "output/reference_cssless/qch.qhp"
  
  	pushd "output/reference_cssless" > /dev/null; \
--	$(qhelpgenerator) "qch.xml" -o "../cppreference-doc-en-cpp.qch"; \
-+	$(qhelpgenerator) "qch.xml" -o "../cppreference-doc-zh-cpp.qch"; \
+-	$(qhelpgenerator) "qch.qhp" -o "../cppreference-doc-en-cpp.qch"; \
++	$(qhelpgenerator) "qch.qhp" -o "../cppreference-doc-zh-cpp.qch"; \
  	popd > /dev/null
  
- 	rm -f "output/reference_cssless/qch.xml"
+ 	rm -f "output/reference_cssless/qch.qhp"
  
 -output/qch-help-project-cpp.xml: output/cppreference-doc-en-cpp.devhelp2 output/reference_cssless
 +output/qch-help-project-cpp.xml: output/cppreference-doc-zh-cpp.devhelp2 output/reference_cssless
@@ -149,10 +149,10 @@ index 2366fbc..423be32 100644
 -	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
-index 7a0cd5c..16dc1b2 100644
+index 2f8ff4c..43a527a 100644
 --- a/commands/preprocess.py
 +++ b/commands/preprocess.py
-@@ -41,15 +41,15 @@ def rearrange_archive(root):
+@@ -42,23 +42,23 @@ def rearrange_archive(root):
      # rearrange the archive. {root} here is output/reference
  
      # before
@@ -172,16 +172,17 @@ index 7a0cd5c..16dc1b2 100644
      # ... (other languages)
  
      data_path = os.path.join(root, 'common')
-@@ -57,7 +57,7 @@ def rearrange_archive(root):
+     rmtree_if_exists(data_path)
      shutil.move(os.path.join(root, 'upload.cppreference.com/mwiki'), data_path)
-     shutil.rmtree(os.path.join(root, 'upload.cppreference.com'))
+-    shutil.rmtree(os.path.join(root, 'upload.cppreference.com'))
++    shutil.rmtree(os.path.join(root, 'upload.cppreference.com'), ignore_errors=True)
  
 -    for lang in ["en"]:
 +    for lang in ["zh"]:
          path = os.path.join(root, lang + ".cppreference.com/")
          src_html_path = path + "w/"
          src_data_path = path + "mwiki/"
-@@ -78,7 +78,7 @@ def rearrange_archive(root):
+@@ -81,7 +81,7 @@ def rearrange_archive(root):
          shutil.copy(os.path.join(path, 'favicon.ico'), data_path)
  
          # remove what's left
@@ -190,7 +191,7 @@ index 7a0cd5c..16dc1b2 100644
  
      # remove the XML source file
      for fn in fnmatch.filter(os.listdir(root), 'cppreference-export*.xml'):
-@@ -309,7 +309,10 @@ def remove_fileinfo(html):
+@@ -341,7 +341,10 @@ def remove_fileinfo(html):
  
  # make custom footer
  def add_footer(html, root, fn):
@@ -202,8 +203,8 @@ index 7a0cd5c..16dc1b2 100644
      for child in footer.getchildren():
          id = child.get('id')
          if id == 'cpp-navigation':
-@@ -340,7 +343,7 @@ def remove_unused_external(html):
-             el.set('href', os.path.join(head, 'common', tail))
+@@ -377,7 +380,7 @@ def remove_unused_external(html):
+ 
  
  def preprocess_html_file(root, fn, rename_map):
 -    parser = etree.HTMLParser()
@@ -212,14 +213,11 @@ index 7a0cd5c..16dc1b2 100644
      output = io.StringIO()
  
 diff --git a/commands/preprocess_cssless.py b/commands/preprocess_cssless.py
-index 2f75d5a..0aa10db 100644
+index 8bf9142..2df1774 100644
 --- a/commands/preprocess_cssless.py
 +++ b/commands/preprocess_cssless.py
-@@ -27,11 +27,12 @@ import io
- import logging
- import os
- import warnings
-+import codecs
+@@ -28,9 +28,9 @@ from lxml.etree import strip_elements
+ 
  
  def preprocess_html_merge_cssless(src_path, dst_path):
 -    with open(src_path, 'r') as a_file:
@@ -230,11 +228,11 @@ index 2f75d5a..0aa10db 100644
          stripped = content.strip()
          root = etree.fromstring(stripped, parser)
  
-diff --git a/gadgets/standard_revisions-tests/base.py b/gadgets/standard_revisions-tests/base.py
-index 848d431..91a0a99 100644
---- a/gadgets/standard_revisions-tests/base.py
-+++ b/gadgets/standard_revisions-tests/base.py
-@@ -27,7 +27,7 @@ import unittest, time, re
+diff --git a/gadgets/standard_revisions_tests/base.py b/gadgets/standard_revisions_tests/base.py
+index b780e8d..67266e1 100644
+--- a/gadgets/standard_revisions_tests/base.py
++++ b/gadgets/standard_revisions_tests/base.py
+@@ -24,7 +24,7 @@ from selenium.webdriver.support.ui import Select
  
  class Driver:
      def __init__(self):
@@ -257,11 +255,11 @@ index 9aa3fc7..13294ec 100755
      pywikibot.config2.step = 100
      pywikibot.config2.put_throttle = 0
 diff --git a/index2ddg.py b/index2ddg.py
-index 9789e56..32a8707 100755
+index 0cfa557..36bcb45 100755
 --- a/index2ddg.py
 +++ b/index2ddg.py
-@@ -447,7 +447,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
-         abstract = abstract.replace('\n','\\n')
+@@ -465,7 +465,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
+         abstract = abstract.replace('\n', '\\n')
          line += abstract + '\t'
          # source url
 -        line += 'http://en.cppreference.com/w/' + link + '\n'
@@ -269,34 +267,34 @@ index 9789e56..32a8707 100755
          out.write(line)
  
          build_redirects(redirects, item_ident, item_type)
-@@ -540,7 +540,7 @@ def main():
-         #print(str(i) + '/' + str(len(proc_ins)) + ': ' + link)
-         #i+=1
+@@ -580,7 +580,7 @@ def main():
+         # i+=1
  
--        root = e.parse(os.path.join(args.reference, fn), parser=html.HTMLParser())
-+        root = e.parse(os.path.join(args.reference, fn), parser=html.HTMLParser(encoding="utf-8"))
+         root = e.parse(os.path.join(args.reference, fn),
+-                       parser=html.HTMLParser())
++                       parser=html.HTMLParser(encoding="utf-8"))
  
          for ident in idents:
  
 diff --git a/index_transform/browser.py b/index_transform/browser.py
-index d2e625c..11375f2 100644
+index fb8b976..e9657a4 100644
 --- a/index_transform/browser.py
 +++ b/index_transform/browser.py
-@@ -42,7 +42,7 @@ class Index2Browser(IndexTransform):
- 
+@@ -48,7 +48,7 @@ class Index2Browser(IndexTransform):
          res = u''
-         res += '<tt><b>' + xml_escape(full_name) + '</b></tt> [<span class="link">'
--        res += '<a href="http://en.cppreference.com/w/' + xml_escape(full_link) + '">'
-+        res += '<a href="https://zh.cppreference.com/w/' + xml_escape(full_link) + '">'
-         res += full_link + '</a></span>] <span class="mark">' + mark + '</span>\n'
-         return res
- 
+         res += '<tt><b>{0}</b></tt> [<span class="link">'.format(
+             xml_escape(full_name))
+-        res += '<a href="http://en.cppreference.com/w/{0}">'.format(
++        res += '<a href="https://zh.cppreference.com/w/{0}">'.format(
+             xml_escape(full_link))
+         res += '{0}</a></span>] <span class="mark">{1}</span>\n'.format(
+             full_link, mark)
 diff --git a/preprocess.py b/preprocess.py
-index 1a3b5c6..288fe0c 100755
+index a04abd2..95823b6 100755
 --- a/preprocess.py
 +++ b/preprocess.py
-@@ -29,12 +29,12 @@ def main():
-     parser.add_argument('--dst', type=str, help='Destination folder to put preprocessed archive to')
+@@ -35,12 +35,12 @@ def main():
+         help='Destination folder to put preprocessed archive to')
      args = parser.parse_args()
  
 -    root = args.dst
@@ -313,57 +311,25 @@ index 1a3b5c6..288fe0c 100755
      preprocess.rearrange_archive(root)
  
 diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
-index d4616aa..ef4de50 100644
+index 5233199..38ec845 100644
 --- a/tests/test_preprocess.py
 +++ b/tests/test_preprocess.py
-@@ -40,19 +40,26 @@ def nostdout():
- 
- class TestConvertLoaderName(unittest.TestCase):
-     def test_convert_loader_name(self):
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=site&only=scripts&skin=cppreference2&*'
-+        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
-+modules=site&only=scripts&skin=cppreference2&*'
-         self.assertEqual('site_scripts.js', convert_loader_name(url))
- 
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=site&only=styles&skin=cppreference2&*'
-+        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
-+modules=site&only=styles&skin=cppreference2&*'
-         self.assertEqual('site_modules.css', convert_loader_name(url))
- 
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
-+        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
-+modules=skins.cppreference2&only=scripts&skin=cppreference2&*'
-         self.assertEqual('skin_scripts.js', convert_loader_name(url))
- 
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=startup&only=scripts&skin=cppreference2&*'
-+        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
-+modules=startup&only=scripts&skin=cppreference2&*'
-         self.assertEqual('startup_scripts.js', convert_loader_name(url))
- 
--        url = 'http://en.cppreference.com/mwiki/load.php?debug=false&lang=en&modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=cppreference2&*'
-+        url = 'https://zh.cppreference.com/mwiki/load.php?debug=false&lang=*&\
-+modules=ext.gadget.ColiruCompiler%2CMathJax%7Cext.rtlcite%7Cmediawiki.\
-+legacy.commonPrint%2Cshared%7Cskins.cppreference2&only=styles&skin=\
-+cppreference2&*'
-         self.assertEqual('ext.css', convert_loader_name(url))
- 
-         with self.assertRaises(Exception):
-@@ -227,7 +234,7 @@ class TestPreprocessHtml(unittest.TestCase):
-     def setUp(self):
-         self.testdata = os.path.join(os.path.dirname(__file__), 'preprocess_data')
+@@ -256,7 +256,7 @@ class TestPreprocessHtml(unittest.TestCase):
+         self.testdata = os.path.join(os.path.dirname(__file__),
+                                      'preprocess_data')
          infile = os.path.join(self.testdata, "fabs.html")
 -        self.parser = etree.HTMLParser()
 +        self.parser = etree.HTMLParser(encoding="utf-8")
          self.html = etree.parse(infile, self.parser)
  
-     # Check whether the HTML matches the contents of the specified test data file
+     # Check whether the HTML matches the contents of the specified test data
 diff --git a/tests/test_preprocess_cssless.py b/tests/test_preprocess_cssless.py
-index fc93019..ffad345 100644
+index 0b9f580..ab6dddb 100644
 --- a/tests/test_preprocess_cssless.py
 +++ b/tests/test_preprocess_cssless.py
-@@ -63,7 +63,7 @@ class HTMLTestBase(unittest.TestCase):
-         input = '<html><body>{0}</body></html>'.format(input)
-         expected_output = '<html><body>{0}</body></html>'.format(expected_output)
+@@ -81,7 +81,7 @@ class HTMLTestBase(unittest.TestCase):
+         expected_output = \
+             '<html><body>{0}</body></html>'.format(expected_output)
  
 -        parser = etree.HTMLParser()
 +        parser = etree.HTMLParser(encoding="utf-8")
