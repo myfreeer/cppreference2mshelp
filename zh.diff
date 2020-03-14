@@ -1,6 +1,6 @@
-From 59e3c1e8105477b5b6c78ef0579a3f809ef89949 Mon Sep 17 00:00:00 2001
+From 5e70bc02f358a0ab63f09cbcd969a0e103ea0508 Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Fri, 5 Apr 2019 07:50:59 +0800
+Date: Sat, 14 Mar 2020 12:32:04 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
@@ -17,7 +17,7 @@ Subject: [PATCH] source: use zh localized version
  10 files changed, 52 insertions(+), 49 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index e54b72d..84d98a5 100644
+index 22d5596..559fe38 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -100,18 +100,18 @@ install: all
@@ -146,7 +146,7 @@ index e54b72d..84d98a5 100644
 +		https://zh.cppreference.com/w/ ; \
  	popd > /dev/null
  
--	./export.py --url=http://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
+-	./export.py --url=https://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
 index 2f8ff4c..43a527a 100644
@@ -255,7 +255,7 @@ index 9aa3fc7..13294ec 100755
      pywikibot.config2.step = 100
      pywikibot.config2.put_throttle = 0
 diff --git a/index2ddg.py b/index2ddg.py
-index 0cfa557..36bcb45 100755
+index f8c9e12..4bdc3d0 100755
 --- a/index2ddg.py
 +++ b/index2ddg.py
 @@ -465,7 +465,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
@@ -337,5 +337,5 @@ index 0b9f580..ab6dddb 100644
  
          root = function(root)
 -- 
-2.19.1
+2.25.0
 
