@@ -233,7 +233,17 @@ function buildChm( $cpp = true )
 			{
 				if( $e->hasAttribute("src"))
 				{
-					$e->setAttribute("src", basename( $e->getAttribute("src")));
+					$src = basename($e->getAttribute("src"));
+					if ($src) {
+						$idx = strrpos($src, '.');
+						if ($idx) {
+							$idx_at = strrpos($src, '@');
+							if ($idx_at && $idx < $idx_at) {
+								$src = substr($src, 0, $idx_at);
+							}
+						}
+					}
+					$e->setAttribute("src", $src);
 				}
 			}
 		}
@@ -370,20 +380,25 @@ function buildChm( $cpp = true )
 	echo( "files: ".count( $arrFiles )."\n");
 	foreach( $arrFiles as $file )
 	{
-		if ( endsWith( $file, '.css' ))
+		$name = basename($file);
+		if ($name) {
+			$idx = strrpos($name, '.');
+			if ($idx) {
+				$idx_at = strrpos($name, '@');
+				if ($idx_at && $idx < $idx_at) {
+					$name = substr($name, 0, $idx_at);
+				}
+			}
+		}
+		if ( endsWith( $name, '.css' ))
 		{
 			copy( $file, $targetDir.DIRECTORY_SEPARATOR.basename( $file ));
 			echo( "file copied: ".basename( $file )."\n");
 		}
-		else if ( endsWith( $file, '.png' ))
+		else if ( endsWith( $name, '.png' ) || endsWith( $name, '.svg' ) || endsWith( $name, '.gif' ))
 		{
-			copy( $file, $targetDir.DIRECTORY_SEPARATOR.basename( $file ));
-			echo( "file copied: ".basename( $file )."\n");
-		}
-		else if ( endsWith( $file, '.svg' ))
-		{
-			copy( $file, $targetDir.DIRECTORY_SEPARATOR.basename( $file ));
-			echo( "file copied: ".basename( $file )."\n");
+			copy( $file, $targetDir.DIRECTORY_SEPARATOR.basename( $name ));
+			echo( "file copied: ".$name."\n");
 		}
 		gc_collect_cycles();
 	}
