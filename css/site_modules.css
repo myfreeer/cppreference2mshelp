@@ -1,40 +1,9 @@
-@font-face {
-    font-family: "DejaVuSans" ;
-    src: local("DejaVu Sans"),url( "DejaVuSans.ttf" ) format("truetype");
-    font-weight: normal
-}
-
-@font-face {
-    font-family: "DejaVuSans" ;
-    src: local("DejaVu Sans Bold"),url( "DejaVuSans-Bold.ttf" ) format("truetype");
-    font-weight: bold
-}
-
-@font-face {
-    font-family: "DejaVuSansMono" ;
-    src: local("DejaVu Sans Mono Book"),url( "DejaVuSansMono.ttf" ) format("truetype");
-    font-weight: normal
-}
-
-@font-face {
-    font-family: "DejaVuSansMono" ;
-    src: local("DejaVu Sans Mono Bold"),url( "DejaVuSansMono-Bold.ttf" ) format("truetype");
-    font-weight: bold
-}
-
-@font-face {
-    font-family: "DejaVuSansMonoCondensed60" ;
-    src: url( "../DejaVuSansMonoCondensed60.ttf" ) format("truetype");
-    font-weight: normal
-}
-
-@font-face {
-    font-family: "DejaVuSansMonoCondensed75" ;
-    src: url( "DejaVuSansMonoCondensed75.ttf" ) format("truetype");
-    font-weight: normal
-}
-
-.toc,#toc,#p-logo,#siteSub,#footer-info-viewcount,.catlinks {
+/*
+ * RegExp:
+ url\(['"]([^/'"]+/)+([^"']+)["']\)
+ url("$2")
+ */
+.toc, #toc, #p-logo, #siteSub, #footer-info-viewcount, .catlinks {
     display: none !important
 }
 
@@ -57,12 +26,12 @@ div#mw-panel {
     line-height: 1.1em
 }
 
-.page-Special_Search div.mw-search-result-data,.page-Special_Search p.mw-search-createlink,.page-Special_Search p.mw-search-pager-bottom,.page-Special_Search div.mw-search-formheader,.page-Special_Search #mw-searchoptions {
+.page-Special_Search div.mw-search-result-data, .page-Special_Search p.mw-search-createlink, .page-Special_Search p.mw-search-pager-bottom, .page-Special_Search div.mw-search-formheader, .page-Special_Search #mw-searchoptions {
     display: none
 }
 
-html,body {
-    font-family: DejaVuSans,"DejaVu Sans",arial,sans-serif;
+html, body {
+    font-family: DejaVuSans, "DejaVu Sans", arial, sans-serif;
     font-size: 16px
 }
 
@@ -76,7 +45,7 @@ div#bodyContent {
     position: relative
 }
 
-p,dd {
+p, dd {
     line-height: 1.2em
 }
 
@@ -93,28 +62,28 @@ h3 {
     padding: 1.1em 0 0.2em 0.75em
 }
 
-tt,code,pre,.mw-geshi,.t-lc,#wpTextbox1 {
-    font-family: DejaVuSansMono,"DejaVu Sans Mono",courier,monospace !important
+tt, code, pre, .mw-geshi, .t-lc, #wpTextbox1 {
+    font-family: DejaVuSansMono, "DejaVu Sans Mono", courier, monospace !important
 }
 
-code,table {
+code, table {
     background-color: transparent
 }
 
-strong,b {
+strong, b {
     font-weight: bold
 }
 
-#content a.extiw,#content a.extiw:active {
-    background: url("skins/vector/images/external-link-ltr-icon.png") no-repeat scroll right center transparent !important;
+#content a.extiw, #content a.extiw:active {
+    background: url("external-link-ltr-icon.png") no-repeat scroll right center transparent !important;
     padding: 0 13px 0 0 !important
 }
 
-table.fmbox,table.ombox,div.template-documentation,fieldset {
+table.fmbox, table.ombox, div.template-documentation, fieldset {
     border-radius: 5px
 }
 
-body.page-Main_Page h1.firstHeading,body.page-Ð—Ð°Ð³Ð»Ð°Ð²Ð½Ð°Ñ_ÑÑ‚Ñ€Ð°Ð½Ð¸Ñ†Ð° h1.firstHeading,body.page-Hauptseite h1.firstHeading,body.page-PÃ¡gina_principal h1.firstHeading,body.page-Accueil h1.firstHeading,body.page-ëŒ€ë¬¸ h1.firstHeading,body.page-Pagina_principale h1.firstHeading,body.page-ãƒ¡ã‚¤ãƒ³ãƒšãƒ¼ã‚¸ h1.firstHeading,body.page-PÃ¡gina_principal h1.firstHeading,body.page-é¦–é¡µ h1.firstHeading,body.page-Ana_sayfa h1.firstHeading,body.page-HlavnÃ­_strana h1.firstHeading {
+body.page-Main_Page h1.firstHeading, body.page-Заглавная_страница h1.firstHeading, body.page-Hauptseite h1.firstHeading, body.page-Página_principal h1.firstHeading, body.page-Accueil h1.firstHeading, body.page-대문 h1.firstHeading, body.page-Pagina_principale h1.firstHeading, body.page-メインページ h1.firstHeading, body.page-Página_principal h1.firstHeading, body.page-首页 h1.firstHeading, body.page-Ana_sayfa h1.firstHeading, body.page-Hlavní_strana h1.firstHeading {
     display: none
 }
 
@@ -174,10 +143,11 @@ div.mainpagediv * {
     line-height: 1.2em
 }
 
-pre,div.mw-geshi {
+pre, div.mw-geshi {
     border: 1px solid silver;
     border-radius: 5px;
-    margin: 0;
+    padding: 1em;
+    margin: 1em 0;
     background-color: #F9F9F9;
     overflow: auto;
 }
@@ -192,7 +162,7 @@ span.mw-geshi {
 
 .t-c {
     background-color: transparent;
-    background-color: rgba(0,0,0,0.031);
+    background-color: rgba(0, 0, 0, 0.031);
     border: 1px solid #D6D6D6;
     border-radius: 3px;
     margin: 0 2px;
@@ -215,25 +185,25 @@ body.ns-10 .t-lc a {
 }
 
 .t-vertical > div {
-    -moz-transform: translate(50%,50%) rotate(90deg);
+    -moz-transform: translate(50%, 50%) rotate(90deg);
     -moz-transform-origin: 50% 0%;
-    -o-transform: translate(50%,50%) rotate(90deg);
+    -o-transform: translate(50%, 50%) rotate(90deg);
     -o-transform-origin: 50% 0%;
-    -webkit-transform: translate(50%,50%) rotate(90deg);
+    -webkit-transform: translate(50%, 50%) rotate(90deg);
     -webkit-transform-origin: 50% 0%;
-    -ms-transform: translate(50%,50%) rotate(90deg);
+    -ms-transform: translate(50%, 50%) rotate(90deg);
     -ms-transform-origin: 50% 0%;
-    transform: translate(50%,50%) rotate(90deg);
+    transform: translate(50%, 50%) rotate(90deg);
     transform-origin: 50% 0%;
     float: right
 }
 
-.t-li1,.t-li2,.t-li3 {
+.t-li1, .t-li2, .t-li3 {
     text-indent: -5em;
     padding: 0.2em 0 0.2em 0
 }
 
-.t-li1 > *,.t-li2 > *,.t-li3 > * {
+.t-li1 > *, .t-li2 > *, .t-li3 > * {
     text-indent: 0em
 }
 
@@ -324,13 +294,13 @@ span.texhtml {
     vertical-align: -0.4em
 }
 
-.t-mparen,.t-mparen > span {
+.t-mparen, .t-mparen > span {
     white-space: nowrap;
     display: inline-block;
     vertical-align: middle
 }
 
-.t-mparen > span:nth-child(1),.t-mparen > span:nth-child(3) {
+.t-mparen > span:nth-child(1), .t-mparen > span:nth-child(3) {
     font-style: normal;
     line-height: 1.1em
 }
@@ -356,7 +326,7 @@ body.ns-10 .t-example-live-link {
 }
 
 .t-example .mw-geshi {
-    margin: 0 0 1em 0;
+    margin: 0 0 1em 0
 }
 
 .t-member {
@@ -379,7 +349,7 @@ body.ns-10 .t-example-live-link {
     padding: 0.2em 1em 1em 1em
 }
 
-.t-inheritance-diagram,.t-image {
+.t-inheritance-diagram, .t-image {
     display: table;
     border: 1px solid #aaa;
     padding: 0.2em 0.2em 0.2em 0.2em;
@@ -423,11 +393,11 @@ body.ns-10 .t-example-live-link {
 .t-plot-image {
 }
 
-.t-plot-image-left,.t-plot-image-left-right {
+.t-plot-image-left, .t-plot-image-left-right {
     padding-left: 2em
 }
 
-.t-plot-image-right,.t-plot-image-left-right {
+.t-plot-image-right, .t-plot-image-left-right {
     padding-right: 2em
 }
 
@@ -435,11 +405,11 @@ body.ns-10 .t-example-live-link {
     padding-left: 6em
 }
 
-body.cpp-navbar div#content,body.cpp-page-template div#content {
+body.cpp-navbar div#content, body.cpp-page-template div#content {
     padding-top: 32px
 }
 
-body.cpp-navbar div#contentSub,body.cpp-page-template div#contentSub {
+body.cpp-navbar div#contentSub, body.cpp-page-template div#contentSub {
     display: none
 }
 
@@ -451,7 +421,7 @@ body.cpp-navbar div#contentSub,body.cpp-page-template div#contentSub {
     height: 22px
 }
 
-.t-navbar-head,.t-navbar-sep {
+.t-navbar-head, .t-navbar-sep {
     float: left;
     font-size: 0.9em;
     padding-top: 0.4em;
@@ -503,23 +473,23 @@ body.cpp-navbar div#contentSub,body.cpp-page-template div#contentSub {
 
 .t-navbar-sep {
     width: 8px;
-    background-image: url("skins/cppreference2/images/navbar-tab.png");
+    background-image: url("navbar-tab.png");
     background-repeat: no-repeat;
     background-position: right bottom
 }
 
 .t-navbar-sep:first-child {
-    background-image: url("skins/cppreference2/images/navbar-inv-tab.png");
+    background-image: url("navbar-inv-tab.png");
     background-repeat: no-repeat;
     background-position: left bottom;
     border-bottom-width: 0
 }
 
-body.skin-cppreference .t-navbar-sep:first-child,body.skin-vector .t-navbar-sep:first-child {
+body.skin-cppreference .t-navbar-sep:first-child, body.skin-vector .t-navbar-sep:first-child {
     display: none
 }
 
-body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-head:nth-child(2) {
+body.skin-cppreference .t-navbar-head:nth-child(2), body.skin-vector .t-navbar-head:nth-child(2) {
     padding-left: 1em
 }
 
@@ -555,11 +525,11 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     top: -2px
 }
 
-.t-noexcept-full,.t-noexcept-inline {
+.t-noexcept-full, .t-noexcept-inline {
     display: inline
 }
 
-.t-noexcept-full .t-dcl-begin,.t-noexcept-inline .t-dcl-begin {
+.t-noexcept-full .t-dcl-begin, .t-noexcept-inline .t-dcl-begin {
     padding: 0
 }
 
@@ -573,7 +543,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     padding: 0
 }
 
-.t-rev .t-noexcept-full .t-mark-rev,.t-rev .t-noexcept-inline .t-mark-rev {
+.t-rev .t-noexcept-full .t-mark-rev, .t-rev .t-noexcept-inline .t-mark-rev {
     display: none
 }
 
@@ -582,7 +552,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     font-size: 0.80em
 }
 
-.t-mark,.t-mark-rev {
+.t-mark, .t-mark-rev {
     color: #008000;
     font-size: 0.80em
 }
@@ -636,7 +606,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     white-space: nowrap
 }
 
-.t-dsc > td,.t-dsc-hitem > td {
+.t-dsc > td, .t-dsc-hitem > td {
     border-top: 1px solid #CCCCCC
 }
 
@@ -646,7 +616,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     line-height: 1em
 }
 
-.t-dsc-header > td:nth-child(1) > div {
+.t-dsc-header > td:first-child > div {
     margin-left: 2em
 }
 
@@ -654,15 +624,31 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     padding: 0.2em 0 0.2em 0
 }
 
-.t-dsc-see > span:nth-child(2) > span,.t-dsc-see > span:nth-child(1) {
+.t-dsc-see > span:nth-child(2) > span, .t-dsc-see > span:first-child {
     font-weight: bold
 }
 
 .t-dsc-see-tt > span {
-    font-family: DejaVuSansMono,"DejaVu Sans Mono",courier,monospace
+    font-family: DejaVuSansMono, "DejaVu Sans Mono", courier, monospace
 }
 
-.dsctable td ul,.dsctable td ol,.dsctable td dl {
+.t-dsc-named-req-div > div {
+    padding: 0;
+    display: inline-table;
+    vertical-align: middle
+}
+
+.t-dsc-named-req-div > div:first-child {
+    font-weight: bold;
+    font-style: italic;
+    font-family: Georgia, 'DejaVu Serif', serif
+}
+
+.t-dsc-named-req-div > div:nth-child(2) {
+    padding-left: 0.2em
+}
+
+.dsctable td ul, .dsctable td ol, .dsctable td dl {
     text-align: left
 }
 
@@ -713,18 +699,18 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     font-size: 1.0em
 }
 
-.t-dcl > td:nth-child(1) > div p,.t-dcl > td:nth-child(1) > div span {
+.t-dcl > td:nth-child(1) > div p, .t-dcl > td:nth-child(1) > div span {
     line-height: 1.1em;
     margin: 0;
     padding: 0
 }
 
-.t-dcl > td:nth-child(2),.t-dcl-rev-aux > td:nth-child(2) {
+.t-dcl > td:nth-child(2), .t-dcl-rev-aux > td:nth-child(2) {
     font-size: 0.8em;
     padding-right: 1.5em
 }
 
-.t-dcl > td:nth-child(3),.t-dcl-rev-aux > td:nth-child(3) {
+.t-dcl > td:nth-child(3), .t-dcl-rev-aux > td:nth-child(3) {
     padding: 0
 }
 
@@ -732,7 +718,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     padding-right: 0 !important
 }
 
-.t-dcl > td,.t-dcl-h > td,.t-dcl-sep > td,.t-dcl-rev > .t-dcl:first-child > td,.t-dcl-rev > .t-dcl-rev-aux > td {
+.t-dcl > td, .t-dcl-h > td, .t-dcl-sep > td, .t-dcl-rev > .t-dcl:first-child > td, .t-dcl-rev > .t-dcl-rev-aux > td {
     border-top: 1px solid #cccccc
 }
 
@@ -740,7 +726,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     padding: 0
 }
 
-.t-dcl-rev > .t-dcl > td,.t-dcl-rev > .t-dcl-h > td {
+.t-dcl-rev > .t-dcl > td, .t-dcl-rev > .t-dcl-h > td {
     border-top: 1px solid #e8e8e8
 }
 
@@ -756,7 +742,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     padding-bottom: 0
 }
 
-.t-dcl-rev-aux > td:nth-child(1),.t-dcl-rev-aux > td:nth-child(3) {
+.t-dcl-rev-aux > td:nth-child(1), .t-dcl-rev-aux > td:nth-child(3) {
     padding: 0
 }
 
@@ -776,7 +762,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     font-size: 1em
 }
 
-.t-sdsc dd,.t-sdsc p,.t-sdsc span {
+.t-sdsc dd, .t-sdsc p, .t-sdsc span {
     line-height: 1.1em
 }
 
@@ -826,11 +812,32 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
 }
 
 .t-nv-ln-table > div:nth-child(1) {
-    font-family: DejaVuSansMonoCondensed75,"DejaVu Sans Mono",courier,monospace;
+    font-family: DejaVuSansMonoCondensed75, "DejaVu Sans Mono", courier, monospace;
     padding: 0
 }
 
 .t-nv-ln-table > div:nth-child(2) {
+    padding: 0 0 0 0.2em
+}
+
+.t-nv-ln-named-req-table {
+    vertical-align: middle;
+    display: table;
+    padding: 0;
+    border-spacing: 0
+}
+
+.t-nv-ln-named-req-table > div {
+    display: table-cell
+}
+
+.t-nv-ln-named-req-table > div:first-child {
+    font-style: italic;
+    font-family: Georgia, 'DejaVu Serif', serif;
+    padding: 0
+}
+
+.t-nv-ln-named-req-table > div:nth-child(2) {
     padding: 0 0 0 0.2em
 }
 
@@ -847,7 +854,7 @@ body.skin-cppreference .t-navbar-head:nth-child(2),body.skin-vector .t-navbar-he
     white-space: nowrap;
     text-align: right;
     font-weight: bold;
-    font-family: DejaVuSansMono,"DejaVu Sans Mono",courier,monospace
+    font-family: DejaVuSansMono, "DejaVu Sans Mono", courier, monospace
 }
 
 .t-par > td:nth-child(3) {
@@ -927,7 +934,7 @@ div#content .t-rev > td:first-child > ul:first-child {
     margin-top: 0em
 }
 
-.t-rev-inl,.t-rev-inl > span {
+.t-rev-inl, .t-rev-inl > span {
     margin: 0;
     padding: 0
 }
@@ -948,16 +955,16 @@ div#content .t-rev > td:first-child > ul:first-child {
 
 .t-dsc-member-div > div:nth-child(1) {
     font-weight: bold;
-    font-family: DejaVuSansMono,"DejaVu Sans Mono",courier,monospace
+    font-family: DejaVuSansMono, "DejaVu Sans Mono", courier, monospace
 }
 
 .t-dsc-member-div > div:nth-child(2) {
     padding-left: 0.2em
 }
 
-.t-dsc-member-nobold-div > div:nth-child(1),.t-dsc-member-nobold-div > div:nth-child(1) strong.selflink {
+.t-dsc-member-nobold-div > div:nth-child(1), .t-dsc-member-nobold-div > div:nth-child(1) strong.selflink {
     font-weight: normal;
-    font-family: DejaVuSans,"DejaVu Sans",arial,sans-serif
+    font-family: DejaVuSans, "DejaVu Sans", arial, sans-serif
 }
 
 .t-tr-text {
@@ -1020,7 +1027,7 @@ div#content .t-rev > td:first-child > ul:first-child {
 }
 
 .t-tr-dropdown-arrow-border {
-    border-color: transparent transparent silver transparent ;
+    border-color: transparent transparent silver transparent;
     border-style: solid;
     border-width: 8px;
     height: 0;
@@ -1074,7 +1081,7 @@ table.fmbox-editnotice {
     background: transparent
 }
 
-th.mbox-text,td.mbox-text {
+th.mbox-text, td.mbox-text {
     border: none;
     padding: 0.25em 0.9em;
     width: 100%
@@ -1115,11 +1122,11 @@ body.page-Main_Page #mp-topbanner {
     margin-bottom: 6px
 }
 
-div#content ol,div#content ul,div#mw_content ol,div#mw_content ul {
+div#content ol, div#content ul, div#mw_content ol, div#mw_content ul {
     margin-bottom: 0.5em
 }
 
-ol.references,div.reflist,div.refbegin {
+ol.references, div.reflist, div.refbegin {
     font-size: 90%
 }
 
@@ -1128,7 +1135,7 @@ div.reflist ol.references {
     list-style-type: inherit
 }
 
-ol.references li:target,sup.reference:target,span.citation:target {
+ol.references li:target, sup.reference:target, span.citation:target {
     background-color: #DEF
 }
 
@@ -1137,12 +1144,12 @@ sup.reference {
     font-style: normal
 }
 
-span.citation,cite {
+span.citation, cite {
     font-style: normal;
     word-wrap: break-word
 }
 
-@media screen,handheld {
+@media screen, handheld {
     span.citation *.printonly {
         display: none
     }
@@ -1160,12 +1167,12 @@ span.citation,cite {
     text-align: left
 }
 
-.wikitable td ul,.wikitable td ol,.wikitable td dl {
+.wikitable td ul, .wikitable td ol, .wikitable td dl {
     text-align: left
 }
 
-div#content a[href$=".pdf"].external,div#content a[href*=".pdf?"].external,div#content a[href*=".pdf#"].external,div#content a[href$=".PDF"].external,div#content a[href*=".PDF?"].external,div#content a[href*=".PDF#"].external,div#mw_content a[href$=".pdf"].external,div#mw_content a[href*=".pdf?"].external,div#mw_content a[href*=".pdf#"].external,div#mw_content a[href$=".PDF"].external,div#mw_content a[href*=".PDF?"].external,div#mw_content a[href*=".PDF#"].external {
-    background: url("../../upload.cppreference.com/mwiki/images/2/23/Icons-mini-file_acrobat.gif") center right no-repeat;
+div#content a[href$=".pdf"].external, div#content a[href*=".pdf?"].external, div#content a[href*=".pdf#"].external, div#content a[href$=".PDF"].external, div#content a[href*=".PDF?"].external, div#content a[href*=".PDF#"].external, div#mw_content a[href$=".pdf"].external, div#mw_content a[href*=".pdf?"].external, div#mw_content a[href*=".pdf#"].external, div#mw_content a[href$=".PDF"].external, div#mw_content a[href*=".PDF?"].external, div#mw_content a[href*=".PDF#"].external {
+    background: url("Icons-mini-file_acrobat.gif") center right no-repeat;
     padding-right: 18px
 }
 
@@ -1195,7 +1202,7 @@ div#content a[href$=".pdf"].external,div#content a[href*=".pdf?"].external,div#c
     margin: 4px auto
 }
 
-.mbox-inside .standard-talk,.messagebox.nested-talk {
+.mbox-inside .standard-talk, .messagebox.nested-talk {
     border: 1px solid #c0c090;
     background-color: #f8eaba;
     width: 100%;
@@ -1222,7 +1229,7 @@ div#content a[href$=".pdf"].external,div#content a[href*=".pdf?"].external,div#c
     background: #F8EABA
 }
 
-th.mbox-text,td.mbox-text {
+th.mbox-text, td.mbox-text {
     border: none;
     padding: 0.25em 0.9em;
     width: 100%
@@ -1257,7 +1264,7 @@ table.ambox + table.ambox {
     margin-top: -1px
 }
 
-.ambox th.mbox-text,.ambox td.mbox-text {
+.ambox th.mbox-text, .ambox td.mbox-text {
     padding: 0.25em 0.5em
 }
 
@@ -1464,7 +1471,7 @@ table.tmbox-move {
     border: 2px solid #9932cc
 }
 
-table.tmbox-protection,table.tmbox-notice {
+table.tmbox-protection, table.tmbox-notice {
     border: 1px solid #c0c090
 }
 
@@ -1489,7 +1496,7 @@ table.fmbox-editnotice {
     background: transparent
 }
 
-div.mw-warning-with-logexcerpt,div.mw-lag-warn-high,div.mw-cascadeprotectedwarning,div#mw-protect-cascadeon {
+div.mw-warning-with-logexcerpt, div.mw-lag-warn-high, div.mw-cascadeprotectedwarning, div#mw-protect-cascadeon {
     clear: both;
     margin: 0.2em 0;
     border: 1px solid #bb7070;
@@ -1529,7 +1536,7 @@ div.noarticletext {
     speak: none
 }
 
-.nounderlines a,.IPA a:link,.IPA a:visited {
+.nounderlines a, .IPA a:link, .IPA a:visited {
     text-decoration: none
 }
 
@@ -1549,14 +1556,14 @@ div.noarticletext {
     display: none
 }
 
-.nonumtoc #toc ul,.nonumtoc .toc ul {
+.nonumtoc #toc ul, .nonumtoc .toc ul {
     line-height: 1.5em;
     list-style: none;
     margin: .3em 0 0;
     padding: 0
 }
 
-.nonumtoc #toc ul ul,.nonumtoc .toc ul ul {
+.nonumtoc #toc ul ul, .nonumtoc .toc ul ul {
     margin: 0 0 0 2em
 }
 
@@ -1567,7 +1574,7 @@ div.user-block {
     background-color: #FFEFD5
 }
 
-.nowraplinks a,.nowraplinks .selflink,span.texhtml,sup.reference a {
+.nowraplinks a, .nowraplinks .selflink, span.texhtml, sup.reference a {
     white-space: nowrap
 }
 
@@ -1587,7 +1594,7 @@ div.user-block {
     height: 13em
 }
 
-sup,sub {
+sup, sub {
     line-height: 1em
 }
 
@@ -1603,20 +1610,16 @@ div#content .gallerybox div.thumb {
     background-color: #F9F9F9
 }
 
-.gallerybox .thumb img,.filehistory a img,#file img {
+.ns-0 .gallerybox .thumb img, .ns-2 .gallerybox .thumb img, .ns-100 .gallerybox .thumb img, .nochecker .gallerybox .thumb img {
     background: white
 }
 
-.ns-0 .gallerybox .thumb img,.ns-2 .gallerybox .thumb img,.ns-100 .gallerybox .thumb img,.nochecker .gallerybox .thumb img {
-    background: white
-}
-
-#mw-subcategories,#mw-pages,#mw-category-media,#filehistory,#wikiPreview,#wikiDiff {
+#mw-subcategories, #mw-pages, #mw-category-media, #filehistory, #wikiPreview, #wikiDiff {
     clear: both
 }
 
-.wikiEditor-ui-toolbar .section-help .page-table td.cell-syntax,.wikiEditor-ui-toolbar .section-help .page-table td.syntax {
-    font-family: monospace,"Courier New"
+.wikiEditor-ui-toolbar .section-help .page-table td.cell-syntax, .wikiEditor-ui-toolbar .section-help .page-table td.syntax {
+    font-family: monospace, "Courier New"
 }
 
 ul.permissions-errors > li {
@@ -1627,17 +1630,17 @@ ul.permissions-errors {
     margin: 0
 }
 
-body.page-Special_UserLogin .mw-label label,body.page-Special_UserLogin_signup .mw-label label {
-    white-space : nowrap
+body.page-Special_UserLogin .mw-label label, body.page-Special_UserLogin_signup .mw-label label {
+    white-space: nowrap
 }
 
 @media only screen and (max-device-width: 480px) {
     body {
-        -webkit-text-size-adjust:none
+        -webkit-text-size-adjust: none
     }
 }
 
-body.mediawiki table.mbox-small-left,body.mediawiki table.mbox-small {
+body.mediawiki table.mbox-small-left, body.mediawiki table.mbox-small {
     width: 500px
 }
 
@@ -1645,100 +1648,478 @@ body.mediawiki table.mbox-small-left,body.mediawiki table.mbox-small {
     display: none
 }
 
-.source-c {line-height: normal;}
+/* cache key: mwiki1-mwiki_zh_:resourceloader:filter:minify-css:7:732d2f16eeb10b2a75932bd8d895655f */
+/* Cached 20200314044839 */
+body {
+    background-color: white;
+}
+
+div#cpp-content-base {
+    background-color: white;
+}
+
+div#content {
+    margin: auto;
+    position: static;
+    width: 48.75em;
+}
+
+html, body {
+    font-family: "DejaVu Sans", arial, sans-serif;
+    font-size: 1em;
+}
+
+.t-navbar {
+    height: 1.72em;
+    left: auto;
+}
+
+tt,
+code,
+pre,
+.mw-geshi,
+#wpTextbox1 {
+    font-family: "DejaVu Sans Mono", courier, monospace !important;
+}
+
+.t-dcl-list-see-monospace > span {
+    font-family: "DejaVu Sans Mono", courier, monospace;
+}
+
+.t-sb-list-ln-table tr > td:first-child {
+    font-family: "DejaVu Sans Mono", courier, monospace;
+}
+
+.t-param-list-item > td:first-child {
+    font-family: "DejaVu Sans Mono", courier, monospace;
+}
+
+.t-dcl-member-div > div:first-child {
+    font-family: "DejaVu Sans Mono", courier, monospace;
+}
+
+.t-dcl-member-nobold-div > div:first-child {
+    font-family: "DejaVu Sans", arial, sans-serif;
+}
+
+
+.source-c {
+    line-height: normal;
+}
+
 .source-c li, .source-c pre {
-	line-height: normal; border: 0px none white;
+    line-height: normal;
+    border: 0px none white;
 }
 
-.c.source-c .de1, .c.source-c .de2 {font: normal normal 1em/1.2em monospace; margin:0; background:none; vertical-align:top;}
-.c.source-c  {font-family:monospace;}
-.c.source-c .imp {font-weight: bold; color: red;}
-.c.source-c li, .c.source-c .li1 {font-weight: normal; vertical-align:top;}
-.c.source-c .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
-.c.source-c .li2 {font-weight: bold; vertical-align:top;}
-.c.source-c .kw1 {color: #0000dd;}
-.c.source-c .kw2 {color: #0000ff;}
-.c.source-c .kw3 {color: #0000dd;}
-.c.source-c .kw4 {color: #0000ff;}
-.c.source-c .co1 {color: #909090;}
-.c.source-c .co2 {color: #339900;}
-.c.source-c .coMULTI {color: #ff0000; font-style: italic;}
-.c.source-c .es0 {color: #008000; font-weight: bold;}
-.c.source-c .es1 {color: #008000; font-weight: bold;}
-.c.source-c .es2 {color: #008000; font-weight: bold;}
-.c.source-c .es3 {color: #008000; font-weight: bold;}
-.c.source-c .es4 {color: #008000; font-weight: bold;}
-.c.source-c .es5 {color: #008000; font-weight: bold;}
-.c.source-c .br0 {color: #008000;}
-.c.source-c .sy0 {color: #008000;}
-.c.source-c .sy1 {color: #000080;}
-.c.source-c .sy2 {color: #000040;}
-.c.source-c .sy3 {color: #000040;}
-.c.source-c .sy4 {color: #008080;}
-.c.source-c .st0 {color: #008000;}
-.c.source-c .nu0 {color: #000080;}
-.c.source-c .nu6 {color:#000080;}
-.c.source-c .nu8 {color:#000080;}
-.c.source-c .nu12 {color:#000080;}
-.c.source-c .nu16 {color:#000080;}
-.c.source-c .nu17 {color:#000080;}
-.c.source-c .nu18 {color:#000080;}
-.c.source-c .nu19 {color:#000080;}
-.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {background-color: #ffc;}
-.c.source-c span.xtra { display:block; }
-
-.source-cpp {line-height: normal;}
-.source-cpp li, .source-cpp pre {
-	line-height: normal; border: 0px none white;
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for c
+ * CSS class: source-c, CSS id:
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.c.source-c .de1, .c.source-c .de2 {
+    font: normal normal 1em/1.2em monospace;
+    margin: 0;
+    padding: 0;
+    background: none;
+    vertical-align: top;
 }
 
-.cpp.source-cpp .de1, .cpp.source-cpp .de2 {font: normal normal 1em/1.2em monospace; margin:0; background:none; vertical-align:top;}
-.cpp.source-cpp  {font-family:monospace;}
-.cpp.source-cpp .imp {font-weight: bold; color: red;}
-.cpp.source-cpp li, .cpp.source-cpp .li1 {font-weight: normal; vertical-align:top;}
-.cpp.source-cpp .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
-.cpp.source-cpp .li2 {font-weight: bold; vertical-align:top;}
-.cpp.source-cpp .kw1 {color: #0000dd;}
-.cpp.source-cpp .kw2 {color: #0000ff;}
-.cpp.source-cpp .kw3 {color: #0000dd;}
-.cpp.source-cpp .kw4 {color: #0000ff;}
-.cpp.source-cpp .co1 {color: #909090;}
-.cpp.source-cpp .co2 {color: #339900;}
-.cpp.source-cpp .coMULTI {color: #ff0000; font-style: italic;}
-.cpp.source-cpp .es0 {color: #008000; font-weight: bold;}
-.cpp.source-cpp .es1 {color: #008000; font-weight: bold;}
-.cpp.source-cpp .es2 {color: #008000; font-weight: bold;}
-.cpp.source-cpp .es3 {color: #008000; font-weight: bold;}
-.cpp.source-cpp .es4 {color: #008000; font-weight: bold;}
-.cpp.source-cpp .es5 {color: #008000; font-weight: bold;}
-.cpp.source-cpp .br0 {color: #008000;}
-.cpp.source-cpp .sy0 {color: #008000;}
-.cpp.source-cpp .sy1 {color: #000080;}
-.cpp.source-cpp .sy2 {color: #000040;}
-.cpp.source-cpp .sy3 {color: #000040;}
-.cpp.source-cpp .sy4 {color: #008080;}
-.cpp.source-cpp .st0 {color: #008000;}
-.cpp.source-cpp .nu0 {color: #000080;}
-.cpp.source-cpp .nu6 {color: #000080;}
-.cpp.source-cpp .nu8 {color: #000080;}
-.cpp.source-cpp .nu12 {color: #000080;}
-.cpp.source-cpp .nu16 {color:#000080;}
-.cpp.source-cpp .nu17 {color:#000080;}
-.cpp.source-cpp .nu18 {color:#000080;}
-.cpp.source-cpp .nu19 {color:#000080;}
-.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {background-color: #ffc;}
-.cpp.source-cpp span.xtra { display:block; }
+.c.source-c {
+    font-family: monospace;
+}
 
-.source-text {line-height: normal;}
+.c.source-c .imp {
+    font-weight: bold;
+    color: red;
+}
+
+.c.source-c li, .c.source-c .li1 {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+.c.source-c .ln {
+    width: 1px;
+    text-align: right;
+    margin: 0;
+    padding: 0 2px;
+    vertical-align: top;
+}
+
+.c.source-c .li2 {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.c.source-c .kw1 {
+    color: #0000dd;
+}
+
+.c.source-c .kw2 {
+    color: #0000ff;
+}
+
+.c.source-c .kw3 {
+    color: #0000dd;
+}
+
+.c.source-c .kw4 {
+    color: #0000ff;
+}
+
+.c.source-c .co1 {
+    color: #909090;
+}
+
+.c.source-c .co2 {
+    color: #339900;
+}
+
+.c.source-c .coMULTI {
+    color: #ff0000;
+    font-style: italic;
+}
+
+.c.source-c .es0 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.c.source-c .es1 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.c.source-c .es2 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.c.source-c .es3 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.c.source-c .es4 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.c.source-c .es5 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.c.source-c .br0 {
+    color: #008000;
+}
+
+.c.source-c .sy0 {
+    color: #008000;
+}
+
+.c.source-c .sy1 {
+    color: #000080;
+}
+
+.c.source-c .sy2 {
+    color: #000040;
+}
+
+.c.source-c .sy3 {
+    color: #000040;
+}
+
+.c.source-c .sy4 {
+    color: #008080;
+}
+
+.c.source-c .st0 {
+    color: #008000;
+}
+
+.c.source-c .nu0 {
+    color: #000080;
+}
+
+.c.source-c .nu6 {
+    color: #000080;
+}
+
+.c.source-c .nu8 {
+    color: #000080;
+}
+
+.c.source-c .nu12 {
+    color: #000080;
+}
+
+.c.source-c .nu16 {
+    color: #000080;
+}
+
+.c.source-c .nu17 {
+    color: #000080;
+}
+
+.c.source-c .nu18 {
+    color: #000080;
+}
+
+.c.source-c .nu19 {
+    color: #000080;
+}
+
+.c.source-c .ln-xtra, .c.source-c li.ln-xtra, .c.source-c div.ln-xtra {
+    background-color: #ffc;
+}
+
+.c.source-c span.xtra {
+    display: block;
+}
+
+.source-text {
+    line-height: normal;
+}
+
 .source-text li, .source-text pre {
-	line-height: normal; border: 0px none white;
+    line-height: normal;
+    border: 0px none white;
 }
 
-.text.source-text .de1, .text.source-text .de2 {font: normal normal 1em/1.2em monospace; margin:0; background:none; vertical-align:top;}
-.text.source-text  {font-family:monospace;}
-.text.source-text .imp {font-weight: bold; color: red;}
-.text.source-text li, .text.source-text .li1 {font-weight: normal; vertical-align:top;}
-.text.source-text .ln {width:1px;text-align:right;margin:0;padding:0 2px;vertical-align:top;}
-.text.source-text .li2 {font-weight: bold; vertical-align:top;}
-.text.source-text .ln-xtra, .text.source-text li.ln-xtra, .text.source-text div.ln-xtra {background-color: #ffc;}
-.text.source-text span.xtra { display:block; }
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for text
+ * CSS class: source-text, CSS id:
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.text.source-text .de1, .text.source-text .de2 {
+    font: normal normal 1em/1.2em monospace;
+    margin: 0;
+    padding: 0;
+    background: none;
+    vertical-align: top;
+}
+
+.text.source-text {
+    font-family: monospace;
+}
+
+.text.source-text .imp {
+    font-weight: bold;
+    color: red;
+}
+
+.text.source-text li, .text.source-text .li1 {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+.text.source-text .ln {
+    width: 1px;
+    text-align: right;
+    margin: 0;
+    padding: 0 2px;
+    vertical-align: top;
+}
+
+.text.source-text .li2 {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.text.source-text .ln-xtra, .text.source-text li.ln-xtra, .text.source-text div.ln-xtra {
+    background-color: #ffc;
+}
+
+.text.source-text span.xtra {
+    display: block;
+}
+
+.source-cpp {
+    line-height: normal;
+}
+
+.source-cpp li, .source-cpp pre {
+    line-height: normal;
+    border: 0px none white;
+}
+
+/**
+ * GeSHi Dynamically Generated Stylesheet
+ * --------------------------------------
+ * Dynamically generated stylesheet for cpp
+ * CSS class: source-cpp, CSS id:
+ * GeSHi (C) 2004 - 2007 Nigel McNie, 2007 - 2008 Benny Baumann
+ * (http://qbnz.com/highlighter/ and http://geshi.org/)
+ * --------------------------------------
+ */
+.cpp.source-cpp .de1, .cpp.source-cpp .de2 {
+    font: normal normal 1em/1.2em monospace;
+    margin: 0;
+    padding: 0;
+    background: none;
+    vertical-align: top;
+}
+
+.cpp.source-cpp {
+    font-family: monospace;
+}
+
+.cpp.source-cpp .imp {
+    font-weight: bold;
+    color: red;
+}
+
+.cpp.source-cpp li, .cpp.source-cpp .li1 {
+    font-weight: normal;
+    vertical-align: top;
+}
+
+.cpp.source-cpp .ln {
+    width: 1px;
+    text-align: right;
+    margin: 0;
+    padding: 0 2px;
+    vertical-align: top;
+}
+
+.cpp.source-cpp .li2 {
+    font-weight: bold;
+    vertical-align: top;
+}
+
+.cpp.source-cpp .kw1 {
+    color: #0000dd;
+}
+
+.cpp.source-cpp .kw2 {
+    color: #0000ff;
+}
+
+.cpp.source-cpp .kw3 {
+    color: #0000dd;
+}
+
+.cpp.source-cpp .kw4 {
+    color: #0000ff;
+}
+
+.cpp.source-cpp .co1 {
+    color: #909090;
+}
+
+.cpp.source-cpp .co2 {
+    color: #339900;
+}
+
+.cpp.source-cpp .coMULTI {
+    color: #ff0000;
+    font-style: italic;
+}
+
+.cpp.source-cpp .es0 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.cpp.source-cpp .es1 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.cpp.source-cpp .es2 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.cpp.source-cpp .es3 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.cpp.source-cpp .es4 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.cpp.source-cpp .es5 {
+    color: #008000;
+    font-weight: bold;
+}
+
+.cpp.source-cpp .br0 {
+    color: #008000;
+}
+
+.cpp.source-cpp .sy0 {
+    color: #008000;
+}
+
+.cpp.source-cpp .sy1 {
+    color: #000080;
+}
+
+.cpp.source-cpp .sy2 {
+    color: #000040;
+}
+
+.cpp.source-cpp .sy3 {
+    color: #000040;
+}
+
+.cpp.source-cpp .sy4 {
+    color: #008080;
+}
+
+.cpp.source-cpp .st0 {
+    color: #008000;
+}
+
+.cpp.source-cpp .nu0 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu6 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu8 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu12 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu16 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu17 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu18 {
+    color: #000080;
+}
+
+.cpp.source-cpp .nu19 {
+    color: #000080;
+}
+
+.cpp.source-cpp .ln-xtra, .cpp.source-cpp li.ln-xtra, .cpp.source-cpp div.ln-xtra {
+    background-color: #ffc;
+}
+
+.cpp.source-cpp span.xtra {
+    display: block;
+}

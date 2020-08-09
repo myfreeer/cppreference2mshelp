@@ -1,7 +1,7 @@
-/*
-background-image: url\(skins/cppreference2/images/(.+?).png@[\d\-TAZ%]+\)!ie
-background-image: url($1)!ie
-*/
+/**
+url\(['"]?([^/'"\n]+/)+([^"'@\n]+)@[^@"'\n]+["']?\)
+url("$2")
+ */
 .t-example-live-link {
     display: none !important;
     position: relative;
@@ -15,11 +15,11 @@ background-image: url($1)!ie
 
 .coliru-btn {
     background-color: #eeeeee;
-    background-image: linear-gradient(#ffffff,#eeeeee);
+    background-image: linear-gradient(#ffffff, #eeeeee);
     background-repeat: repeat-x;
     border: 1px solid #cccccc;
     border-radius: 3px;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     padding: 3px;
     margin: 3px;
     color: #333333;
@@ -32,7 +32,7 @@ background-image: url($1)!ie
 
 .coliru-btn:hover {
     background-color: #dddddd;
-    background-image: linear-gradient(#ffffff,#dddddd)
+    background-image: linear-gradient(#ffffff, #dddddd)
 }
 
 .coliru-btn-disabled {
@@ -41,7 +41,7 @@ background-image: url($1)!ie
 
 .coliru-btn-disabled:hover {
     background-color: #eeeeee;
-    background-image: linear-gradient(#ffffff,#eeeeee)
+    background-image: linear-gradient(#ffffff, #eeeeee)
 }
 
 .coliru-powered {
@@ -60,7 +60,7 @@ background-image: url($1)!ie
     left: 0;
     width: 100%;
     height: 30em;
-    font-family: DejaVuSansMono,"DejaVu Sans Mono",courier,monospace !important
+    font-family: DejaVuSansMono, "DejaVu Sans Mono", courier, monospace !important
 }
 
 .t-example-code {
@@ -90,11 +90,11 @@ background-image: url($1)!ie
 
 .coliru-select-compiler select {
     background-color: #EEEEEE;
-    background-image: linear-gradient(#FFFFFF,#EEEEEE);
+    background-image: linear-gradient(#FFFFFF, #EEEEEE);
     background-repeat: repeat-x;
     border: 1px solid #CCCCCC;
     border-radius: 3px 3px 3px 3px;
-    box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
     font-size: 0.8em;
     line-height: 1em;
     padding: 0;
@@ -108,7 +108,7 @@ sup.reference {
 }
 
 @media print {
-    a.stub,a.new {
+    a.stub, a.new {
         color: #ba0000;
         text-decoration: none
     }
@@ -210,7 +210,7 @@ sup.reference {
         padding: 0
     }
 
-    .noprint,div#jump-to-nav,.mw-jump,div.top,div#column-one,#colophon,.editsection,.toctoggle,.tochidden,div#f-poweredbyico,div#f-copyrightico,li#viewcount,li#about,li#disclaimer,li#mobileview,li#privacy,#footer-places,.mw-hidden-catlinks,tr.mw-metadata-show-hide-extended,span.mw-filepage-other-resolutions,#filetoc,.usermessage,#mw-navigation {
+    .noprint, div#jump-to-nav, .mw-jump, div.top, div#column-one, #colophon, .editsection, .toctoggle, .tochidden, div#f-poweredbyico, div#f-copyrightico, li#viewcount, li#about, li#disclaimer, li#mobileview, li#privacy, #footer-places, .mw-hidden-catlinks, tr.mw-metadata-show-hide-extended, span.mw-filepage-other-resolutions, #filetoc, .usermessage, #mw-navigation {
         display: none
     }
 
@@ -227,14 +227,14 @@ sup.reference {
     }
 
     #footer {
-        background : white;
-        color : black;
+        background: white;
+        color: black;
         margin-top: 1em;
         border-top: 1px solid #AAA;
         direction: ltr
     }
 
-    h1,h2,h3,h4,h5,h6 {
+    h1, h2, h3, h4, h5, h6 {
         font-weight: bold
     }
 
@@ -243,7 +243,7 @@ sup.reference {
         line-height: 1.2em
     }
 
-    pre,.mw-code {
+    pre, .mw-code {
         border: 1pt dashed black;
         white-space: pre;
         font-size: 8pt;
@@ -253,7 +253,7 @@ sup.reference {
         color: black
     }
 
-    table.listing,table.listing td {
+    table.listing, table.listing td {
         border: 1pt solid black;
         border-collapse: collapse
     }
@@ -264,13 +264,13 @@ sup.reference {
         padding: 0 !important
     }
 
-    a:link,a:visited {
+    a:link, a:visited {
         color: #520;
         background: transparent;
         text-decoration: underline
     }
 
-    #content a.external.text:after,#content a.external.autonumber:after {
+    #content a.external.text:after, #content a.external.autonumber:after {
         content: " (" attr(href) ") "
     }
 
@@ -293,12 +293,12 @@ sup.reference {
         margin: 0 !important
     }
 
-    a,a.external,a.new,a.stub {
+    a, a.external, a.new, a.stub {
         color: black !important;
         text-decoration: none !important
     }
 
-    a,a.external,a.new,a.stub {
+    a, a.external, a.new, a.stub {
         color: inherit !important;
         text-decoration: inherit !important
     }
@@ -322,8 +322,9 @@ sup.reference {
         display: inline-block
     }
 
-    ul.gallery,li.gallerybox {
-        zoom:1;*display: inline
+    ul.gallery, li.gallerybox {
+        zoom: 1;
+        *display: inline
     }
 
     ul.gallery {
@@ -387,25 +388,25 @@ sup.reference {
         text-decoration: underline
     }
 
-    table.wikitable,table.mw_metadata {
+    table.wikitable, table.mw_metadata {
         margin: 1em 0;
         border: 1px #aaa solid;
         background: white;
         border-collapse: collapse
     }
 
-    table.wikitable > tr > th,table.wikitable > tr > td,table.wikitable > * > tr > th,table.wikitable > * > tr > td,.mw_metadata th,.mw_metadata td {
+    table.wikitable > tr > th, table.wikitable > tr > td, table.wikitable > * > tr > th, table.wikitable > * > tr > td, .mw_metadata th, .mw_metadata td {
         border: 1px #aaa solid;
         padding: 0.2em
     }
 
-    table.wikitable > tr > th,table.wikitable > * > tr > th,.mw_metadata th {
+    table.wikitable > tr > th, table.wikitable > * > tr > th, .mw_metadata th {
         text-align: center;
         background: white;
         font-weight: bold
     }
 
-    table.wikitable > caption,.mw_metadata caption {
+    table.wikitable > caption, .mw_metadata caption {
         font-weight: bold
     }
 
@@ -413,11 +414,11 @@ sup.reference {
         margin: 0 0.3em
     }
 
-    .wikitable,.thumb,img {
+    .wikitable, .thumb, img {
         page-break-inside: avoid
     }
 
-    h2,h3,h4,h5,h6,h7 {
+    h2, h3, h4, h5, h6, h7 {
         page-break-after: avoid
     }
 
@@ -442,7 +443,8 @@ sup.reference {
         padding: 0 .4em;
         border-left: 1px solid #AAA;
         margin: 0.1em 0;
-        zoom:1;display: inline !ie
+        zoom: 1;
+        display: inline !ie
     }
 
     .catlinks li:first-child {
@@ -460,11 +462,11 @@ sup.reference {
         direction: rtl
     }
 
-    .sitedir-ltr textarea,.sitedir-ltr input {
+    .sitedir-ltr textarea, .sitedir-ltr input {
         direction: ltr
     }
 
-    .sitedir-rtl textarea,.sitedir-rtl input {
+    .sitedir-rtl textarea, .sitedir-rtl input {
         direction: rtl
     }
 
@@ -473,19 +475,19 @@ sup.reference {
         color: black
     }
 
-    input[type="submit"],input[type="button"],input[type="reset"],input[type="file"] {
+    input[type="submit"], input[type="button"], input[type="reset"], input[type="file"] {
         direction: ltr
     }
 
-    textarea[dir="ltr"],input[dir="ltr"] {
+    textarea[dir="ltr"], input[dir="ltr"] {
         direction: ltr
     }
 
-    textarea[dir="rtl"],input[dir="rtl"] {
+    textarea[dir="rtl"], input[dir="rtl"] {
         direction: rtl
     }
 
-    abbr,acronym,.explain {
+    abbr, acronym, .explain {
         border-bottom: 1px dotted;
         cursor: help
     }
@@ -502,7 +504,7 @@ sup.reference {
         color: #aaa
     }
 
-    .allpagesredirect,.redirect-in-category,.watchlistredir {
+    .allpagesredirect, .redirect-in-category, .watchlistredir {
         font-style: italic
     }
 
@@ -531,7 +533,7 @@ sup.reference {
         margin-bottom: 1em
     }
 
-    #editform,#toolbar,#wpTextbox1 {
+    #editform, #toolbar, #wpTextbox1 {
         clear: both
     }
 
@@ -539,12 +541,12 @@ sup.reference {
         cursor: pointer
     }
 
-    .mw-content-ltr .editsection,.mw-content-rtl .mw-content-ltr .editsection {
+    .mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .editsection {
         float: right;
         margin-left: 5px
     }
 
-    .mw-content-rtl .editsection,.mw-content-ltr .mw-content-rtl .editsection {
+    .mw-content-rtl .editsection, .mw-content-ltr .mw-content-rtl .editsection {
         float: left;
         margin-right: 5px
     }
@@ -557,7 +559,7 @@ sup.reference {
         clear: both
     }
 
-    table.filehistory th,table.filehistory td {
+    table.filehistory th, table.filehistory td {
         vertical-align: top
     }
 
@@ -565,7 +567,7 @@ sup.reference {
         text-align: left
     }
 
-    table.filehistory td.mw-imagepage-filesize,table.filehistory th.mw-imagepage-filesize {
+    table.filehistory td.mw-imagepage-filesize, table.filehistory th.mw-imagepage-filesize {
         white-space: nowrap
     }
 
@@ -573,12 +575,11 @@ sup.reference {
         font-weight: bold
     }
 
-    .filehistory a img,#file img:hover {
-        background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAAAAAA6mKC9AAAAGElEQVQYV2N4DwX/oYBhgARgDJjEAAkAAEC99wFuu0VFAAAAAElFTkSuQmCC) repeat;
-        background: white url(skins/common/images/Checker-16x16.png@2013-09-03T18%253A56%253A40Z) repeat!ie
+    .filehistory a img, #file img:hover {
+        background: white url("Checker-16x16.png") repeat
     }
 
-    li span.deleted,span.history-deleted {
+    li span.deleted, span.history-deleted {
         text-decoration: line-through;
         color: #888;
         font-style: italic
@@ -694,7 +695,8 @@ sup.reference {
         border-left: 1px solid #AAA;
         margin: 0.125em 0;
         padding: 0 0.5em;
-        zoom:1;display: inline !ie
+        zoom: 1;
+        display: inline !ie
     }
 
     .catlinks li:first-child {
@@ -714,7 +716,7 @@ sup.reference {
         display: none
     }
 
-    p.mw-ipb-conveniencelinks,p.mw-protect-editreasons,p.mw-filedelete-editreasons,p.mw-delete-editreasons,p.mw-revdel-editreasons {
+    p.mw-ipb-conveniencelinks, p.mw-protect-editreasons, p.mw-filedelete-editreasons, p.mw-delete-editreasons, p.mw-revdel-editreasons {
         font-size: 90%;
         text-align: right
     }
@@ -742,14 +744,14 @@ sup.reference {
         width: 100%
     }
 
-    .os-suggest-result,.os-suggest-result-hl {
+    .os-suggest-result, .os-suggest-result-hl {
         white-space: nowrap;
         background-color: white;
         color: black;
         padding: 2px
     }
 
-    .os-suggest-result-hl,.os-suggest-result-hl-webkit {
+    .os-suggest-result-hl, .os-suggest-result-hl-webkit {
         background-color: #4C59A6;
         color: white
     }
@@ -790,15 +792,15 @@ sup.reference {
         border: 1px dashed #aaa
     }
 
-    .mw-history-revisiondelete-button,#mw-fileduplicatesearch-icon {
+    .mw-history-revisiondelete-button, #mw-fileduplicatesearch-icon {
         float: right
     }
 
-    .newpage,.minoredit,.botedit {
+    .newpage, .minoredit, .botedit {
         font-weight: bold
     }
 
-    #shared-image-dup,#shared-image-conflict {
+    #shared-image-dup, #shared-image-conflict {
         font-style: italic
     }
 
@@ -813,15 +815,15 @@ sup.reference {
         font-size: 90%
     }
 
-    span.mw-revdelundel-link,strong.mw-revdelundel-link {
+    span.mw-revdelundel-link, strong.mw-revdelundel-link {
         font-size: 90%
     }
 
-    span.mw-revdelundel-hidden,input.mw-revdelundel-hidden {
+    span.mw-revdelundel-hidden, input.mw-revdelundel-hidden {
         visibility: hidden
     }
 
-    td.mw-revdel-checkbox,th.mw-revdel-checkbox {
+    td.mw-revdel-checkbox, th.mw-revdel-checkbox {
         padding-right: 10px;
         text-align: center
     }
@@ -831,8 +833,7 @@ sup.reference {
     }
 
     a.feedlink {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAYAAABWdVznAAAABmJLR0QA/wD/AP+gvaeTAAAAB3RJTUUH2AkOCjkSL9xYhAAAAc9JREFUKJE90LFrU1EYQPHzffe+l/iSVkXTmNiANBU7iE5OLrbSVYKIiy5dnARB3FwEB5dOOhQKuthJEEHRsUXBoosO0lKKEYRa29LWQk3S5L53r0PVv+D8OPJlolrrr1ZmI7F1BFEjqBXECGJAjSBCaLddc7u5Mmb7q5U5007rWh5E9rYR/xsTBBXBWMVEglqRpGiGhcE5G6kdyugxcGsGyRdJ15ZwC29IF55jNEWt8K+aFOMhc+dC7Z6SITjC7ga2MkI8cpH41Dhh7RPa20Gt4toZac+IqhFMTpG0hVt8RetJg967SaTvGLnGNKZ0EtfOcB1P5jyqVjCRkIzfpnjtMYXrT2FrCff6JqhFRx/gnCXtZHgXUFHQSGg/u4Gbf4T2lYkvTaFGce8fIgePY09fwXU8Pg3sk2JFu5v4lQ+4FxPge+j5u3Q+v8TvrBKfbZB1PT4LqJh9Uv7yFLmrM2i+gPs4jRyqIaUz7C2+xZZOEA4cJaSgaAhqhbC1DK0N3K9NusvzAHB4GLf+HQBJBsiCD7J6/9zXI2VbVyv/b6Sdv1e6nrTryboB7wVbyjXt1rcfo0Frs4UkqvtUJHMBjyVEAcSjFiQJwRvf3F3/OfYH/dDFWrCooaIAAAAASUVORK5CYII=) center left no-repeat;
-        background: url(skins/common/images/feed-icon.png@2013-09-03T18%253A56%253A40Z) center left no-repeat!ie;
+        background: url("feed-icon.png") center left no-repeat;
         padding-left: 16px
     }
 
@@ -841,7 +842,7 @@ sup.reference {
         padding: 0 !important
     }
 
-    .rtl a.external.free,.rtl a.external.autonumber {
+    .rtl a.external.free, .rtl a.external.autonumber {
         direction: ltr;
         unicode-bidi: embed
     }
@@ -851,15 +852,15 @@ sup.reference {
         background-color: #f9f9f9;
         border: 1px #aaa solid;
         border-collapse: collapse;
-        color: black;
+        color: black
     }
 
-    table.wikitable > tr > th,table.wikitable > tr > td,table.wikitable > * > tr > th,table.wikitable > * > tr > td {
+    table.wikitable > tr > th, table.wikitable > tr > td, table.wikitable > * > tr > th, table.wikitable > * > tr > td {
         border: 1px #aaa solid;
         padding: 0.2em
     }
 
-    table.wikitable > tr > th,table.wikitable > * > tr > th {
+    table.wikitable > tr > th, table.wikitable > * > tr > th {
         background-color: #f2f2f2;
         text-align: center
     }
@@ -887,7 +888,7 @@ sup.reference {
         font-size: larger
     }
 
-    .errorbox,.warningbox,.successbox {
+    .errorbox, .warningbox, .successbox {
         font-size: larger;
         border: 2px solid;
         padding: .5em 1em;
@@ -911,7 +912,7 @@ sup.reference {
         background-color: #dfd
     }
 
-    .errorbox h2,.warningbox h2,.successbox h2 {
+    .errorbox h2, .warningbox h2, .successbox h2 {
         font-size: 1em;
         font-weight: bold;
         display: inline;
@@ -960,7 +961,7 @@ sup.reference {
         border-collapse: collapse
     }
 
-    .mw-datatable,.mw-datatable td,.mw-datatable th {
+    .mw-datatable, .mw-datatable td, .mw-datatable th {
         border: 1px solid #aaaaaa;
         padding: 0 0.15em 0 0.15em
     }
@@ -994,7 +995,7 @@ sup.reference {
         text-decoration: none
     }
 
-    .imagelist td,.imagelist th {
+    .imagelist td, .imagelist th {
         white-space: nowrap
     }
 
@@ -1051,7 +1052,7 @@ sup.reference {
         border-collapse: collapse
     }
 
-    table.mw_metadata td,table.mw_metadata th {
+    table.mw_metadata td, table.mw_metadata th {
         text-align: center;
         border: 1px solid #aaaaaa;
         padding-left: 5px;
@@ -1074,32 +1075,32 @@ sup.reference {
         margin: 0
     }
 
-    .mw-content-ltr ul,.mw-content-rtl .mw-content-ltr ul {
+    .mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul {
         margin: 0.3em 0 0 1.6em;
         padding: 0
     }
 
-    .mw-content-rtl ul,.mw-content-ltr .mw-content-rtl ul {
+    .mw-content-rtl ul, .mw-content-ltr .mw-content-rtl ul {
         margin: 0.3em 1.6em 0 0;
         padding: 0
     }
 
-    .mw-content-ltr ol,.mw-content-rtl .mw-content-ltr ol {
+    .mw-content-ltr ol, .mw-content-rtl .mw-content-ltr ol {
         margin: 0.3em 0 0 3.2em;
         padding: 0
     }
 
-    .mw-content-rtl ol,.mw-content-ltr .mw-content-rtl ol {
+    .mw-content-rtl ol, .mw-content-ltr .mw-content-rtl ol {
         margin: 0.3em 3.2em 0 0;
         padding: 0
     }
 
-    .mw-content-ltr dd,.mw-content-rtl .mw-content-ltr dd {
+    .mw-content-ltr dd, .mw-content-rtl .mw-content-ltr dd {
         margin-left: 1.6em;
         margin-right: 0
     }
 
-    .mw-content-rtl dd,.mw-content-ltr .mw-content-rtl dd {
+    .mw-content-rtl dd, .mw-content-ltr .mw-content-rtl dd {
         margin-right: 1.6em;
         margin-left: 0
     }
@@ -1110,8 +1111,9 @@ sup.reference {
         display: inline-block
     }
 
-    ul.gallery,li.gallerybox {
-        zoom:1;*display: inline
+    ul.gallery, li.gallerybox {
+        zoom: 1;
+        *display: inline
     }
 
     ul.gallery {
@@ -1147,8 +1149,7 @@ sup.reference {
     }
 
     .mw-ajax-loader {
-        background-image: url(data:image/gif;base64,R0lGODlhIAAgAOMAAP///wAAAMbGxoSEhLa2tpqamjY2NlZWVtjY2OTk5Ly8vB4eHgQEBP///////////yH/C05FVFNDQVBFMi4wAwEAAAAh+QQFCgAPACwAAAAAIAAgAAAE5/DJSWlhperN52JLhSSdRgwVo1ICQZRUsiwHpTJT4iowNS8vyW2icCF6k8HMMBk+EDskxTBDPZwuAkkqIfxIQyhBQBFvHwSDITM5VDW6XNE4KagNh6Bgwe60smQUB3d4Rz1ZBApnFASDd0hihh12BkE9kjAJVlycXIg7CQIFA6SlnJ87paqbSKiKoqusnbMdmDC2tXQlkUhziYtyWTxIfy6BE8WJt5YJvpJivxNaGmLHT0VnOgSYf0dZXS7APdpB309RnHOG5g/qXGLDaC457D1zZ/V/nmOM82XiHRLYKhKP1oZmADdEAAAh+QQFCgAPACwAAAAAGAAXAAAEcvDJSesiNetplqlDsYnUYlIGw2jGV55SoS5sq0wmLS3qoBWtAw42mG0ehxYp90CoGKRNy8U8qFzNweCGwlJkgolCq0VIEAbMkUIghxLrDcLti2/Gg7D9qN774wkKBIOEfw+ChIV/gYmDho+QkZKTR3p7EQAh+QQFCgAPACwBAAAAHQAOAAAEcvDJSScxNev9jjkZwU2IUhkodSzLKA2DOKGYRLD1CA/InEoGlkui2PlyuKGkADM9aI8EayGbJDYI4zM1YIEmAwajkCAoehNmTNNaLsQMHmGuuEYHgpHAAGfUBHNzeUp9VBQJCoFOLmFxWHNoQweRWEocEQAh+QQFCgAPACwHAAAAGQARAAAEavDJ+cQQNOtdRsnf9iRINpyZYYgEgU3nQKnr1hIJjEqHGmqIlkInexRUB5FE0So9YhKaUpK4SaAPlWaxIFAETQ3B4BxzF2Kn8nBeJKebdm3SgksKXDt8kNP7/xoMgoMLP36DiAyAD4kMhREAIfkEBQoADwAsDgAAABIAGAAABGUQFfSqvZiUghXF1cZZxTCA4WYh5omKVqugD/woLV2rT/u9KoJpFDIYaIJBwnIwGogoivOoq0wPs6r1qe16v5WFeEzVjc+LKnphIIC9g193wGC4uvX6Aoo05BllVQULeXdadAxuEQAh+QQFCgAPACwOAAAAEgAeAAAEgDCp9Kq9WBGFBb5ECBbFV4XERaYmahGk14qPQJbm4z53foq2AquiGAwQJsQQYTRyfIlCc4DzTY8+i8CZxQy74KxhTD58P+S0Qaw+hN8WyruwWMDrdcM5ecAv3CYDDDIEBngmBwwMaxeGJgmKDFVdggx2bwuKA28EkXAGinJhVCYRACH5BAUKAA8ALA8AAQARAB8AAAR88Mn5UKIYC0KyT5ziZQqHjBQSohRHXGzFCSkHU/eTlCa7uTSUi6DIeVSEU0yiXDo9g6i0EIRKr6hrlPrsOgkGQ8EZDh+eZcOosKAcymPKYLE4TwphCWMvoS86HnsME3RqgXwSBnQjghR+h4MTB4sZjRiAGAsMbU4FDHFLEQAh+QQFCgAPACwIAA4AGAASAAAEbPDJSesjOKtk+8yg4nkgto1oihIqKgyD2FpwjcxUUtRDMROG2wPBkz0EjEHHYKgoYMKHgcE4PBZYCbM5KlAZHOxCUmBaPQuq8pqVHJg+GnUsEVO2nTQjzqZPmB1UXHVtE3wVOxUGC4M4H34qEQAh+QQFCgAPACwCABIAHQAOAAAEePDJSat96FJ0tEUEkV0DwwwepYSEklDEYpopJbCEIBkzY+geweD1SKxCiJJpUZAgmBbCYNCcIFaJggk1OSwWKINYMh2MLMRJ7LsbPxTl2sTAbhsmhalC/vje7VZxNXQLBHNuEnlcKV8dh38TCmcehhUHBo58cpA1EQAh+QQFCgAPACwAAA8AGQARAAAEZ7AsRuu7OOtbO9tgJnlfaJ7omQwpuixFCxrvK2dHvRwoQmw1w+8i3PgIggzBpjEYLoPohUBNoJzPR5T1OCpOB2dMK70oqIhQwcmDlh8J6nCDzWwzAmrIqblnEFZqGgUDYzcaAgNJGxEAIfkEBQoADwAsAQAIABEAGAAABFyQMDaevfiOyVbJ4GNwjCGEWLGQaLZRbYZUcW3feK7vaGEYNsXh96sRgYiW73e4JAYn0O9zKQwGhAdhi5pdLdts6DpQgLkgBfkSHl+TZ7ELi2mDEHKLgmC+JRQJEQAh+QQFCgAPACwAAAIADgAdAAAEcvDJ+cqgeDJmMt4M4U3DtozTsl1oASJpRxnbkS6LIT4Cw0oHHO4A8xAMwhPqgSssH4nnknAwWK+Zq1ZGoW650vAOpRgMBCOEee2xrAtRTNlcQEsI8Yd6oKAICARFHgmAYx4KgIIZCIB9ZIB5RgR2KAmKEQA7);
-        background-image: url(skins/common/images/ajax-loader.gif@2013-09-03T18%253A56%253A40Z)!ie;
+        background-image: url("ajax-loader.gif");
         background-position: center center;
         background-repeat: no-repeat;
         padding: 16px;
@@ -1159,21 +1160,20 @@ sup.reference {
     .mw-small-spinner {
         padding: 10px !important;
         margin-right: 0.6em;
-        background-image: url(data:image/gif;base64,R0lGODlhFAAUAIQQAAYJBRkbGCYnJTI0MT9APk5QTVhZV2ZoZXR2c4SGg5CSj52fnKyuq7m7uMfJxtPV0v///////////////////////////////////////////////////////////////yH/C05FVFNDQVBFMi4wAwEAAAAh+QQJCgABACwAAAAAFAAUAAAFc2AgjuNQkCipHCMAiI6TjoWAiG7gNM08CgTca+cbGWyBXEMm6okMJxGBNWLuGo8ngWBY+HgxlIFwm4VnimKKkWgn1Dzwwv0uxpfqfJWZ2p1hV0VXTA9gMCRETXxOOj08jXxfMo+NcHiUgT5nlAFZejqRKCEAIfkECQoADAAsAAAAABQAFAAABXYgI45jcZAouSSjIIjDkI4HwTJBIALvLBIFUY4xAPhoA1ZAcAjIRI2RQlFCkIIMR6PxEC0UiYXDt3WMSdOFz0w+prTb6DHeMNPd9LN7n9WjtGwjdnIzcGeGIn5aI3WMglFbWY14kHKLR4AMkZKEb2ebDF18fUchACH5BAkKAAEALAAAAAAUABQAAAV6YCCO44GQKOkw40CIxZuKi9KIwyAK8hwkCpyOIPCNFglWTjEojAgJkeMmUixIhiABADhIGw3HwycACLyqsI+ATo2NqCmY6puH5WC43QHvjxx8M3KBUnJGgyIPYIGEAVMjaiJ0j3lTjTN5eQGadWqainQpgJJ0b36jPiEAIfkECQoAAQAsAAAAABQAFAAABXVgII7jwpAo+TxjkoiGkY5OwwauSBTz2DSinIHQozUcuISCIIMpRDUfcoRYBAwCwQH6c9xSBAEBgapNUwfy7Fs0/oBFgBwwqL3bcwCvzYeey10qdkV2Uw+BAX9RIkc+RgE/iY1tkZGSlI2Wgz0OU5YBbG2dRSEAIfkECQoACAAsAAAAABQAFAAABXcgIo4j05Ao+TjjsohuOjoNi8RIoshjDb+KBG/mczUUL9EhSevZYKwDgSBE0GoPXmFgqBKfqIMXlR2iro3TMCBgF9BqXpt9MKPGJAeYRAhw81dDAwAAAyIPaTZgTSIChiJxTWlWPmaTk5SWPpiBPHqQcWV2VnskIQAh+QQJCgABACwAAAAAFAAUAAAFemAgjqPjkCj5nGLTiAyTlg3rios8t/bLLDvayeXIjRYsx4tHcjwCi0RCp6w9Z4qEQifcxXbXYNN1Cw7Og0O1vEMTEGKUYmfaGQaEQ7O6WxQEAwUiD0QiLCIEAiMEBCNLAUoBNwcAA3E3ZQIAYoVllI10PSMHCXGGhykhACH5BAkKAAEALAAAAAAUABQAAAV3YCCOo+OQKPmcYtOIZlo2T/sGDSvjrBs4t90vh6MRYbXh6Igc0mAuRzIV1UGtpJhsKpy5grKEOLEAfrvjBKOLUuy0KQTBkMiadwsDYS56RGEkBwQjBQZLMwEAAAEIAoZdPooiBAKQRJKMAgVCWpgBB25sAQUDQiEAIfkECQoAEAAsAAAAABQAFAAABXsgJI6j45Ao+Zxi04hmWjZP+0INK+OsCzm33S+HoxFhteHoiBzSYC5HMhXVQa2kmGwqnLmCsm8O+O2KseadNrVQKBhZsnqRSChEj6iIQEIURm5LIwMBCAIBEAkDB10QAAIQAYgQBnxChyKYiQSMOwKQEJ8jCQuNIgd/OyEAIfkECQoAHwAsAAAAABQAFAAABXzgJ46j45Ao+Zxi04hmWjZP+34NK+Os+zm33S+HoxFhteHoiBzSYC5HMhXVQa2kmGwqnLmCsm8O+O2KsV0u6UDYAbWigwAg2K2iIgMAMPgsDCQMCkssCW0iBQMKA30MCQtdHwNtjCILCV0EfZKbDY9CBAUimiMMaDIIgDshACH5BAkKAB8ALAAAAAAUABQAAAV44CeOo+OQKPmcYtOIZlo2T/t+DSvjrPs5t90vh6MRYbXh6Igc0mAuRzIV1UGtpJhsKhwVAGBA1xUdhMVCMrMr4pIQhx1QK0IQBITdKio6CAQFHwsIWUFHCoEiBgQKCQlDWCkEgY5QXQV5H5WQQgWJmx8PbjsMC0IhACH5BAkKAB8ALAAAAAAUABQAAAV14CeOo+OQKPmcYtO0bwo/cC3b7pffotOcrsevRPsMBKMh8eNrFAcBwEBxczlRUMLNdEvwUgWAGPC1/gZjMs9c/I7aqMRh62KJEoZB4bay3gkEcw4LJD5JMQtzIgsKfj52XVQ7OzcKVDoxQjEyCoSYb3A8XDchACH5BAEKAB8ALAAAAAAUABQAAAV64CeOo+OQKJkcY9OIZjoSAPu5Ii6LgJC/jtdONKjdGo/GCfYQEQYjAYHkaAaVosJgUFjsXDHS07ALpxTDFOK5TbvAh217+MamSU0Zg1FWLkUMCgloMg9XSwwJCV6GVEI3Sw5eMEg4QX9fJzo6X0I6SZgoYZwPeXdmKSEAOw==);
-        background-image: url(skins/common/images/spinner.gif@2013-09-03T18%253A56%253A40Z)!ie;
+        background-image: url("spinner.gif");
         background-position: center center;
         background-repeat: no-repeat
     }
 
-    h1:lang(anp),h1:lang(as),h1:lang(bh),h1:lang(bho),h1:lang(bn),h1:lang(gu),h1:lang(hi),h1:lang(kn),h1:lang(ks),h1:lang(ml),h1:lang(mr),h1:lang(my),h1:lang(mai),h1:lang(ne),h1:lang(new),h1:lang(or),h1:lang(pa),h1:lang(pi),h1:lang(sa),h1:lang(ta),h1:lang(te) {
+    h1:lang(anp), h1:lang(as), h1:lang(bh), h1:lang(bho), h1:lang(bn), h1:lang(gu), h1:lang(hi), h1:lang(kn), h1:lang(ks), h1:lang(ml), h1:lang(mr), h1:lang(my), h1:lang(mai), h1:lang(ne), h1:lang(new), h1:lang(or), h1:lang(pa), h1:lang(pi), h1:lang(sa), h1:lang(ta), h1:lang(te) {
         line-height: 1.6em !important
     }
 
-    h2:lang(anp),h3:lang(anp),h4:lang(anp),h5:lang(anp),h6:lang(anp),h2:lang(as),h3:lang(as),h4:lang(as),h5:lang(as),h6:lang(as),h2:lang(bho),h3:lang(bho),h4:lang(bho),h5:lang(bho),h6:lang(bho),h2:lang(bh),h3:lang(bh),h4:lang(bh),h5:lang(bh),h6:lang(bh),h2:lang(bn),h3:lang(bn),h4:lang(bn),h5:lang(bn),h6:lang(bn),h2:lang(gu),h3:lang(gu),h4:lang(gu),h5:lang(gu),h6:lang(gu),h2:lang(hi),h3:lang(hi),h4:lang(hi),h5:lang(hi),h6:lang(hi),h2:lang(kn),h3:lang(kn),h4:lang(kn),h5:lang(kn),h6:lang(kn),h2:lang(ks),h3:lang(ks),h4:lang(ks),h5:lang(ks),h6:lang(ks),h2:lang(ml),h3:lang(ml),h4:lang(ml),h5:lang(ml),h6:lang(ml),h2:lang(mr),h3:lang(mr),h4:lang(mr),h5:lang(mr),h6:lang(mr),h2:lang(my),h3:lang(my),h4:lang(my),h5:lang(my),h6:lang(my),h2:lang(mai),h3:lang(mai),h4:lang(mai),h5:lang(mai),h6:lang(mai),h2:lang(ne),h3:lang(ne),h4:lang(ne),h5:lang(ne),h6:lang(ne),h2:lang(new),h3:lang(new),h4:lang(new),h5:lang(new),h6:lang(new),h2:lang(or),h3:lang(or),h4:lang(or),h5:lang(or),h6:lang(or),h2:lang(pa),h3:lang(pa),h4:lang(pa),h5:lang(pa),h6:lang(pa),h2:lang(pi),h3:lang(pi),h4:lang(pi),h5:lang(pi),h6:lang(pi),h2:lang(sa),h3:lang(sa),h4:lang(sa),h5:lang(sa),h6:lang(sa),h2:lang(ta),h3:lang(ta),h4:lang(ta),h5:lang(ta),h6:lang(ta),h2:lang(te),h3:lang(te),h4:lang(te),h5:lang(te),h6:lang(te) {
+    h2:lang(anp), h3:lang(anp), h4:lang(anp), h5:lang(anp), h6:lang(anp), h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as), h2:lang(bho), h3:lang(bho), h4:lang(bho), h5:lang(bho), h6:lang(bho), h2:lang(bh), h3:lang(bh), h4:lang(bh), h5:lang(bh), h6:lang(bh), h2:lang(bn), h3:lang(bn), h4:lang(bn), h5:lang(bn), h6:lang(bn), h2:lang(gu), h3:lang(gu), h4:lang(gu), h5:lang(gu), h6:lang(gu), h2:lang(hi), h3:lang(hi), h4:lang(hi), h5:lang(hi), h6:lang(hi), h2:lang(kn), h3:lang(kn), h4:lang(kn), h5:lang(kn), h6:lang(kn), h2:lang(ks), h3:lang(ks), h4:lang(ks), h5:lang(ks), h6:lang(ks), h2:lang(ml), h3:lang(ml), h4:lang(ml), h5:lang(ml), h6:lang(ml), h2:lang(mr), h3:lang(mr), h4:lang(mr), h5:lang(mr), h6:lang(mr), h2:lang(my), h3:lang(my), h4:lang(my), h5:lang(my), h6:lang(my), h2:lang(mai), h3:lang(mai), h4:lang(mai), h5:lang(mai), h6:lang(mai), h2:lang(ne), h3:lang(ne), h4:lang(ne), h5:lang(ne), h6:lang(ne), h2:lang(new), h3:lang(new), h4:lang(new), h5:lang(new), h6:lang(new), h2:lang(or), h3:lang(or), h4:lang(or), h5:lang(or), h6:lang(or), h2:lang(pa), h3:lang(pa), h4:lang(pa), h5:lang(pa), h6:lang(pa), h2:lang(pi), h3:lang(pi), h4:lang(pi), h5:lang(pi), h6:lang(pi), h2:lang(sa), h3:lang(sa), h4:lang(sa), h5:lang(sa), h6:lang(sa), h2:lang(ta), h3:lang(ta), h4:lang(ta), h5:lang(ta), h6:lang(ta), h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) {
         line-height: 1.2em
     }
 
-    ol:lang(bcc) li,ol:lang(bqi) li,ol:lang(fa) li,ol:lang(glk) li,ol:lang(kk-arab) li,ol:lang(mzn) li {
+    ol:lang(bcc) li, ol:lang(bqi) li, ol:lang(fa) li, ol:lang(glk) li, ol:lang(kk-arab) li, ol:lang(mzn) li {
         list-style-type: -moz-persian;
         list-style-type: persian
     }
@@ -1183,12 +1183,12 @@ sup.reference {
         list-style-type: arabic-indic
     }
 
-    ol:lang(hi) li,ol:lang(mr) li {
+    ol:lang(hi) li, ol:lang(mr) li {
         list-style-type: -moz-devanagari;
         list-style-type: devanagari
     }
 
-    ol:lang(as) li,ol:lang(bn) li {
+    ol:lang(as) li, ol:lang(bn) li {
         list-style-type: -moz-bengali;
         list-style-type: bengali
     }
@@ -1198,27 +1198,27 @@ sup.reference {
         list-style-type: oriya
     }
 
-    #toc ul,.toc ul {
+    #toc ul, .toc ul {
         margin: .3em 0
     }
 
-    .mw-content-ltr .toc ul,.mw-content-ltr #toc ul,.mw-content-rtl .mw-content-ltr .toc ul,.mw-content-rtl .mw-content-ltr #toc ul {
+    .mw-content-ltr .toc ul, .mw-content-ltr #toc ul, .mw-content-rtl .mw-content-ltr .toc ul, .mw-content-rtl .mw-content-ltr #toc ul {
         text-align: left
     }
 
-    .mw-content-rtl .toc ul,.mw-content-rtl #toc ul,.mw-content-ltr .mw-content-rtl .toc ul,.mw-content-ltr .mw-content-rtl #toc ul {
+    .mw-content-rtl .toc ul, .mw-content-rtl #toc ul, .mw-content-ltr .mw-content-rtl .toc ul, .mw-content-ltr .mw-content-rtl #toc ul {
         text-align: right
     }
 
-    .mw-content-ltr .toc ul ul,.mw-content-ltr #toc ul ul,.mw-content-rtl .mw-content-ltr .toc ul ul,.mw-content-rtl .mw-content-ltr #toc ul ul {
+    .mw-content-ltr .toc ul ul, .mw-content-ltr #toc ul ul, .mw-content-rtl .mw-content-ltr .toc ul ul, .mw-content-rtl .mw-content-ltr #toc ul ul {
         margin: 0 0 0 2em
     }
 
-    .mw-content-rtl .toc ul ul,.mw-content-rtl #toc ul ul,.mw-content-ltr .mw-content-rtl .toc ul ul,.mw-content-ltr .mw-content-rtl #toc ul ul {
+    .mw-content-rtl .toc ul ul, .mw-content-rtl #toc ul ul, .mw-content-ltr .mw-content-rtl .toc ul ul, .mw-content-ltr .mw-content-rtl #toc ul ul {
         margin: 0 2em 0 0
     }
 
-    #toc #toctitle,.toc #toctitle,#toc .toctitle,.toc .toctitle {
+    #toc #toctitle, .toc #toctitle, #toc .toctitle, .toc .toctitle {
         direction: ltr
     }
 
@@ -1227,19 +1227,13 @@ sup.reference {
         margin-left: 2px;
         margin-bottom: -8px;
         padding: 0 0 0 15px;
-        background-image: url(data:image/gif;base64,R0lGODlhCwALALMAAP///01NTZOTk1lZWefn57i4uJSUlPPz82VlZdDQ0HFxcaysrNvb28TExAAAAAAAACH5BAAAAAAALAAAAAALAAsAAAQrUIRJqQQ455nNNBgHJANBDAwgZsVwqIG2IEQYYwXy2lq/Kg3NqqeSVCqCCAA7);
-        background-image: url(skins/common/images/help-question.gif@2013-09-03T18%253A56%253A40Z)!ie;
+        background-image: url("help-question.gif");
         background-position: left center;
         background-repeat: no-repeat;
         cursor: pointer;
         font-size: .8em;
         text-decoration: underline;
         color: #0645ad
-    }
-
-    .mw-help-field-hint:hover {
-        background-image: url(data:image/gif;base64,R0lGODlhCwALALMAAAtop+7z+GCWwpW51oStz8rb6yZzrafF3bnR5Nzn8QBcoD91oABQmf///wAAAAAAACH/C1hNUCBEYXRhWE1QPD94cGFja2V0IGJlZ2luPSLvu78iIGlkPSJXNU0wTXBDZWhpSHpyZVN6TlRjemtjOWQiPz4gPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iQWRvYmUgWE1QIENvcmUgNS4wLWMwNjAgNjEuMTM0Nzc3LCAyMDEwLzAyLzEyLTE3OjMyOjAwICAgICAgICAiPiA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1wTU06T3JpZ2luYWxEb2N1bWVudElEPSJ4bXAuZGlkOjAyODAxMTc0MDcyMDY4MTE5NkQ0QUQzRjI0NzRCNUQwIiB4bXBNTTpEb2N1bWVudElEPSJ4bXAuZGlkOjJBN0FFQTQwQjlGQzExREY5RDlBQTRBODQyMkJCMkFDIiB4bXBNTTpJbnN0YW5jZUlEPSJ4bXAuaWlkOjJBN0FFQTNGQjlGQzExREY5RDlBQTRBODQyMkJCMkFDIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzUgTWFjaW50b3NoIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6RkM3RjExNzQwNzIwNjgxMTk1RkVBQ0ZBOEQxNTU5MkUiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6MDI4MDExNzQwNzIwNjgxMTk2RDRBRDNGMjQ3NEI1RDAiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz4B//79/Pv6+fj39vX08/Lx8O/u7ezr6uno5+bl5OPi4eDf3t3c29rZ2NfW1dTT0tHQz87NzMvKycjHxsXEw8LBwL++vby7urm4t7a1tLOysbCvrq2sq6qpqKempaSjoqGgn56dnJuamZiXlpWUk5KRkI+OjYyLiomIh4aFhIOCgYB/fn18e3p5eHd2dXRzcnFwb25tbGtqaWhnZmVkY2JhYF9eXVxbWllYV1ZVVFNSUVBPTk1MS0pJSEdGRURDQkFAPz49PDs6OTg3NjU0MzIxMC8uLSwrKikoJyYlJCMiISAfHh0cGxoZGBcWFRQTEhEQDw4NDAsKCQgHBgUEAwIBAAAh+QQAAAAAACwAAAAACwALAAAEK3CxSalsOOeZxRQY1yBKkihFI2aDEqiMRgBJGGMD8NpavxoHzaqnklQqiwgAOw==);
-        background-image: url(skins/common/images/help-question-hover.gif@2013-09-03T18%253A56%253A40Z)!ie
     }
 
     .mw-help-field-data {
@@ -1269,8 +1263,7 @@ sup.reference {
 
     .tipsy-arrow {
         position: absolute;
-        background: url(data:image/gif;base64,R0lGODlhDQANAMQAAPf399bz/9vu9m/O9NXy/8Pm9svp9pfd+YLW943X9LTn++z093XQ9WnM9OLw9p/c9YTU9InY9/T292DK9Jre+afj+rvq/Nzv9rjk9brl9cPt/ZLb+GbL9MLs/ZHb+KLh+iH5BAAAAAAALAAAAAANAA0AAAVK4BGMZBkcg2WW1lBEKxkVAFTFFQQAwkSYhIlgB3hQTJQHEbBodEiaxmIJyHhIGwwVIGEoAgqGZAswIAIIA3mX+CTWOwfHAd9dtiEAOw==) no-repeat top left;
-        background: url(skins/common/images/tipsy-arrow.gif@2013-09-03T18%253A56%253A40Z) no-repeat top left!ie;
+        background: url("tipsy-arrow.gif") no-repeat top left;
         width: 13px;
         height: 13px
     }
@@ -1281,12 +1274,12 @@ sup.reference {
         background-position: 0% 100%
     }
 
-    #mw-clearyourcache,#mw-sitecsspreview,#mw-sitejspreview,#mw-usercsspreview,#mw-userjspreview {
+    #mw-clearyourcache, #mw-sitecsspreview, #mw-sitejspreview, #mw-usercsspreview, #mw-userjspreview {
         direction: ltr;
         unicode-bidi: embed
     }
 
-    .diff-currentversion-title,.diff {
+    .diff-currentversion-title, .diff {
         direction: ltr;
         unicode-bidi: embed
     }
@@ -1301,27 +1294,27 @@ sup.reference {
         unicode-bidi: embed
     }
 
-    .diff-otitle,.diff-ntitle,.diff-lineno {
+    .diff-otitle, .diff-ntitle, .diff-lineno {
         direction: ltr !important;
         unicode-bidi: embed
     }
 
-    #mw-revision-info,#mw-revision-info-current,#mw-revision-nav {
+    #mw-revision-info, #mw-revision-info-current, #mw-revision-nav {
         direction: ltr;
         display: inline
     }
 
-    div.tright,div.floatright,table.floatright {
+    div.tright, div.floatright, table.floatright {
         clear: right;
         float: right
     }
 
-    div.tleft,div.floatleft,table.floatleft {
+    div.tleft, div.floatleft, table.floatleft {
         float: left;
         clear: left
     }
 
-    div.floatright,table.floatright,div.floatleft,table.floatleft {
+    div.floatright, table.floatright, div.floatleft, table.floatleft {
         position: relative
     }
 
@@ -1329,10 +1322,11 @@ sup.reference {
         unicode-bidi: embed
     }
 
-    .mw-jump,#jump-to-nav {
+    .mw-jump, #jump-to-nav {
         overflow: hidden;
         height: 0;
-        zoom:1}
+        zoom: 1
+    }
 
     .printfooter {
         display: none
@@ -1343,7 +1337,7 @@ sup.reference {
         z-index: 99
     }
 
-    .editsection,.toctoggle {
+    .editsection, .toctoggle {
         -moz-user-select: none;
         -webkit-user-select: none;
         -ms-user-select: none;
@@ -1352,7 +1346,7 @@ sup.reference {
 }
 
 @media screen {
-    html,body {
+    html, body {
         height: 100%;
         margin: 0;
         padding: 0;
@@ -1364,7 +1358,7 @@ sup.reference {
         background: none repeat scroll 0 0 #f0f0f0
     }
 
-    div#cpp-head-first,div#cpp-head-second,div#content,div#footer {
+    div#cpp-head-first, div#cpp-head-second, div#content, div#footer {
         /* margin: 0 auto; */
         position: relative;
         /* width: 780px; */
@@ -1466,8 +1460,7 @@ sup.reference {
 
     #pt-userpage a {
         padding-right: 21px !important;
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAQBAMAAAAL9CkWAAAAGFBMVEV5eXmSkpKampqtra2xsbG/v7/d3d3j4+M9Jo0OAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfcBgESEhztg7+zAAAAJklEQVQI12NgoBpgNxQUFDSHcooFBYULEBLmcFXFcGGgRDjFlgIASNIDj9oRJ+sAAAAASUVORK5CYII=) no-repeat scroll right;
-        background: url(skins/cppreference2/images/arrow-down-icon1.png@2013-09-04T19%253A18%253A20Z) no-repeat scroll right!ie
+        background: url("arrow-down-icon1.png") no-repeat scroll right
     }
 
     div#cpp-head-search {
@@ -1528,8 +1521,7 @@ sup.reference {
 
     div#cpp-head-second-base {
         background: white;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAsCAIAAAArRUU2AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AYIETohl/is2wAAAEZJREFUCNddjcENwDAMAs/sP2GG8fXhJK36QALrDKgBrpoO/WYklPH4yw7XOyspiJjuDwOB/7+RSjn30zG7fTeEFAbHr7UeaIQlu8W8oSAAAAAASUVORK5CYII=);
-        background-image: url(page-fade.png)!ie;
+        background-image: url("page-fade.png");
         background-position: bottom left;
         background-repeat: repeat-x
     }
@@ -1554,7 +1546,7 @@ sup.reference {
         display: none
     }
 
-    div.vectorTabs h5,div.vectorMenu h5 span {
+    div.vectorTabs h5, div.vectorMenu h5 span {
         display: none
     }
 
@@ -1564,8 +1556,7 @@ sup.reference {
     }
 
     div.vectorTabs:first-child {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeF5lTtEKgEAMMv//j/O0IxlH9CA6N2WURAA/OHl5GeWAwUUHBcKV795FtTePxpmV3t9uv8Z3/cmvM88vzbbrAV/dQdX+eas3AAAAAElFTkSuQmCC);
-        background-image: url(tab-break.png)!ie;
+        background-image: url("tab-break.png");
         background-position: bottom left;
         background-repeat: no-repeat;
         padding-left: 1px
@@ -1591,23 +1582,20 @@ sup.reference {
         height: 100%;
         margin: 0;
         padding: 0;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAIAAADITs03AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADxJREFUeF7litsRACAMwrD77+Q0rtGoV98r+MEFchhgkr4NnZyb3bk/LM/yMCjiH4wots/++hYR3iXLJVWUBS1AtOi2fwAAAABJRU5ErkJggg==);
-        background-image: url(tab-normal-fade.png)!ie;
+        background-image: url("tab-normal-fade.png");
         background-position: bottom left;
         background-repeat: repeat-x;
         white-space: nowrap
     }
 
     div.vectorTabs ul li.selected {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAAAAABiRwW8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AYIEiMlCdN/gwAAAA9JREFUCNdj+M/EMAzgQwAVSQKnE5Vh5AAAAABJRU5ErkJggg==);
-        background-image: url(tab-current-fade.png)!ie
+        background-image: url("tab-current-fade.png")
     }
 
     div.vectorTabs span {
         display: inline-block;
         height: 100%;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeF5lTtEKgEAMMv//j/O0IxlH9CA6N2WURAA/OHl5GeWAwUUHBcKV795FtTePxpmV3t9uv8Z3/cmvM88vzbbrAV/dQdX+eas3AAAAAElFTkSuQmCC);
-        background-image: url(tab-break.png)!ie;
+        background-image: url("tab-break.png");
         background-position: bottom right;
         background-repeat: no-repeat;
         padding-left: 1px
@@ -1627,12 +1615,12 @@ sup.reference {
         background-repeat: no-repeat
     }
 
-    div.vectorTabs li.selected a,div.vectorTabs li.selected a:visited {
+    div.vectorTabs li.selected a, div.vectorTabs li.selected a:visited {
         color: #333333;
         text-decoration: none
     }
 
-    div.vectorTabs li.new a,div.vectorTabs li.new a:visited {
+    div.vectorTabs li.new a, div.vectorTabs li.new a:visited {
         color: #a55858
     }
 
@@ -1659,16 +1647,14 @@ sup.reference {
     }
 
     div.vectorMenu {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAABkCAAAAABiRwW8AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AYIEiMlCdN/gwAAAA9JREFUCNdj+M/EMAzgQwAVSQKnE5Vh5AAAAABJRU5ErkJggg==);
-        background-image: url(tab-current-fade.png)!ie;
+        background-image: url("tab-current-fade.png");
         background-position: bottom left;
         background-repeat: repeat-x;
         height: 2.5em
     }
 
     div.vectorMenu h5 {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeF5lTtEKgEAMMv//j/O0IxlH9CA6N2WURAA/OHl5GeWAwUUHBcKV795FtTePxpmV3t9uv8Z3/cmvM88vzbbrAV/dQdX+eas3AAAAAElFTkSuQmCC);
-        background-image: url(tab-break.png)!ie;
+        background-image: url("tab-break.png");
         background-position: bottom right;
         background-repeat: no-repeat;
         padding-left: 1px;
@@ -1681,13 +1667,11 @@ sup.reference {
         line-height: 1.0em;
         font-weight: normal;
         font-size: 0.7em;
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAQBAMAAAAL9CkWAAAAGFBMVEV5eXmSkpKampqtra2xsbG/v7/d3d3j4+M9Jo0OAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfcBgESEhztg7+zAAAAJklEQVQI12NgoBpgNxQUFDSHcooFBYULEBLmcFXFcGGgRDjFlgIASNIDj9oRJ+sAAAAASUVORK5CYII=) no-repeat scroll right 1.6em;
-        background: url(skins/cppreference2/images/arrow-down-icon1.png@2013-09-04T19%253A18%253A20Z) no-repeat scroll right 1.6em!ie
+        background: url("arrow-down-icon1.png") no-repeat scroll right 1.6em
     }
 
     div.vectorMenuFocus h5 span {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABUAAAAQBAMAAAAL9CkWAAAAGFBMVEWSkpJ5eXmampqtra2xsbG/v7/d3d3j4+P3/UNzAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfcBgESEwWQ8yYyAAAAJklEQVQI12NgoBpgUxQUFFSDcpIEBYUSEBJqcFVJcGGghBvFlgIAESkC9RAlPCAAAAAASUVORK5CYII=) no-repeat scroll right 1.6em;
-        background: url(skins/cppreference2/images/arrow-down-icon2.png@2013-09-04T19%253A18%253A20Z) no-repeat scroll right 1.6em!ie
+        background: url("arrow-down-icon2.png") no-repeat scroll right 1.6em
     }
 
     div.vectorMenu div.menu {
@@ -1701,7 +1685,7 @@ sup.reference {
         margin-left: auto
     }
 
-    div.vectorMenu:hover div.menu,div.vectorMenu div.menuForceShow {
+    div.vectorMenu:hover div.menu, div.vectorMenu div.menuForceShow {
         display: block
     }
 
@@ -1738,7 +1722,7 @@ sup.reference {
         font-size: 0.7em
     }
 
-    div.vectorMenu li.selected a,div.vectorMenu li.selected a:visited {
+    div.vectorMenu li.selected a, div.vectorMenu li.selected a:visited {
         color: #333333;
         text-decoration: none
     }
@@ -1762,8 +1746,7 @@ sup.reference {
         border-radius: 3px;
         color: black;
         background-color: white;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAQCAIAAABY/YLgAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACZJREFUeF5diqERACAQgID95/3s+cFg4CDQzASkXl4jidvrCPzfA7puAx52W1pnAAAAAElFTkSuQmCC);
-        background-image: url(search-fade.png)!ie;
+        background-image: url("search-fade.png");
         background-position: top left;
         background-repeat: repeat-x
     }
@@ -1878,8 +1861,7 @@ sup.reference {
         clear: both;
         margin: 0 !important;
         padding: 0 !important;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAhCAQAAACysAk0AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAABAAAAIQBSEXtPAAAAAmJLR0QA/vCI/CkAAAAmSURBVAjXY2BgYPj3n+k/AwL9g5Fwxl8GJgYGpr+ogmgITQuSgQA1QiAL/go8LAAAACV0RVh0Y3JlYXRlLWRhdGUAMjAwOS0wOC0wOVQxOTowNTo0MSswMDowMCYO2tEAAAAldEVYdG1vZGlmeS1kYXRlADIwMDktMDgtMDlUMTk6MDU6NDErMDA6MDB5v6zlAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAABJRU5ErkJggg==);
-        background-image: url(preferences-break.png)!ie;
+        background-image: url("preferences-break.png");
         background-position: bottom left;
         background-repeat: no-repeat
     }
@@ -1893,8 +1875,7 @@ sup.reference {
         white-space: nowrap;
         list-style-type: none;
         list-style-image: none;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAhCAQAAACysAk0AAAACXBIWXMAAABIAAAASABGyWs+AAAACXZwQWcAAAABAAAAIQBSEXtPAAAAAmJLR0QA/vCI/CkAAAAmSURBVAjXY2BgYPj3n+k/AwL9g5Fwxl8GJgYGpr+ogmgITQuSgQA1QiAL/go8LAAAACV0RVh0Y3JlYXRlLWRhdGUAMjAwOS0wOC0wOVQxOTowNTo0MSswMDowMCYO2tEAAAAldEVYdG1vZGlmeS1kYXRlADIwMDktMDgtMDlUMTk6MDU6NDErMDA6MDB5v6zlAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAABJRU5ErkJggg==);
-        background-image: url(preferences-break.png)!ie;
+        background-image: url("preferences-break.png");
         background-position: bottom right;
         background-repeat: no-repeat
     }
@@ -1903,7 +1884,7 @@ sup.reference {
         margin-left: 1px
     }
 
-    #preftoc a,#preftoc a:active {
+    #preftoc a, #preftoc a:active {
         display: inline-block;
         position: relative;
         color: #0645ad;
@@ -1913,13 +1894,12 @@ sup.reference {
         font-size: 0.9em
     }
 
-    #preftoc a:hover,#preftoc a:focus {
+    #preftoc a:hover, #preftoc a:focus {
         text-decoration: underline
     }
 
     #preftoc li.selected a {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAhCAQAAACysAk0AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACBJREFUeF5twskJAAAMAjD3H7mXfYogCQiQeun68Z2WPk0SQHDa/pxXAAAAAElFTkSuQmCC);
-        background-image: url(preferences-fade.png)!ie;
+        background-image: url("preferences-fade.png");
         background-position: bottom;
         background-repeat: repeat-x;
         color: #333333;
@@ -1934,8 +1914,7 @@ sup.reference {
         clear: both;
         border: solid 1px #cccccc;
         background-color: #f9f9f9;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAAAAAA6fptVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABRJREFUeF4FwTEBAAAAwJD1j+waGQD8APvyfoZlAAAAAElFTkSuQmCC);
-        background-image: url(preferences-base.png)!ie
+        background-image: url("preferences-base.png")
     }
 
     #preferences fieldset {
@@ -1976,7 +1955,7 @@ sup.reference {
         margin-right: 0.25em
     }
 
-    #userlogin,#userloginForm {
+    #userlogin, #userloginForm {
         border: solid 1px #cccccc;
         padding: 1.2em;
         margin: .5em;
@@ -2013,7 +1992,7 @@ sup.reference {
         color: #faa700
     }
 
-    a:hover,a:focus {
+    a:hover, a:focus {
         text-decoration: underline
     }
 
@@ -2021,11 +2000,11 @@ sup.reference {
         color: #772233
     }
 
-    a.new,#p-personal a.new {
+    a.new, #p-personal a.new {
         color: #ba0000
     }
 
-    a.new:visited,#p-personal a.new:visited {
+    a.new:visited, #p-personal a.new:visited {
         color: #a55858
     }
 
@@ -2042,7 +2021,7 @@ sup.reference {
         margin: .2em 0 .2em 0
     }
 
-    h1,h2,h3,h4,h5,h6 {
+    h1, h2, h3, h4, h5, h6 {
         color: black;
         background: none;
         font-weight: normal;
@@ -2070,7 +2049,7 @@ sup.reference {
         font-size: 67%
     }
 
-    h3,h4,h5,h6 {
+    h3, h4, h5, h6 {
         border-bottom: none;
         font-weight: bold
     }
@@ -2124,12 +2103,12 @@ sup.reference {
     }
 
     q {
-        font-family: Times,"Times New Roman",serif;
+        font-family: Times, "Times New Roman", serif;
         font-style: italic
     }
 
-    pre,code,tt,kbd,samp {
-        font-family: monospace,"Courier New"
+    pre, code, tt, kbd, samp {
+        font-family: monospace, "Courier New"
     }
 
     code {
@@ -2143,14 +2122,12 @@ sup.reference {
         background-color: #f9f9f9;
         line-height: 1.3em
     }
-
+/* https://github.com/myfreeer/cppreference2mshelp/issues/11 */
     ul {
         line-height: 1.5em;
-        list-style-type: square;
+        list-style-type: circle;
         margin: .3em 0 0 1.5em;
         padding: 0;
-        list-style-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAANCAMAAABW4lS6AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAZQTFRFAFKM////QIUK9QAAAAJ0Uk5T/wDltzBKAAAAGklEQVR42mJgBAEGokgGBjBGBxBxsBqAAAMACHwALd5r8ygAAAAASUVORK5CYII=);
-        list-style-image: url(skins/cppreference2/images/bullet-icon.png@2013-09-04T19%253A18%253A20Z)!ie
     }
 
     ol {
@@ -2215,14 +2192,14 @@ sup.reference {
         vertical-align: top
     }
 
-    #toc,.toc,.mw-warning {
+    #toc, .toc, .mw-warning {
         border: 1px solid #aaa;
         background-color: #f9f9f9;
         padding: 5px;
         font-size: 95%
     }
 
-    #toc h2,.toc h2 {
+    #toc h2, .toc h2 {
         display: inline;
         border: none;
         padding: 0;
@@ -2230,11 +2207,11 @@ sup.reference {
         font-weight: bold
     }
 
-    #toc #toctitle,.toc #toctitle,#toc .toctitle,.toc .toctitle {
+    #toc #toctitle, .toc #toctitle, #toc .toctitle, .toc .toctitle {
         text-align: center
     }
 
-    #toc ul,.toc ul {
+    #toc ul, .toc ul {
         list-style-type: none;
         list-style-image: none;
         margin-left: 0;
@@ -2242,15 +2219,15 @@ sup.reference {
         text-align: left
     }
 
-    #toc ul ul,.toc ul ul {
+    #toc ul ul, .toc ul ul {
         margin: 0 0 0 2em
     }
 
-    #toc .toctoggle,.toc .toctoggle {
+    #toc .toctoggle, .toc .toctoggle {
         font-size: 94%
     }
 
-    div.floatright,table.floatright {
+    div.floatright, table.floatright {
         margin: 0 0 .5em .5em;
         border: 0
     }
@@ -2259,7 +2236,7 @@ sup.reference {
         font-style: italic
     }
 
-    div.floatleft,table.floatleft {
+    div.floatleft, table.floatleft {
         margin: 0 .5em .5em 0;
         border: 0
     }
@@ -2301,7 +2278,7 @@ sup.reference {
         background: none !important
     }
 
-    div.magnify a,div.magnify img {
+    div.magnify a, div.magnify img {
         display: block;
         border: none !important;
         background: none !important
@@ -2358,7 +2335,7 @@ sup.reference {
         display: none
     }
 
-    #contentSub,#contentSub2 {
+    #contentSub, #contentSub2 {
         font-size: 84%;
         line-height: 1.2em;
         margin: 0 0 1.4em 1em;
@@ -2388,11 +2365,11 @@ sup.reference {
         font-size: 100%
     }
 
-    h1,h2 {
+    h1, h2 {
         margin-bottom: .6em
     }
 
-    h3,h4,h5 {
+    h3, h4, h5 {
         margin-bottom: .3em
     }
 
@@ -2406,61 +2383,52 @@ sup.reference {
         padding-bottom: 0
     }
 
-    div#content a.external,div#content a.external[href ^="gopher://"] {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAFZJREFUeF59z4EJADEIQ1F36k7u5E7ZKXeUQPACJ3wK7UNokVxVk9kHnQH7bY9hbDyDhNXgjpRLqFlo4M2GgfyJHhjq8V4agfrgPQX3JtJQGbofmCHgA/nAKks+JAjFAAAAAElFTkSuQmCC) center right no-repeat;
-        background: url(skins/cppreference2/images/external-link-ltr-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+    div#content a.external, div#content a.external[href ^="gopher://"] {
+        background: url("external-link-ltr-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href ^="https://"],.link-https {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAIVJREFUeF6tjzsKg0AQhi09mimsFJLCzpNYCGKbK3gAtfUIljaCoKCCZIs8MMV2v+yCg8siWlh8zOtjhjEAEFmeIopDQtTrTJNEZIxhWysiNfULJFJjDzGnba/aBt4+wAuBzD+tg6a8SVkXf4GET96xmDxNzP39IvE/PPDtXIyVpYinv14A5F0laJ8oYFgAAAAASUVORK5CYII=) center right no-repeat;
-        background: url(skins/cppreference2/images/lock-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+    div#content a.external[href ^="https://"], .link-https {
+        background: url("lock-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href ^="mailto:"],.link-mailto {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRF////////iIqF9vb26urpycfDvb275eXj2djV+/v4srKy6efio6GcqKejsa6q8fDtVM9qIQAAAAF0Uk5TAEDm2GYAAABOSURBVHheBcExDkAwGIDRL43NpJOt6a9hMdVilP8gklqsHMJmt4qeyeI03oNSNkCrAIU/7YTWbwp0zz4rTXZHxF/9YA15HTG4+4NFRNofUBMMOBBNZngAAAAASUVORK5CYII=) center right no-repeat;
-        background: url(skins/cppreference2/images/mail-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+    div#content a.external[href ^="mailto:"], .link-mailto {
+        background: url("mail-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
     div#content a.external[href ^="news://"] {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHtJREFUeF6NkEEKgCAQRT2w1wiiUxgk0SKiTe6i9oKeQXDhKSZmYAJRKeHh4j//DIp+6OAPJH6cXJRSZqSUQClViBjUKER8zXAbUhev+6Q7hMA0G1msNtIo5zxhrX3xzlNG4ravYMwBMUZsKsBsXjQIABCTHlsfTXuj8wCN3T2QBjtcwQAAAABJRU5ErkJggg==) center right no-repeat;
-        background: url(skins/cppreference2/images/news-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+        background: url("news-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href ^="ftp://"],.link-ftp {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAExJREFUeF5VyEEKwCAMAMH83o/0LT6kFHqQYqkevG1jIITs3kaQgn+A7A29ujnw5NKrsaPCrTegBBrRMzYeXkbGzsdkZRwsPWMUmEd+CkSgVeVp2OkAAAAASUVORK5CYII=) center right no-repeat;
-        background: url(skins/cppreference2/images/file-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+    div#content a.external[href ^="ftp://"], .link-ftp {
+        background: url("file-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href ^="irc://"],div#content a.external[href ^="ircs://"],.link-irc {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAHRJREFUeF590E0KgCAQBWAvH0TXigI3ZccQ/8H91ExqKNrAW8j7kFG27SvMyzQM9s8whuBnENdQSllFKdWFWFC01pQQwhASMMaAtXYIMQScc/0dxSXyIaPq1ZzzF6JOsKBTHOC9hxgjoQLbf2tRgekWKka5AShBSepvauUSAAAAAElFTkSuQmCC) center right no-repeat;
-        background: url(skins/cppreference2/images/talk-icon.png@2013-09-04T19%253A20%253A00Z) center right no-repeat!ie;
+    div#content a.external[href ^="irc://"], div#content a.external[href ^="ircs://"], .link-irc {
+        background: url("talk-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href $=".ogg"],div#content a.external[href $=".OGG"],div#content a.external[href $=".mid"],div#content a.external[href $=".MID"],div#content a.external[href $=".midi"],div#content a.external[href $=".MIDI"],div#content a.external[href $=".mp3"],div#content a.external[href $=".MP3"],div#content a.external[href $=".wav"],div#content a.external[href $=".WAV"],div#content a.external[href $=".wma"],div#content a.external[href $=".WMA"],.link-audio {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKBAMAAAB/HNKOAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAADBQTFRF////dX8qyNF7eYMzwsxrsr9G8PHrm6Jrt7uakJVmn6OB1duat8NQi5YzhI4ykZR07gQraQAAAAF0Uk5TAEDm2GYAAABJSURBVHheNcSxDUBQFIbR727glxvKl3dHsIHCGESrNIIR7KE1hQ1MoDSCiMhJDixSDWVEhuZbei/sf/Jqbdn28+jxYe4u7CaND+p5C05J6bE1AAAAAElFTkSuQmCC) center right no-repeat;
-        background: url(skins/cppreference2/images/audio-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+    div#content a.external[href $=".ogg"], div#content a.external[href $=".OGG"], div#content a.external[href $=".mid"], div#content a.external[href $=".MID"], div#content a.external[href $=".midi"], div#content a.external[href $=".MIDI"], div#content a.external[href $=".mp3"], div#content a.external[href $=".MP3"], div#content a.external[href $=".wav"], div#content a.external[href $=".WAV"], div#content a.external[href $=".wma"], div#content a.external[href $=".WMA"], .link-audio {
+        background: url("audio-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href $=".ogm"],div#content a.external[href $=".OGM"],div#content a.external[href $=".avi"],div#content a.external[href $=".AVI"],div#content a.external[href $=".mpeg"],div#content a.external[href $=".MPEG"],div#content a.external[href $=".mpg"],div#content a.external[href $=".MPG"],.link-video {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAAAAACoWZBhAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAAJ0Uk5TAP9bkSK1AAAAXElEQVR4Xi2NMQoFMQgFvbpgHUj5LvF6K7sFQXKFsOew2G/xuylmGPn62Wb76U+ayHsTbDnrQMNrHdkZRChyi730KvK1QUWVD47gzoCOMBkXPSZrIuumseW/iKU/eKdG9xXBa10AAAAASUVORK5CYII=) center right no-repeat;
-        background: url(skins/cppreference2/images/video-icon.png@2013-09-04T19%253A20%253A00Z) center right no-repeat!ie;
+    div#content a.external[href $=".ogm"], div#content a.external[href $=".OGM"], div#content a.external[href $=".avi"], div#content a.external[href $=".AVI"], div#content a.external[href $=".mpeg"], div#content a.external[href $=".MPEG"], div#content a.external[href $=".mpg"], div#content a.external[href $=".MPG"], .link-video {
+        background: url("video-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.external[href $=".pdf"],div#content a.external[href $=".PDF"],div#content a.external[href *=".pdf#"],div#content a.external[href *=".PDF#"],div#content a.external[href *=".pdf?"],div#content a.external[href *=".PDF?"],.link-document {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAQAAAAnOwc2AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAE5JREFUeF5lykEKgDAMBdF/+17Es/QkiosiCBURXIzJooZohmweX6gwmkCeI+Oqc2C1FnvnF2ejlQYU0tLK2NjY6f/l8V12Ti7uhFFgDj19b58EwXuqkAAAAABJRU5ErkJggg==) center right no-repeat;
-        background: url(skins/cppreference2/images/document-icon.png@2013-09-04T19%253A18%253A20Z) center right no-repeat!ie;
+    div#content a.external[href $=".pdf"], div#content a.external[href $=".PDF"], div#content a.external[href *=".pdf#"], div#content a.external[href *=".PDF#"], div#content a.external[href *=".pdf?"], div#content a.external[href *=".PDF?"], .link-document {
+        background: url("document-icon.png") center right no-repeat;
         padding-right: 13px
     }
 
-    div#content a.extiw,div#content a.extiw:active {
+    div#content a.extiw, div#content a.extiw:active {
         color: #36b;
         background: none;
         padding: 0
@@ -2490,9 +2458,8 @@ sup.reference {
         display: none
     }
 
-    #pt-userpage,#pt-anonuserpage,#pt-login {
-        background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAANCAYAAACQN/8FAAAAIGNIUk0AAHolAACAgwAA+f8AAIDpAAB1MAAA6mAAADqYAAAXb5JfxUYAAAAJcEhZcwAACxMAAAsTAQCanBgAAAHOSURBVCjPY2BAAjtLxLmPN4pFn2gSTdrfICDAgA2c65C0uznf6erT9dH/H6/0+39zut6d051SfiiK9jcwsFyfa3v21Z7S/++Odf1/uSP7/6OF1v+vT9O7ub9BlAdJoajBw+W+P98crPv/8eLC/6/2lPx/vNj+/705xv+PNwsHwRUerOFTvTXX9sfzjTFg056tC/v/YJbu//tzjP4eaxR3hiv8z8DAuKPF4N7DuUb/H84z/X9/hsb/BzM1/x/qMnxwJo2BFa5QP3rKpMjSiT/XtTr+vzzV+P+Vacb/N7fb/48v6fikHTYhFaxII3iSr0vRmm/muZv++9du/L969Yr/Wzeu+O9Tvvq/Rcay//aZC15reHXoMtimz91ulrnyv1n22v/muRv/960693/Fniv/TdKX/zdKXvDfPHX+f9PYySsYbFJnXDWIm/nfOG0pWDKkdsP/oonbgYoW/jdImPNfL2bKf+v4SRcZTCK6D5gkTAcLGibO/W+aMu+/b8mS//pxM8CKdAPr/xtFdB9lkDQNszOP7r1tnTLzr03qzP/WQGyVAqRTpv+3Tprxzzi88560VZo3xNui2jxi+oFB4oYRNaL6Ic0gDGEHh4HkQEoAjALoHv5slukAAAAASUVORK5CYII=) left top no-repeat;
-        background: url(skins/cppreference2/images/user-icon.png@2013-09-04T19%253A20%253A00Z) left top no-repeat!ie;
+    #pt-userpage, #pt-anonuserpage, #pt-login {
+        background: url("user-icon.png") left top no-repeat;
         padding-left: 15px !important;
         text-transform: none
     }
@@ -2516,7 +2483,7 @@ sup.reference {
         font-size: 0.8em
     }
 
-    #ca-unwatch.icon a,#ca-watch.icon a {
+    #ca-unwatch.icon a, #ca-watch.icon a {
         margin: 0;
         padding: 0;
         outline: none;
@@ -2527,8 +2494,7 @@ sup.reference {
         margin-top: -0.8em !ie;
         height: 0;
         overflow: hidden;
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFgAAAAQCAMAAAClQEgHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAwBQTFRFoNb/+vr52tXLdcP/ltL/ysKt39rPrdz/xtDT8vLwwrJxodr/vqxjzdnr8v7+ntb/uuX/i87/ytTV9fb3zuz+8eOU+fr8zvH/wuX/ecT/hbrnj7XBltb/m9T/h8z/jtH+c8H/vq53lL/Ovq109vb1/v7rx8CuhcT0xLJlot3/2PL/kc//59N3s9//v7KGbL7/mNf//v395NSLmdr//Pz7ccT/wbOIZ7v/ybZk6OzzpNf/icPu0cm2g8n/p9n/9fTzva1ouuL/samQwu3/scfhfrbj8e/q4+bnyLJQ6u3tqtr/irbG7PH5fcz/0d7ww+r/zcuL6Obh9f7/hsv/s8+r+e2rw7J2rb3C+fj2icTy1O7/jrvO1s++vMyUz8zGocna6+rn8vDtlLK8aL3/d8X///vV7fz/vraklMr039nMtNjqp97/o9362ejN4vb/zcN7sN3/vfP/bsD/1dLNhK2+yLeIkrri28drz7tp5N7TiK26grXi3trTccP/vub/rd//+v//qM7fyeHMztmq5PT8u6t0/f3+/P39ksDwk8HQtMTH3fn/kdH/ltLpxb5o0dzsnND6ssXbzun5rdru2+Dh5+vsz9nadrrx1eLz+fLM7/z/w71z//zPgMz/8eWrwtKT9vn8jbPCf7vs1N3pua1terXo1O3tqtfWwOX51cV5dMH/vtmy28p8fLXR4efx9emq///8z9TbzrxowLOP5ea57///nq2xy7xo///5frrnwrSP9PX2+vv7ztzwvd3P2vH5r9z/8/X4nMrlsN//qLq9wa5zh7fikdf/tuL9zbpo3tnQ1u/kx8rL+/z8kq+6+vLGkqKq6f//oMrfxuf8xbVwqLvSh7vq8PP3ltD6d8P/v7Ngx7dqwbFt/PGyk8jv9vf3zLhofqy/wdPqyeTc0vH9//3kxun5i7O/x87X09mr1sRzmK3C3dnQz9XXmLvg///6uc7ozLpq7O7u//zc7evoyfT/+/z+mtf/9e25zcJt7ezowMXGu8nM+Pn5////8/n77InDmQAAAQB0Uk5T////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////AFP3ByUAAAJbSURBVHjaYvgPAb+3/ccK4tKxi7+4SkA9A5SWnuyJVSGXDidWcSnN6/jVQw0+s//fBWzqin9scMImvtF/62us6rfwOaEYXPLvXyM2pzn8+7dGBYt4dZ5WhjA29d3i+Sowg/d4TjuX9+9fQwnH1L8oqhIrN5//909VOdPNBEXcZ8Y7CQlHEam9Pt/Q1O/KrXNcdhSsnuFIZ3zWpLR/QMAnkhWvJA1TxVqx0mheKkj883qjVx9LYeIukRkT2P3rCtgPCGTfiLTuQKjPD3iZK1DAzv64OWD27VIG9+h/SOASB0xhwklk8XImmLilOp+IhK6XFQODrCyD+D1euPoHF50FDoPFZWQKfzIx/N/9PAiuP3oKwmOMYU9hwu8tAhHiYteidO34WbRtFZg1d65DVn+6HiJem3MrEBTGZ6taIPqDvN1RwkxxJkRcVeMLivixEwwsgpLmRfKulqjqm/jB4r08vyCp4tMhiAFPOFCj2L4cIh7KhCp+UJ1bjjlZ/6Y8L5r6PmOQuGkIEzS5vV0BMWBWOKrCGlGIeCorqvhieTlm5pRVkgYuaOpj5zLXmiqkLGeFGhwOTBRRl4EmJKEqVJsDdC3Q8B16qOITs4MNegS/B3OXoanf53s8JNbYN0cPanDSPy3vP0JVz/4tRFVo9u+uRcwbZdF/d1DFy8S5Fz3qr5ZxdkVT/3W1Rsyp1vmFS6AGP1TqAolzSK+9j6KQZ5MNiGK64sGIIr7U+gOI4pWaLoaqfjtEPRdIPdDgdiFY5hRCyaWGbDDz2CKQxdv8YOb5LcCtnuE/jQBAgAEAQlFsBT+lqfQAAAAASUVORK5CYII=);
-        background-image: url(watch-icons.png)!ie
+        background-image: url("watch-icons.png")
     }
 
     #ca-unwatch.icon a {
@@ -2539,27 +2505,25 @@ sup.reference {
         background-position: 5px 60%
     }
 
-    #ca-unwatch.icon a:hover,#ca-unwatch.icon a:focus {
+    #ca-unwatch.icon a:hover, #ca-unwatch.icon a:focus {
         background-position: -67px 60%
     }
 
-    #ca-watch.icon a:hover,#ca-watch.icon a:focus {
+    #ca-watch.icon a:hover, #ca-watch.icon a:focus {
         background-position: -19px 60%
     }
 
-    #ca-unwatch.icon a.loading,#ca-watch.icon a.loading {
-        background-image: url(data:image/gif;base64,R0lGODlhEAAQAMQfANra2uLi4vDw8PLy8ujo6Ozs7NbW1vj4+Pb29s7Oztzc3NTU1O7u7uDg4NHR0erq6v39/d7e3vz8/Pv7+/7+/tPT09jY2Pr6+tnZ2efn5/X19eXl5ebm5vT09P///////yH/C05FVFNDQVBFMi4wAwEAAAAh+QQJAwAfACwAAAAAEAAQAAAFa+Anjl9QkShacVqabp2XuKjjecHhStrjHDdIgtORiCyWSEZwud0mg0zEUhkYnNhsY/O5OCRZrEEwgvzCkgqZhGiEB1wUgRGeAFKApqcjcJ5QCx4aFQEECX1/JAlJJBsVFRMkEBkXLhyVNJkhACH5BAkDAB8ALAAAAAAQABAAAAV74CeO4hUQZEoGhqGqWzQtEnlYRCYMGSB5BkTKQCgUOBGPkjBIdQDKqBLhaJI4D6l0gylMRg6IVkmhNBIjxWBM8XAwHNFAIdYWDA0SRhNtKy0CJAUVEAcRAQJkFikZDg4EBB0RDR4dGCkIEhAjFBsBDwovKo0BoioFQiMhACH5BAkDAB8ALAAAAAAQABAAAAWB4CeO5HeU33OVl5IIpYEFh/QR1rYNZSMUAYVBwfBYbKRJwwPxFDxQjAbloECvHgMEBUBgPZTApjSxeL+eQGDUsQwkaGhBcUBYinGI5GBIEBwEGhxwVwwLFgoRHQwECgIADRFXBgUfEygfEBEDTmuYIxAJFAYwnyMFABVbpiMYGSghACH5BAkDAB8ALAAAAAAQABAAAAV+4CdKjWieKOJs6De1U5Zhg4YcmaG0kXcElQDtEWkZPMgMBGlofQDIqK9pmhAADClSEDBtAICJROvR7EQGx5LsgQAOogKm0LhQ2IDRQRJRFKIHAh4XAXknEw5REQsRBgAOEigRFBQEERofAgJiKBoZAgsXTicUDgYDoygNXU4hACH5BAUDAB8ALAAAAAAQABAAAAV54Cd+EFBNY6p+hgCssOERGwSP3eZBgUIEG0xhdGFpPMjChjNoRD6XIGBDQVo9FIcogZnsrlbLQNRQfMEewVN0ERAaaE9AoDoECGj76lBBTxQwDlYBEQweGwwqEDIHCwIbBgAAFioUBgUOdCIaBRwrBhUHNykQY6MfIQA7);
-        background-image: url(skins/cppreference2/images/watch-icon-loading.gif@2013-09-04T19%253A20%253A00Z)!ie;
+    #ca-unwatch.icon a.loading, #ca-watch.icon a.loading {
+        background-image: url("watch-icon-loading.gif");
         background-position: 5px 60%
     }
 
-    #ca-unwatch.icon a span,#ca-watch.icon a span {
+    #ca-unwatch.icon a span, #ca-watch.icon a span {
         display: none
     }
 
     div.vectorTabs ul {
-        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAAuCAIAAABmjeQ9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAERJREFUeF5lTtEKgEAMMv//j/O0IxlH9CA6N2WURAA/OHl5GeWAwUUHBcKV795FtTePxpmV3t9uv8Z3/cmvM88vzbbrAV/dQdX+eas3AAAAAElFTkSuQmCC);
-        background-image: url(tab-break.png)!ie;
+        background-image: url("tab-break.png");
         background-position: right bottom;
         background-repeat: no-repeat
     }
@@ -2573,3 +2537,5 @@ sup.reference {
         line-height: 1.2em
     }
 }
+
+/* cache key: mwiki1-mwiki_zh_:resourceloader:filter:minify-css:7:291fc2dd2893d0a7961efad3ec1d05af */
