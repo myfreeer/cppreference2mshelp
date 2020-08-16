@@ -136,7 +136,7 @@ index 22d5596..559fe38 100644
  	wget --adjust-extension --page-requisites --convert-links \
 -		--force-directories --recursive --level=15 \
 -		--span-hosts --domains=en.cppreference.com,upload.cppreference.com \
-+		--force-directories --recursive --level=17 \
++		--force-directories --recursive --level=17 -e robots=off \
 +		--span-hosts --domains=zh.cppreference.com,upload.cppreference.com \
  		--reject-regex $$regex \
 -		--timeout=5 --tries=50 --no-verbose \
