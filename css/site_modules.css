@@ -152,8 +152,11 @@ pre, div.mw-geshi {
     overflow: auto;
 }
 
-span.mw-geshi {
-    white-space: nowrap
+/* 最小宽度 */
+@media (min-width: 51rem) {
+    span.mw-geshi {
+        white-space: nowrap
+    }
 }
 
 .mw-geshi a {
@@ -1659,10 +1662,18 @@ div#cpp-content-base {
 }
 
 div#content {
-    margin: auto;
     position: static;
-    width: 48.75em;
+    width: 100%;
 }
+
+/* 最小宽度 */
+@media (min-width: 48.75rem) {
+  div#content {
+    margin: auto;
+    width: 48.75em;
+  }
+}
+
 
 html, body {
     font-family: "DejaVu Sans", arial, sans-serif;
