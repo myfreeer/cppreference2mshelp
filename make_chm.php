@@ -349,6 +349,7 @@ function buildChm( $cpp = true )
 	$metadata = '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">'."\n";
 	$metadata .= '<html><head><meta name="GENERATOR" content="Script from CEZEO software Ltd."></head><body>'."\n<ul>\n";
 
+    ksort($keywordsFiles);
 	foreach ( array_keys( $keywordsFiles ) as $kwf )
 	{
 		$metadata .= "\t<li><object type=\"text/sitemap\">\n";
