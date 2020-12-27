@@ -349,14 +349,14 @@ function buildChm( $cpp = true )
 	$metadata = '<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">'."\n";
 	$metadata .= '<html><head><meta name="GENERATOR" content="Script from CEZEO software Ltd."></head><body>'."\n<ul>\n";
 
-    ksort($keywordsFiles);
+	ksort($keywordsFiles);
 	foreach ( array_keys( $keywordsFiles ) as $kwf )
 	{
 		$metadata .= "\t<li><object type=\"text/sitemap\">\n";
-		$metadata .= "\t\t<param name=\"Name\" value=\"".$kwf."\">\n";
+		$metadata .= "\t\t<param name=\"Name\" value=\"".htmlspecialchars( $kwf )."\">\n";
 		foreach ($keywordsFiles[$kwf] as $file)
 		{
-			$metadata .= "\t\t<param name=\"Local\" value=\"".$file."\">\n";
+			$metadata .= "\t\t<param name=\"Local\" value=\"".htmlspecialchars( $file )."\">\n";
 		}
 		$metadata .= "\t</object>\n";
 	}
@@ -424,7 +424,7 @@ function buildTree(&$array, &$metadata, $level )
 		if ( count( $object->childrens ) > 0 )
 		{
 			insertTabs( $metadata, $level );
-			$metadata .= '<li><object type="text/sitemap"><param name="Name" value="'.$object->title.'"><param name="ImageNumber" value="1"></object>'."\n";
+			$metadata .= '<li><object type="text/sitemap"><param name="Name" value="'.htmlspecialchars( $object->title ).'"><param name="ImageNumber" value="1"></object>'."\n";
 			insertTabs( $metadata, $level );
 			$metadata .= "<ul>\n";
 			$level++;
