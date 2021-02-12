@@ -10,6 +10,10 @@ do
       VERSION="${i#*=}"
       shift # past argument=value
     ;;
+    UPSTREAM=*)
+      UPSTREAM="${i#*=}"
+      shift # past argument=value
+    ;;
     *)
       # unknown option
     ;;
@@ -17,9 +21,19 @@ do
 done
 
 set -e
-git clone https://github.com/PeterFeicht/cppreference-doc.git --depth=1
-cd cppreference-doc
-git apply -3 ../zh.diff
+
+if [[ "${UPSTREAM}" = "p12tic" ]]; then
+  git clone https://github.com/p12tic/cppreference-doc.git --depth=1
+  cd cppreference-doc
+  git apply -3 ../zh-p12tic.diff
+else
+  git clone https://github.com/PeterFeicht/cppreference-doc.git --depth=1
+  cd cppreference-doc
+  git apply -3 ../zh.diff
+fi
+
+VERSION="${VERSION:-$(date +%Y%m%d)}"
+sed -i "/^VERSION=/cVERSION=${VERSION}" Makefile
 make source
 
 # init files and vars
@@ -42,7 +56,6 @@ LIST="startup_scripts site_scripts site_modules skin_scripts ext"
 extra_fonts="DejaVuSans.ttf DejaVuSans-Bold.ttf DejaVuSansMono.ttf DejaVuSansMono-Bold.ttf"
 
 _7Z="${_7Z:-$(which 7z)}"
-VERSION="${VERSION:-$(date +%Y%m%d)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
 
 # package un-processed files

@@ -1,0 +1,335 @@
+From 8c67452b3c7b941b8d9155e49e79c39a898390f9 Mon Sep 17 00:00:00 2001
+From: myfreeer <myfreeer@users.noreply.github.com>
+Date: Fri, 12 Feb 2021 17:23:50 +0800
+Subject: [PATCH] source: use zh localized version
+
+---
+ Makefile                                 | 56 ++++++++++++------------
+ commands/preprocess.py                   | 16 +++----
+ commands/preprocess_cssless.py           |  4 +-
+ gadgets/standard_revisions_tests/base.py |  2 +-
+ gadgets/sync_tests_mwiki.py              |  2 +-
+ index2ddg.py                             |  4 +-
+ index_transform/browser.py               |  2 +-
+ preprocess.py                            |  8 ++--
+ tests/test_preprocess.py                 |  2 +-
+ tests/test_preprocess_cssless.py         |  2 +-
+ 10 files changed, 49 insertions(+), 49 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 644e3a5..90a2c0b 100644
+--- a/Makefile
++++ b/Makefile
+@@ -98,18 +98,18 @@ install: all
+ 		-exec install -DT -m 644 '{}' "$(DESTDIR)$(docdir)/html/{}" \; ; \
+ 	popd > /dev/null
+ 
+-	install -DT -m 644 "output/cppreference-doc-en-c.devhelp2" \
+-		"$(DESTDIR)$(bookdir)/cppreference-doc-en-c/cppreference-doc-en-c.devhelp2"
+-	install -DT -m 644 "output/cppreference-doc-en-cpp.devhelp2" \
+-		"$(DESTDIR)$(bookdir)/cppreference-doc-en-cpp/cppreference-doc-en-cpp.devhelp2"
++	install -DT -m 644 "output/cppreference-doc-zh-c.devhelp2" \
++		"$(DESTDIR)$(bookdir)/cppreference-doc-zh-c/cppreference-doc-zh-c.devhelp2"
++	install -DT -m 644 "output/cppreference-doc-zh-cpp.devhelp2" \
++		"$(DESTDIR)$(bookdir)/cppreference-doc-zh-cpp/cppreference-doc-zh-cpp.devhelp2"
+ 	install -DT -m 644 "output/cppreference-doxygen-local.tag.xml" \
+ 		"$(DESTDIR)$(bookdir)/cppreference-doxygen-local.tag.xml"
+ 	install -DT -m 644 "output/cppreference-doxygen-web.tag.xml" \
+ 		"$(DESTDIR)$(bookdir)/cppreference-doxygen-web.tag.xml"
+ 
+ 	# install the .qch (Qt Help) documentation
+-	install -DT -m 644 "output/cppreference-doc-en-cpp.qch" \
+-		"$(DESTDIR)$(docdir)/qch/cppreference-doc-en-cpp.qch"
++	install -DT -m 644 "output/cppreference-doc-zh-cpp.qch" \
++		"$(DESTDIR)$(docdir)/qch/cppreference-doc-zh-cpp.qch"
+ 
+ uninstall:
+ 	rm -rf "$(DESTDIR)$(docdir)"
+@@ -136,16 +136,16 @@ release: all
+ 
+ 	# zip qch
+ 	pushd "output"; \
+-	tar c$(TAR_OPTION)f "../release/qch-book-$(VERSION).tar.$(TAR_FORMAT)" "cppreference-doc-en-cpp.qch"; \
+-	zip -qr "../release/qch-book-$(VERSION).zip" "cppreference-doc-en-cpp.qch"; \
++	tar c$(TAR_OPTION)f "../release/qch-book-$(VERSION).tar.$(TAR_FORMAT)" "cppreference-doc-zh-cpp.qch"; \
++	zip -qr "../release/qch-book-$(VERSION).zip" "cppreference-doc-zh-cpp.qch"; \
+ 	popd
+ 
+ #WORKER RULES
+ doc_html: output/reference
+ 
+-doc_devhelp: output/cppreference-doc-en-c.devhelp2 output/cppreference-doc-en-cpp.devhelp2
++doc_devhelp: output/cppreference-doc-zh-c.devhelp2 output/cppreference-doc-zh-cpp.devhelp2
+ 
+-doc_qch: output/cppreference-doc-en-cpp.qch
++doc_qch: output/cppreference-doc-zh-cpp.qch
+ 
+ doc_doxygen: output/cppreference-doxygen-web.tag.xml output/cppreference-doxygen-local.tag.xml
+ 
+@@ -154,37 +154,37 @@ output/link-map.xml: output/reference
+ 	./build_link_map.py
+ 
+ #build the .devhelp2 index
+-output/cppreference-doc-en-c.devhelp2: 		\
++output/cppreference-doc-zh-c.devhelp2: 		\
+ 		output/reference 		\
+ 		output/link-map.xml
+ 	./index2devhelp.py $(docdir)/html index-chapters-c.xml  \
+-		"C Standard Library reference" "cppreference-doc-en-c" "c" \
++		"C Standard Library reference" "cppreference-doc-zh-c" "c" \
+ 		index-functions-c.xml "output/devhelp-index-c.xml"
+ 	./fix_devhelp-links.py "output/devhelp-index-c.xml"  \
+-		"output/cppreference-doc-en-c.devhelp2"
++		"output/cppreference-doc-zh-c.devhelp2"
+ 
+-output/cppreference-doc-en-cpp.devhelp2:	\
++output/cppreference-doc-zh-cpp.devhelp2:	\
+ 		output/reference 		\
+ 		output/link-map.xml
+ 	./index2devhelp.py $(docdir)/html index-chapters-cpp.xml  \
+-		"C++ Standard Library reference" "cppreference-doc-en-cpp" "cpp" \
++		"C++ Standard Library reference" "cppreference-doc-zh-cpp" "cpp" \
+ 		index-functions-cpp.xml "output/devhelp-index-cpp.xml"
+ 	./fix_devhelp-links.py "output/devhelp-index-cpp.xml" \
+-		"output/cppreference-doc-en-cpp.devhelp2"
++		"output/cppreference-doc-zh-cpp.devhelp2"
+ 
+ #build the .qch (QT help) file
+-output/cppreference-doc-en-cpp.qch: output/qch-help-project-cpp.xml
++output/cppreference-doc-zh-cpp.qch: output/qch-help-project-cpp.xml
+ 	#qhelpgenerator only works if the project file is in the same directory as the documentation
+ 	cp "output/qch-help-project-cpp.xml" "output/reference_cssless/qch.qhp"
+ 
+ 	pushd "output/reference_cssless" > /dev/null; \
+-	$(qhelpgenerator) "qch.qhp" -o "../cppreference-doc-en-cpp.qch"; \
++	$(qhelpgenerator) "qch.qhp" -o "../cppreference-doc-zh-cpp.qch"; \
+ 	popd > /dev/null
+ 
+ 	rm -f "output/reference_cssless/qch.qhp"
+ 
+ output/qch-help-project-cpp.xml: \
+-		output/cppreference-doc-en-cpp.devhelp2 \
++		output/cppreference-doc-zh-cpp.devhelp2 \
+ 		output/reference_cssless
+ 	#build the file list
+ 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><files>" > "output/qch-files.xml"
+@@ -197,7 +197,7 @@ output/qch-help-project-cpp.xml: \
+ 	echo "</files>" >> "output/qch-files.xml"
+ 
+ 	#create the project (copies the file list)
+-	./devhelp2qch.py --src=output/cppreference-doc-en-cpp.devhelp2 \
++	./devhelp2qch.py --src=output/cppreference-doc-zh-cpp.devhelp2 \
+ 		--dst=output/qch-help-project-cpp.xml \
+ 		--virtual_folder=cpp --file_list=output/qch-files.xml
+ 
+@@ -237,7 +237,7 @@ indexes:
+ 	./index2autolinker.py index-functions-c.xml output/indexes/autolink-c
+ 	./index2autolinker.py index-functions-cpp.xml output/indexes/autolink-cpp
+ 
+-#redownloads the source documentation directly from en.cppreference.com
++#redownloads the source documentation directly from zh.cppreference.com
+ source:
+ 	rm -rf "reference"
+ 	mkdir "reference"
+@@ -246,15 +246,15 @@ source:
+ 	regex=".*index\\.php.*|.*/Special:.*|.*/Talk:.*" \
+ 	regex+="|.*/Help:.*|.*/File:.*|.*/Cppreference:.*" \
+ 	regex+="|.*/WhatLinksHere:.*|.*/Template:.*|.*/Category:.*" \
+-	regex+="|.*action=.*|.*printable=.*|.*en.cppreference.com/book.*" ; \
++	regex+="|.*action=.*|.*printable=.*|.*zh.cppreference.com/book.*" ; \
+ 	echo $$regex ; \
+ 	wget --adjust-extension --page-requisites --convert-links \
+-	  --force-directories --recursive --level=15 \
+-	  --span-hosts --domains=en.cppreference.com,upload.cppreference.com \
++	  --force-directories --recursive --level=17 -e robots=off \
++	  --span-hosts --domains=zh.cppreference.com,upload.cppreference.com \
+ 	  --reject-regex $$regex \
+-	  --timeout=5 --tries=50 --no-verbose \
+-	  --retry-connrefused --waitretry=10 --read-timeout=20 \
+-	  http://en.cppreference.com/w/ ; \
++	  --timeout=5 --tries=180 --no-verbose \
++	  --retry-connrefused --waitretry=5 --read-timeout=15 \
++	  https://zh.cppreference.com/w/  ; \
+ 	popd > /dev/null
+ 
+-	./export.py --url=https://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
++	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
+diff --git a/commands/preprocess.py b/commands/preprocess.py
+index 45682f5..c71fb56 100644
+--- a/commands/preprocess.py
++++ b/commands/preprocess.py
+@@ -42,23 +42,23 @@ def rearrange_archive(root):
+     # rearrange the archive. {root} here is output/reference
+ 
+     # before
+-    # {root}/en.cppreference.com/w/ : html
+-    # {root}/en.cppreference.com/mwiki/ : data
+-    # {root}/en.cppreference.com/ : data
++    # {root}/zh.cppreference.com/w/ : html
++    # {root}/zh.cppreference.com/mwiki/ : data
++    # {root}/zh.cppreference.com/ : data
+     # ... (other languages)
+     # {root}/upload.cppreference.com/mwiki/ : data
+ 
+     # after
+     # {root}/common/ : all common data
+-    # {root}/en/ : html for en
++    # {root}/zh/ : html for zh
+     # ... (other languages)
+ 
+     data_path = os.path.join(root, 'common')
+     rmtree_if_exists(data_path)
+     shutil.move(os.path.join(root, 'upload.cppreference.com/mwiki'), data_path)
+-    shutil.rmtree(os.path.join(root, 'upload.cppreference.com'))
++    shutil.rmtree(os.path.join(root, 'upload.cppreference.com'), ignore_errors=True)
+ 
+-    for lang in ["en"]:
++    for lang in ["zh"]:
+         path = os.path.join(root, lang + ".cppreference.com/")
+         src_html_path = path + "w/"
+         src_data_path = path + "mwiki/"
+@@ -79,7 +79,7 @@ def rearrange_archive(root):
+                     data_path)
+ 
+         # remove what's left
+-        shutil.rmtree(path)
++        # shutil.rmtree(path)
+ 
+     # remove the XML source file
+     for fn in fnmatch.filter(os.listdir(root), 'cppreference-export*.xml'):
+@@ -355,7 +355,7 @@ def remove_unused_external(html):
+ 
+ 
+ def preprocess_html_file(root, fn, rename_map):
+-    parser = etree.HTMLParser()
++    parser = etree.HTMLParser(encoding="utf-8")
+     html = etree.parse(fn, parser)
+     output = io.StringIO()
+ 
+diff --git a/commands/preprocess_cssless.py b/commands/preprocess_cssless.py
+index e6f9e02..11170e3 100644
+--- a/commands/preprocess_cssless.py
++++ b/commands/preprocess_cssless.py
+@@ -29,9 +29,9 @@ from premailer import Premailer
+ 
+ 
+ def preprocess_html_merge_cssless(src_path, dst_path):
+-    with open(src_path, 'r') as a_file:
++    with open(src_path, 'r', encoding='utf-8') as a_file:
+         content = a_file.read()
+-        parser = etree.HTMLParser()
++        parser = etree.HTMLParser(encoding="utf-8")
+         stripped = content.strip()
+         root = etree.fromstring(stripped, parser)
+ 
+diff --git a/gadgets/standard_revisions_tests/base.py b/gadgets/standard_revisions_tests/base.py
+index 8b1269c..43863ee 100644
+--- a/gadgets/standard_revisions_tests/base.py
++++ b/gadgets/standard_revisions_tests/base.py
+@@ -25,7 +25,7 @@ from selenium.webdriver.support.ui import Select
+ 
+ class Driver:
+     def __init__(self):
+-        base_url = "http://en.cppreference.com/"
++        base_url = "https://zh.cppreference.com/"
+         driver = webdriver.Firefox()
+         driver.implicitly_wait(30)
+         try:
+diff --git a/gadgets/sync_tests_mwiki.py b/gadgets/sync_tests_mwiki.py
+index b9e1337..41eae97 100755
+--- a/gadgets/sync_tests_mwiki.py
++++ b/gadgets/sync_tests_mwiki.py
+@@ -114,7 +114,7 @@ def perform_sync(url, direction, dest_root, title_filter, user, password,
+     # Supply information to config that would otherwise be defined in
+     # user-config.py
+     pywikibot.config2.family = 'cppreference'
+-    pywikibot.config2.mylang = 'en'
++    pywikibot.config2.mylang = 'zh'
+     pywikibot.config2.family_files['cppreference'] = url
+     pywikibot.config2.step = 100
+     pywikibot.config2.put_throttle = 0
+diff --git a/index2ddg.py b/index2ddg.py
+index 71d15ed..a22ccf1 100755
+--- a/index2ddg.py
++++ b/index2ddg.py
+@@ -467,7 +467,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
+         abstract = abstract.replace('\n', '\\n')
+         line += abstract + '\t'
+         # source url
+-        line += 'http://en.cppreference.com/w/' + link + '\n'
++        line += 'https://zh.cppreference.com/w/' + link + '\n'
+         out.write(line)
+ 
+         build_redirects(redirects, item_ident, item_type)
+@@ -582,7 +582,7 @@ def main():
+         # i+=1
+ 
+         root = e.parse(os.path.join(args.reference, fn),
+-                       parser=html.HTMLParser())
++                       parser=html.HTMLParser(encoding="utf-8"))
+ 
+         for ident in idents:
+ 
+diff --git a/index_transform/browser.py b/index_transform/browser.py
+index fb8b976..e9657a4 100644
+--- a/index_transform/browser.py
++++ b/index_transform/browser.py
+@@ -48,7 +48,7 @@ class Index2Browser(IndexTransform):
+         res = u''
+         res += '<tt><b>{0}</b></tt> [<span class="link">'.format(
+             xml_escape(full_name))
+-        res += '<a href="http://en.cppreference.com/w/{0}">'.format(
++        res += '<a href="https://zh.cppreference.com/w/{0}">'.format(
+             xml_escape(full_link))
+         res += '{0}</a></span>] <span class="mark">{1}</span>\n'.format(
+             full_link, mark)
+diff --git a/preprocess.py b/preprocess.py
+index 65e73d6..16e3d16 100755
+--- a/preprocess.py
++++ b/preprocess.py
+@@ -36,12 +36,12 @@ def main():
+         help='Destination folder to put preprocessed archive to')
+     args = parser.parse_args()
+ 
+-    root = args.dst
+-    src = args.src
++    root = args.src
++    # src = args.src
+ 
+     # copy the source tree
+-    preprocess.rmtree_if_exists(root)
+-    shutil.copytree(src, root)
++    # rmtree_if_exists(root)
++    # shutil.copytree(src, root)
+ 
+     preprocess.rearrange_archive(root)
+ 
+diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
+index 3c0c952..b8d03d2 100644
+--- a/tests/test_preprocess.py
++++ b/tests/test_preprocess.py
+@@ -258,7 +258,7 @@ class TestPreprocessHtml(unittest.TestCase):
+         self.testdata = os.path.join(os.path.dirname(__file__),
+                                      'preprocess_data')
+         infile = os.path.join(self.testdata, "fabs.html")
+-        self.parser = etree.HTMLParser()
++        self.parser = etree.HTMLParser(encoding="utf-8")
+         self.html = etree.parse(infile, self.parser)
+ 
+     # Check whether the HTML matches the contents of the specified test data
+diff --git a/tests/test_preprocess_cssless.py b/tests/test_preprocess_cssless.py
+index 64864cc..b48628b 100644
+--- a/tests/test_preprocess_cssless.py
++++ b/tests/test_preprocess_cssless.py
+@@ -83,7 +83,7 @@ class HTMLTestBase(unittest.TestCase):
+         expected_output = \
+             '<html><body>{0}</body></html>'.format(expected_output)
+ 
+-        parser = etree.HTMLParser()
++        parser = etree.HTMLParser(encoding="utf-8")
+         root = etree.fromstring(input, parser)
+ 
+         root = function(root)
+-- 
+2.30.0
+
