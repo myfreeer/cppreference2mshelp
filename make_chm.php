@@ -367,7 +367,7 @@ function buildChm( $cpp = true )
 	// building project file
 	echo( "building project cppreference.hhp ...\n");
 	$metadata = "[OPTIONS]\nCompatibility=1.1 or later\nCompiled file=cppreference.chm\nContents file=cppreference.hhc\nDefault Window=default\nDefault topic=chmhelp\index.html\nDisplay compile progress=No\nFull-text search=Yes\nIndex file=cppreference.hhk\nLanguage=0x804 中文(简体，中国)\nTitle=Title=C / C++ 参考文档\n[WINDOWS]\n";
-	$metadata .= 'default="C / C++ 参考文档","cppreference.hhc","cppreference.hhk","chmhelp\index.html","chmhelp\index.html",,,,,140640,250,62,[0,32,1080,700],0x0000000,,,,,0,0'."\n[FILES]\n";
+	$metadata .= 'default="C / C++ 参考文档","cppreference.hhc","cppreference.hhk","chmhelp\index.html","chmhelp\index.html",,,,,140640,250,62,[0,32,1150,700],0x0000000,,,,,0,0'."\n[FILES]\n";
 
 	buildListOfFiles( $treeFiles, $metadata );
 
