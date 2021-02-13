@@ -49,6 +49,9 @@ cd chmhelp
 find -iname '*.html' | xargs -P "${CPUS}" sed -i 's/<head>/<head><meta http-equiv="x-ua-compatible" content="ie=edge">/ig'
 cd ..
 
+# width hack
+sed -i -e 's/&nbsp;&minus;&nbsp;<a href="cpp-thread-condition_variable.html">/<br><a href="cpp-thread-condition_variable.html">/' -e 's/&nbsp;&minus;&nbsp;<a href="cpp-memory-shared_ptr.html">/<br><a href="cpp-memory-shared_ptr.html">/' chmhelp/index.html
+
 mkdir -p chm_temp
 for i in cppreference.{hhc,hhk,hhp}; do
 sed -i '/chmhelp\\首页.html/d' "${i}"
