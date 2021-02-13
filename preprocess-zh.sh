@@ -36,6 +36,7 @@ VERSION="${VERSION:-$(date +%Y%m%d)}"
 sed -i "/^VERSION=/cVERSION=${VERSION}" Makefile
 make source
 
+
 # init files and vars
 startup_scripts_replace="startup_scripts.js"
 startup_scripts_path="$(find | grep -iP 'load\.php.*?modules=startup&only=scripts.*?' | head -1)"
@@ -59,7 +60,9 @@ _7Z="${_7Z:-$(which 7z)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
 
 # package un-processed files
-"${_7Z}" a -mx9 -myx9 "../cppreference-unprocessed-${VERSION}.7z" ./reference
+"${_7Z}" a -mx9 -myx9  -mqs "../cppreference-unprocessed-${VERSION}.7z" ./reference
+#rm -rf ./reference
+#"${_7Z}" x ../cppreference-unprocessed-20210212.7z
 
 # https://gist.github.com/cdown/1163649/8a35c36fdd24b373788a7057ed483a5bcd8cd43e
 url_encode() {
@@ -149,18 +152,23 @@ echo Done.
 
 rm -rf 'reference/zh.cppreference.com'
 
+# build doc_devhelp doc_doxygen
+mkdir -p output
+mv -f reference output/
+make doc_doxygen doc_devhelp
+
 # package processed files
-"${_7Z}" a -mx9 -myx9 "../html-book-${VERSION}.7z" ./reference
+cd output
+"${_7Z}" a -mx9 -myx9 -mqs "../../html-book-${VERSION}.7z" ./reference cppreference-doc-zh-c.devhelp2 cppreference-doc-zh-cpp.devhelp2 cppreference-doxygen-web.tag.xml cppreference-doxygen-local.tag.xml
+cd ..
 
 # build qch book
-mkdir -p output/reference
-cp -r -f reference output/reference
 make doc_qch
-"${_7Z}" a -mx9 -myx9 "../qch-book-${VERSION}.7z" ./output/*.qch
+"${_7Z}" a -mx9 -myx9 -mqs "../qch-book-${VERSION}.7z" ./output/*.qch
 
 # move processed files to parent folder
 # for make_chm.sh
-mv -f reference/* ../
+mv -f output/reference/* ../
 cd ..
 
 set +e
