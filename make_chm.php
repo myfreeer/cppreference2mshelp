@@ -13,6 +13,29 @@ $time_end = microtime(true);
 $time = $time_end - $time_start;
 echo( "\nbuild time: ".  $time." seconds.\n");
 
+// https://stackoverflow.com/a/6059053
+function encodeURI($url) {
+    // http://php.net/manual/en/function.rawurlencode.php
+    // https://developer.mozilla.org/en/JavaScript/Reference/Global_Objects/encodeURI
+    $unescaped = array(
+        '%2D'=>'-','%5F'=>'_','%2E'=>'.','%21'=>'!', '%7E'=>'~',
+        '%2A'=>'*', '%27'=>"'", '%28'=>'(', '%29'=>')'
+    );
+    $reserved = array(
+        '%3B'=>';','%2C'=>',','%2F'=>'/','%3F'=>'?','%3A'=>':',
+        '%40'=>'@','%26'=>'&','%3D'=>'=','%2B'=>'+','%24'=>'$'
+    );
+    $score = array(
+        '%23'=>'#'
+    );
+    return strtr(rawurlencode($url), array_merge($reserved,$unescaped,$score));
+
+}
+
+function fixedEncodeURI($url) {
+    return strtr(encodeURI($url),array('%5B'=>'[', '%5D'=>']'));
+}
+
 function buildChm( $cpp = true )
 {
 	$scriptDir = dirname( __FILE__ );
@@ -161,7 +184,7 @@ function buildChm( $cpp = true )
 						$new_value = str_replace( " " , "_", $new_value);
 						if (! strstr($new_value, "http")) {
 							// escape relative %
-							$new_value = str_replace( "%" , "_", urlencode($new_value));
+							$new_value = str_replace( "%" , "_", fixedEncodeURI($new_value));
 						}
 
 						if ($hash) { // fix hashes
