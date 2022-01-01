@@ -1362,7 +1362,7 @@ sup.reference {
         /* margin: 0 auto; */
         position: relative;
         /* width: 780px; */
-        max-width: 700px;
+        /* max-width: 700px; */
         -moz-box-sizing: border-box;
         box-sizing: border-box;
     }

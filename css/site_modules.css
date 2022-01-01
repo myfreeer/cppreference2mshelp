@@ -1666,13 +1666,13 @@ div#content {
     width: 100%;
 }
 
-/* 最小宽度 */
+/* 最小宽度 
 @media (min-width: 48.75rem) {
   div#content {
     margin: auto;
     width: 48.75em;
   }
-}
+}*/
 
 
 html, body {
