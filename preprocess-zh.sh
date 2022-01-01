@@ -159,7 +159,7 @@ make doc_doxygen doc_devhelp
 
 # package processed files
 cd output
-"${_7Z}" a -mx9 -myx9 -mqs "../../html-book-${VERSION}.7z" ./reference cppreference-doc-zh-c.devhelp2 cppreference-doc-zh-cpp.devhelp2 cppreference-doxygen-web.tag.xml cppreference-doxygen-local.tag.xml
+"${_7Z}" a -mx9 -myx9 -mqs "../../html-book-${VERSION}.7z" ./reference cppreference-doc-zh-c.devhelp2 cppreference-doc-zh-cpp.devhelp2 cppreference-doxygen-web.tag.xml cppreference-doxygen-local.tag.xml devhelp-index-c.xml devhelp-index-cpp.xml link-map.xml
 cd ..
 
 # build qch book
