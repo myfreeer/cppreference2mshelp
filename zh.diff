@@ -1,10 +1,10 @@
-From 5e70bc02f358a0ab63f09cbcd969a0e103ea0508 Mon Sep 17 00:00:00 2001
+From 938d6be7ebcb2a640ca67263847c07b1ac813c82 Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Sat, 14 Mar 2020 12:32:04 +0800
+Date: Fri, 31 Dec 2021 21:24:02 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
- Makefile                                 | 54 ++++++++++++------------
+ Makefile                                 | 58 ++++++++++++------------
  commands/preprocess.py                   | 21 +++++----
  commands/preprocess_cssless.py           |  4 +-
  gadgets/standard_revisions_tests/base.py |  2 +-
@@ -14,12 +14,21 @@ Subject: [PATCH] source: use zh localized version
  preprocess.py                            |  8 ++--
  tests/test_preprocess.py                 |  2 +-
  tests/test_preprocess_cssless.py         |  2 +-
- 10 files changed, 52 insertions(+), 49 deletions(-)
+ 10 files changed, 54 insertions(+), 51 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 22d5596..559fe38 100644
+index 798b79e..e1b4e96 100644
 --- a/Makefile
 +++ b/Makefile
+@@ -28,7 +28,7 @@ qhelpgenerator = qhelpgenerator
+ 
+ #Version
+ 
+-VERSION=20211127
++VERSION=20211231
+ 
+ #STANDARD RULES
+ 
 @@ -100,18 +100,18 @@ install: all
  	popd > /dev/null
  
@@ -140,19 +149,20 @@ index 22d5596..559fe38 100644
 +		--span-hosts --domains=zh.cppreference.com,upload.cppreference.com \
  		--reject-regex $$regex \
 -		--timeout=5 --tries=50 --no-verbose \
-+		--timeout=5 --tries=150 --no-verbose \
- 		--retry-connrefused --waitretry=10 --read-timeout=20 \
+-		--retry-connrefused --waitretry=10 --read-timeout=20 \
 -		https://en.cppreference.com/w/ ; \
++		--timeout=5 --tries=180 --no-verbose \
++		--retry-connrefused --waitretry=2 --read-timeout=13 \
 +		https://zh.cppreference.com/w/ ; \
  	popd > /dev/null
  
 -	./export.py --url=https://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
-index 2f8ff4c..43a527a 100644
+index f6627ef..6785463 100644
 --- a/commands/preprocess.py
 +++ b/commands/preprocess.py
-@@ -42,23 +42,23 @@ def rearrange_archive(root):
+@@ -43,23 +43,23 @@ def rearrange_archive(root):
      # rearrange the archive. {root} here is output/reference
  
      # before
@@ -182,7 +192,7 @@ index 2f8ff4c..43a527a 100644
          path = os.path.join(root, lang + ".cppreference.com/")
          src_html_path = path + "w/"
          src_data_path = path + "mwiki/"
-@@ -81,7 +81,7 @@ def rearrange_archive(root):
+@@ -82,7 +82,7 @@ def rearrange_archive(root):
          shutil.copy(os.path.join(path, 'favicon.ico'), data_path)
  
          # remove what's left
@@ -191,7 +201,7 @@ index 2f8ff4c..43a527a 100644
  
      # remove the XML source file
      for fn in fnmatch.filter(os.listdir(root), 'cppreference-export*.xml'):
-@@ -341,7 +341,10 @@ def remove_fileinfo(html):
+@@ -350,7 +350,10 @@ def remove_fileinfo(html):
  
  # make custom footer
  def add_footer(html, root, fn):
@@ -203,7 +213,7 @@ index 2f8ff4c..43a527a 100644
      for child in footer.getchildren():
          id = child.get('id')
          if id == 'cpp-navigation':
-@@ -377,7 +380,7 @@ def remove_unused_external(html):
+@@ -386,7 +389,7 @@ def remove_unused_external(html):
  
  
  def preprocess_html_file(root, fn, rename_map):
@@ -213,10 +223,10 @@ index 2f8ff4c..43a527a 100644
      output = io.StringIO()
  
 diff --git a/commands/preprocess_cssless.py b/commands/preprocess_cssless.py
-index 8bf9142..2df1774 100644
+index e6f9e02..11170e3 100644
 --- a/commands/preprocess_cssless.py
 +++ b/commands/preprocess_cssless.py
-@@ -28,9 +28,9 @@ from lxml.etree import strip_elements
+@@ -29,9 +29,9 @@ from premailer import Premailer
  
  
  def preprocess_html_merge_cssless(src_path, dst_path):
@@ -229,10 +239,10 @@ index 8bf9142..2df1774 100644
          root = etree.fromstring(stripped, parser)
  
 diff --git a/gadgets/standard_revisions_tests/base.py b/gadgets/standard_revisions_tests/base.py
-index b780e8d..67266e1 100644
+index 8b1269c..43863ee 100644
 --- a/gadgets/standard_revisions_tests/base.py
 +++ b/gadgets/standard_revisions_tests/base.py
-@@ -24,7 +24,7 @@ from selenium.webdriver.support.ui import Select
+@@ -25,7 +25,7 @@ from selenium.webdriver.support.ui import Select
  
  class Driver:
      def __init__(self):
@@ -242,7 +252,7 @@ index b780e8d..67266e1 100644
          driver.implicitly_wait(30)
          try:
 diff --git a/gadgets/sync_tests_mwiki.py b/gadgets/sync_tests_mwiki.py
-index 9aa3fc7..13294ec 100755
+index b9e1337..41eae97 100755
 --- a/gadgets/sync_tests_mwiki.py
 +++ b/gadgets/sync_tests_mwiki.py
 @@ -114,7 +114,7 @@ def perform_sync(url, direction, dest_root, title_filter, user, password,
@@ -255,10 +265,10 @@ index 9aa3fc7..13294ec 100755
      pywikibot.config2.step = 100
      pywikibot.config2.put_throttle = 0
 diff --git a/index2ddg.py b/index2ddg.py
-index f8c9e12..4bdc3d0 100755
+index 71d15ed..a22ccf1 100755
 --- a/index2ddg.py
 +++ b/index2ddg.py
-@@ -465,7 +465,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
+@@ -467,7 +467,7 @@ def process_identifier(out, redirects, root, link, item_ident, item_type,
          abstract = abstract.replace('\n', '\\n')
          line += abstract + '\t'
          # source url
@@ -267,7 +277,7 @@ index f8c9e12..4bdc3d0 100755
          out.write(line)
  
          build_redirects(redirects, item_ident, item_type)
-@@ -580,7 +580,7 @@ def main():
+@@ -582,7 +582,7 @@ def main():
          # i+=1
  
          root = e.parse(os.path.join(args.reference, fn),
@@ -290,10 +300,10 @@ index fb8b976..e9657a4 100644
          res += '{0}</a></span>] <span class="mark">{1}</span>\n'.format(
              full_link, mark)
 diff --git a/preprocess.py b/preprocess.py
-index a04abd2..95823b6 100755
+index 1fb4419..c2513aa 100755
 --- a/preprocess.py
 +++ b/preprocess.py
-@@ -35,12 +35,12 @@ def main():
+@@ -36,12 +36,12 @@ def main():
          help='Destination folder to put preprocessed archive to')
      args = parser.parse_args()
  
@@ -311,10 +321,10 @@ index a04abd2..95823b6 100755
      preprocess.rearrange_archive(root)
  
 diff --git a/tests/test_preprocess.py b/tests/test_preprocess.py
-index 5233199..38ec845 100644
+index 3c0c952..b8d03d2 100644
 --- a/tests/test_preprocess.py
 +++ b/tests/test_preprocess.py
-@@ -256,7 +256,7 @@ class TestPreprocessHtml(unittest.TestCase):
+@@ -258,7 +258,7 @@ class TestPreprocessHtml(unittest.TestCase):
          self.testdata = os.path.join(os.path.dirname(__file__),
                                       'preprocess_data')
          infile = os.path.join(self.testdata, "fabs.html")
@@ -324,10 +334,10 @@ index 5233199..38ec845 100644
  
      # Check whether the HTML matches the contents of the specified test data
 diff --git a/tests/test_preprocess_cssless.py b/tests/test_preprocess_cssless.py
-index 0b9f580..ab6dddb 100644
+index 64864cc..b48628b 100644
 --- a/tests/test_preprocess_cssless.py
 +++ b/tests/test_preprocess_cssless.py
-@@ -81,7 +81,7 @@ class HTMLTestBase(unittest.TestCase):
+@@ -83,7 +83,7 @@ class HTMLTestBase(unittest.TestCase):
          expected_output = \
              '<html><body>{0}</body></html>'.format(expected_output)
  
@@ -337,5 +347,5 @@ index 0b9f580..ab6dddb 100644
  
          root = function(root)
 -- 
-2.25.0
+2.30.0
 
