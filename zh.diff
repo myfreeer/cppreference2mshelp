@@ -20,15 +20,6 @@ diff --git a/Makefile b/Makefile
 index 798b79e..e1b4e96 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -28,7 +28,7 @@ qhelpgenerator = qhelpgenerator
- 
- #Version
- 
--VERSION=20211127
-+VERSION=20211231
- 
- #STANDARD RULES
- 
 @@ -100,18 +100,18 @@ install: all
  	popd > /dev/null
  
