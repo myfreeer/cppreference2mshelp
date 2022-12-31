@@ -65,6 +65,7 @@ sed "s/cppreference\.chm/cppreference-zh-${VERSION}\.chm/" cppreference.hhp > "c
 # Compile and package UTF-8 version
 "${HHC}" "cppreference-zh-${VERSION}.hhp"
 "${_7Z}" a -mx9 "cppreference-zh-${VERSION}-chm-project.7z" "cppreference-zh-${VERSION}.hhp" cppreference.{hhc,hhk} hh{a.dll,c.exe} chmhelp/*
+tar caf "cppreference-zh-${VERSION}-chm-project.tar.xz" "cppreference-zh-${VERSION}.hhp" cppreference.{hhc,hhk} hh{a.dll,c.exe} chmhelp/*
 
 # Convert HTML to GBK
 mv chmhelp chmhelp1
@@ -82,3 +83,4 @@ sed "s/cppreference\.chm/cppreference-zh-${VERSION}-gbk\.chm/" cppreference.hhp 
 # Compile and package GBK version
 "${HHC}" "cppreference-zh-${VERSION}-gbk.hhp"
 "${_7Z}" a -mx9 "cppreference-zh-${VERSION}-chm-project-gbk.7z" "cppreference-zh-${VERSION}-gbk.hhp" cppreference.{hhc,hhk} hh{a.dll,c.exe} chmhelp/*
+tar caf "cppreference-zh-${VERSION}-chm-project-gbk.tar.xz" "cppreference-zh-${VERSION}-gbk.hhp" cppreference.{hhc,hhk} hh{a.dll,c.exe} chmhelp/*
