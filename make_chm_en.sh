@@ -56,3 +56,4 @@ sed "s/cppreference\.chm/cppreference-en-${VERSION}\.chm/" cppreference.hhp > "c
 # Compile and package UTF-8 version
 "${HHC}" "cppreference-en-${VERSION}.hhp"
 "${_7Z}" a -mx9 "cppreference-en-${VERSION}-chm-project.7z" "cppreference-en-${VERSION}.hhp" cppreference.{hhc,hhk} hh{a.dll,c.exe} chmhelp/*
+tar caf "cppreference-en-${VERSION}-chm-project.tar.xz" "cppreference-en-${VERSION}.hhp" cppreference.{hhc,hhk} hh{a.dll,c.exe} chmhelp/*
