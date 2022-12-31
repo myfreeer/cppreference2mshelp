@@ -1,0 +1,32 @@
+diff --git a/commands/preprocess_cssless.py b/commands/preprocess_cssless.py
+index 11170e3..0c29d96 100644
+--- a/commands/preprocess_cssless.py
++++ b/commands/preprocess_cssless.py
+@@ -25,8 +25,11 @@ import warnings
+ import cssutils
+ from lxml import etree
+ from lxml.etree import strip_elements
++import premailer
+ from premailer import Premailer
+ 
++premailer_version = premailer.__version__.split('.')
++premailer_is_new=len(premailer_version) >= 2 and int(premailer_version[0]) >= 3 and int(premailer_version[1]) >= 9
+ 
+ def preprocess_html_merge_cssless(src_path, dst_path):
+     with open(src_path, 'r', encoding='utf-8') as a_file:
+@@ -72,8 +75,13 @@ def preprocess_html_merge_css(root, src_path):
+ 
+     with warnings.catch_warnings():
+         warnings.simplefilter("ignore")
+-        premailer = Premailer(root, base_url=src_path,
+-                              disable_link_rewrites=True, remove_classes=True)
++        if premailer_is_new:
++            premailer = Premailer(root, base_url=src_path,
++                                  disable_link_rewrites=True, remove_classes=True,
++                                  allow_loading_external_files=True)
++        else:
++            premailer = Premailer(root, base_url=src_path,
++                                  disable_link_rewrites=True, remove_classes=True)
+         root = premailer.transform().getroot()
+ 
+     return output.getvalue()
