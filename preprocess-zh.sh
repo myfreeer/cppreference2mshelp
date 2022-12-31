@@ -61,6 +61,7 @@ CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
 
 # package un-processed files
 "${_7Z}" a -mx9 -myx9  -mqs "../cppreference-unprocessed-${VERSION}.7z" ./reference
+tar caf "../cppreference-unprocessed-${VERSION}.tar.xz" reference
 #rm -rf ./reference
 #"${_7Z}" x ../cppreference-unprocessed-20210212.7z
 
@@ -160,11 +161,13 @@ make doc_doxygen doc_devhelp
 # package processed files
 cd output
 "${_7Z}" a -mx9 -myx9 -mqs "../../html-book-${VERSION}.7z" ./reference cppreference-doc-zh-c.devhelp2 cppreference-doc-zh-cpp.devhelp2 cppreference-doxygen-web.tag.xml cppreference-doxygen-local.tag.xml devhelp-index-c.xml devhelp-index-cpp.xml link-map.xml
+tar caf "../../html-book-${VERSION}.tar.xz" reference cppreference-doc-zh-c.devhelp2 cppreference-doc-zh-cpp.devhelp2 cppreference-doxygen-web.tag.xml cppreference-doxygen-local.tag.xml devhelp-index-c.xml devhelp-index-cpp.xml link-map.xml
 cd ..
 
 # build qch book
 make doc_qch
 "${_7Z}" a -mx9 -myx9 -mqs "../qch-book-${VERSION}.7z" ./output/*.qch
+tar caf "../qch-book-${VERSION}.tar.xz"  ./output/*.qch
 
 # move processed files to parent folder
 # for make_chm.sh
