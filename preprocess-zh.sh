@@ -32,6 +32,8 @@ else
   git apply -3 ../zh.diff
 fi
 
+git apply -3 ../preprocess_cssless.diff
+
 VERSION="${VERSION:-$(date +%Y%m%d)}"
 sed -i "/^VERSION=/cVERSION=${VERSION}" Makefile
 make source
