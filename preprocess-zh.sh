@@ -56,7 +56,7 @@ ext_replace="ext.css"
 ext_path="$(find | grep -iP 'load\.php.*?modules=.*ext.*&only=styles.*?' | head -1)"
 
 LIST="startup_scripts site_scripts site_modules skin_scripts ext"
-extra_fonts="DejaVuSans.ttf DejaVuSans-Bold.ttf DejaVuSansMono.ttf DejaVuSansMono-Bold.ttf"
+extra_fonts="DejaVuSans.ttf DejaVuSans-Bold.ttf DejaVuSansMono.ttf DejaVuSansMono-Bold.ttf DejaVuSansMonoCondensed60.ttf DejaVuSansMonoCondensed75.ttf"
 
 _7Z="${_7Z:-$(which 7z)}"
 CPUS="$(cat /proc/cpuinfo | grep -c '^processor')"
