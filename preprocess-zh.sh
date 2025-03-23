@@ -23,11 +23,11 @@ done
 set -e
 
 if [[ "${UPSTREAM}" = "p12tic" ]]; then
-  git clone https://github.com/p12tic/cppreference-doc.git --depth=1
+  git clone https://github.com/p12tic/cppreference-doc.git --filter=tree:0
   cd cppreference-doc
   git apply -3 ../zh-p12tic.diff
 else
-  git clone https://github.com/PeterFeicht/cppreference-doc.git --depth=1
+  git clone https://github.com/PeterFeicht/cppreference-doc.git --filter=tree:0
   cd cppreference-doc
   git apply -3 ../zh.diff
 fi
