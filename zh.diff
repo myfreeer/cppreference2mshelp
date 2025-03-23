@@ -1,10 +1,10 @@
-From 938d6be7ebcb2a640ca67263847c07b1ac813c82 Mon Sep 17 00:00:00 2001
+From 2e3fffea44c3840974cd758ceb550adf1db8e6a0 Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Fri, 31 Dec 2021 21:24:02 +0800
+Date: Sun, 23 Mar 2025 18:34:54 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
- Makefile                                 | 58 ++++++++++++------------
+ Makefile                                 | 57 ++++++++++++------------
  commands/preprocess.py                   | 21 +++++----
  commands/preprocess_cssless.py           |  4 +-
  gadgets/standard_revisions_tests/base.py |  2 +-
@@ -14,16 +14,16 @@ Subject: [PATCH] source: use zh localized version
  preprocess.py                            |  8 ++--
  tests/test_preprocess.py                 |  2 +-
  tests/test_preprocess_cssless.py         |  2 +-
- 10 files changed, 54 insertions(+), 51 deletions(-)
+ 10 files changed, 54 insertions(+), 50 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 798b79e..e1b4e96 100644
+index 6c4ce10..327b404 100644
 --- a/Makefile
 +++ b/Makefile
-@@ -100,18 +100,18 @@ install: all
+@@ -104,14 +104,14 @@ install_html: doc_html
  	popd > /dev/null
  
- 	# install the devhelp documentation
+ install_devhelp: doc_devhelp
 -	install -DT -m 644 "output/cppreference-doc-en-c.devhelp2" \
 -		"$(DESTDIR)$(bookdir)/cppreference-doc-en-c/cppreference-doc-en-c.devhelp2"
 -	install -DT -m 644 "output/cppreference-doc-en-cpp.devhelp2" \
@@ -32,20 +32,16 @@ index 798b79e..e1b4e96 100644
 +		"$(DESTDIR)$(bookdir)/cppreference-doc-zh-c/cppreference-doc-zh-c.devhelp2"
 +	install -DT -m 644 "output/cppreference-doc-zh-cpp.devhelp2" \
 +		"$(DESTDIR)$(bookdir)/cppreference-doc-zh-cpp/cppreference-doc-zh-cpp.devhelp2"
- 	install -DT -m 644 "output/cppreference-doxygen-local.tag.xml" \
- 		"$(DESTDIR)$(bookdir)/cppreference-doxygen-local.tag.xml"
- 	install -DT -m 644 "output/cppreference-doxygen-web.tag.xml" \
- 		"$(DESTDIR)$(bookdir)/cppreference-doxygen-web.tag.xml"
  
- 	# install the .qch (Qt Help) documentation
+ install_qch: doc_qch
 -	install -DT -m 644 "output/cppreference-doc-en-cpp.qch" \
 -		"$(DESTDIR)$(docdir)/qch/cppreference-doc-en-cpp.qch"
 +	install -DT -m 644 "output/cppreference-doc-zh-cpp.qch" \
 +		"$(DESTDIR)$(docdir)/qch/cppreference-doc-zh-cpp.qch"
  
- uninstall:
- 	rm -rf "$(DESTDIR)$(docdir)"
-@@ -138,16 +138,16 @@ release: all
+ install_doxygen: doc_doxygen
+ 	install -DT -m 644 "output/cppreference-doxygen-local.tag.xml" \
+@@ -144,16 +144,16 @@ release: all
  
  	# zip qch
  	pushd "output"; \
@@ -66,7 +62,7 @@ index 798b79e..e1b4e96 100644
  
  doc_doxygen: output/cppreference-doxygen-web.tag.xml output/cppreference-doxygen-local.tag.xml
  
-@@ -156,32 +156,32 @@ output/link-map.xml: output/reference
+@@ -162,32 +162,32 @@ output/link-map.xml: output/reference
  	./build_link_map.py
  
  #build the .devhelp2 index
@@ -108,7 +104,7 @@ index 798b79e..e1b4e96 100644
  	#build the file list
  	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><files>" > "output/qch-files.xml"
  
-@@ -193,7 +193,7 @@ output/qch-help-project-cpp.xml: output/cppreference-doc-en-cpp.devhelp2 output/
+@@ -199,7 +199,7 @@ output/qch-help-project-cpp.xml: output/cppreference-doc-en-cpp.devhelp2 output/
  	echo "</files>" >> "output/qch-files.xml"
  
  	#create the project (copies the file list)
@@ -117,7 +113,7 @@ index 798b79e..e1b4e96 100644
  		--dst=output/qch-help-project-cpp.xml \
  		--virtual_folder=cpp --file_list=output/qch-files.xml
  
-@@ -229,7 +229,7 @@ indexes:
+@@ -235,7 +235,7 @@ indexes:
  	./index2autolinker.py index-functions-c.xml output/indexes/autolink-c
  	./index2autolinker.py index-functions-cpp.xml output/indexes/autolink-cpp
  
@@ -126,7 +122,7 @@ index 798b79e..e1b4e96 100644
  source:
  	rm -rf "reference"
  	mkdir "reference"
-@@ -238,15 +238,15 @@ source:
+@@ -244,15 +244,16 @@ source:
  	regex=".*index\\.php.*|.*/Special:.*|.*/Talk:.*" \
  	regex+="|.*/Help:.*|.*/File:.*|.*/Cppreference:.*" \
  	regex+="|.*/WhatLinksHere:.*|.*/Template:.*|.*/Category:.*" \
@@ -144,13 +140,14 @@ index 798b79e..e1b4e96 100644
 -		https://en.cppreference.com/w/ ; \
 +		--timeout=5 --tries=180 --no-verbose \
 +		--retry-connrefused --waitretry=2 --read-timeout=13 \
++		--trust-server-names \
 +		https://zh.cppreference.com/w/ ; \
  	popd > /dev/null
  
 -	./export.py --url=https://en.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 +	./export.py --url=https://zh.cppreference.com/mwiki reference/cppreference-export-ns0,4,8,10.xml 0 4 8 10
 diff --git a/commands/preprocess.py b/commands/preprocess.py
-index f6627ef..6785463 100644
+index e745b8e..4529c6a 100644
 --- a/commands/preprocess.py
 +++ b/commands/preprocess.py
 @@ -43,23 +43,23 @@ def rearrange_archive(root):
@@ -196,7 +193,7 @@ index f6627ef..6785463 100644
  
  # make custom footer
  def add_footer(html, root, fn):
--    footer = html.xpath('//*[@id=\'footer\']')[0]
+-    footer = html.xpath("//*[@id='footer']")[0]
 +    footers = html.xpath('//*[@id=\'footer\']')
 +    if len(footers) == 0:
 +        return
@@ -338,5 +335,5 @@ index 64864cc..b48628b 100644
  
          root = function(root)
 -- 
-2.30.0
+2.39.5
 

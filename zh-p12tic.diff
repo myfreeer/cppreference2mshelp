@@ -1,10 +1,10 @@
-From 8c67452b3c7b941b8d9155e49e79c39a898390f9 Mon Sep 17 00:00:00 2001
+From ecf13bf2fd5c3d4c4586e9a3b939ca81a6d91524 Mon Sep 17 00:00:00 2001
 From: myfreeer <myfreeer@users.noreply.github.com>
-Date: Fri, 12 Feb 2021 17:23:50 +0800
+Date: Sun, 23 Mar 2025 18:30:03 +0800
 Subject: [PATCH] source: use zh localized version
 
 ---
- Makefile                                 | 56 ++++++++++++------------
+ Makefile                                 | 57 ++++++++++++------------
  commands/preprocess.py                   | 16 +++----
  commands/preprocess_cssless.py           |  4 +-
  gadgets/standard_revisions_tests/base.py |  2 +-
@@ -14,10 +14,10 @@ Subject: [PATCH] source: use zh localized version
  preprocess.py                            |  8 ++--
  tests/test_preprocess.py                 |  2 +-
  tests/test_preprocess_cssless.py         |  2 +-
- 10 files changed, 49 insertions(+), 49 deletions(-)
+ 10 files changed, 50 insertions(+), 49 deletions(-)
 
 diff --git a/Makefile b/Makefile
-index 644e3a5..90a2c0b 100644
+index 644e3a5..ab4f477 100644
 --- a/Makefile
 +++ b/Makefile
 @@ -98,18 +98,18 @@ install: all
@@ -131,7 +131,7 @@ index 644e3a5..90a2c0b 100644
  source:
  	rm -rf "reference"
  	mkdir "reference"
-@@ -246,15 +246,15 @@ source:
+@@ -246,15 +246,16 @@ source:
  	regex=".*index\\.php.*|.*/Special:.*|.*/Talk:.*" \
  	regex+="|.*/Help:.*|.*/File:.*|.*/Cppreference:.*" \
  	regex+="|.*/WhatLinksHere:.*|.*/Template:.*|.*/Category:.*" \
@@ -149,6 +149,7 @@ index 644e3a5..90a2c0b 100644
 -	  http://en.cppreference.com/w/ ; \
 +	  --timeout=5 --tries=180 --no-verbose \
 +	  --retry-connrefused --waitretry=5 --read-timeout=15 \
++	  --trust-server-names \
 +	  https://zh.cppreference.com/w/  ; \
  	popd > /dev/null
  
@@ -331,5 +332,5 @@ index 64864cc..b48628b 100644
  
          root = function(root)
 -- 
-2.30.0
+2.39.5
 
