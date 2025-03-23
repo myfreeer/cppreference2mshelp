@@ -9,7 +9,7 @@ cppreference.com html archive converter to microsoft help (for Windows Visual St
 
 ## Prerequires:
 
-1) Windows x64 (LOL, I'm mad). Actually any system will be ok, you should use another tools in this case to make cab file, zip file and digitally sign cab (for Visual Studio Help). However there is no alternative for [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft (for chm based help).
+1) Windows x64 (LOL, I'm mad). Actually any system will be ok, you should use another tools in this case to make cab file, zip file and digitally sign cab (for Visual Studio Help). There is an alternative for [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft (for chm based help), see [here](https://github.com/myfreeer/cppreference2mshelp/issues/34) for more detail.
 2) php at least 5.6.1
 3) cppreference.com offline archive (*Html book*) downloaded from this link: http://en.cppreference.com/w/Cppreference:Archives
 4) [HTML Help Workshop](https://www.microsoft.com/en-us/download/details.aspx?id=21138) from Microsoft to build .chm help file.
