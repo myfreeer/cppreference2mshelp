@@ -151,7 +151,8 @@ wget -nv 'https://en.cppreference.com/mwiki/skins/cppreference2/images/navbar-in
 popd
 echo Cleaning up carbonads scripts
 find ./ -iname '*.html' -type f | xargs -P "${CPUS}" sed -i -r 's/<script.+?carbonads\.com\/carbon\.js.+?<\/script>//ig' 
-echo Done.
+echo Cleaning up googletagmanager scripts
+find ./ -iname '*.html' -type f | xargs -P "${CPUS}" sed -i -r 's/<script.+?googletagmanager\.com.+?<\/script>//ig'
 
 rm -rf 'reference/zh.cppreference.com'
 
